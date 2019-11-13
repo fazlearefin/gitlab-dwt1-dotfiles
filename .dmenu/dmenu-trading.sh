@@ -1,30 +1,35 @@
 #!/bin/bash
-#  ____ _____ 
+#  ____ _____
 # |  _ \_   _|  Derek Taylor (DistroTube)
 # | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/ 
-# |____/ |_| 
+# | |_| || |    http://www.gitlab.com/dwt1/
+# |____/ |_|
 #
 # Dmenu script for launching trading programs.
 
 
-declare -a options=(" tastyworks 
- tastytrade 
- thinkorswim 
- quit ")
+declare -a options=("tastyworks
+tastytrade
+thinkorswim
+quit")
 
 choice=$(echo -e "${options[@]}" | dmenu -l -i -p 'System monitors: ')
 
-	if [ "$choice" == ' quit ' ]; then
-		echo "Program terminated."
-	fi
-	if [ "$choice" == ' tastyworks ' ]; then
+case $choice in
+	quit)
+		echo "Program terminated." && exit 1
+	;;
+	tastyworks)
         exec /opt/tastyworks/tastyworks
-	fi
-	if [ "$choice" == ' tastytrade ' ]; then
+	;;
+	tastytrade)
         exec firefox tastytrade.com
-	fi
-	if [ "$choice" == ' thinkorswim ' ]; then
-        exec /home/dt/thinkorswim/thinkorswim
-	fi
+	;;
+	thinkorswim)
+        exec "$HOME/thinkorswim/thinkorswim"
+	;;
+	*)
+		exit 1
+	;;
+esac
 
