@@ -203,3 +203,52 @@ endfun
 
 autocmd BufWritePre * :call CleanExtraSpaces()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Convert text to UTF-8
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+setglobal termencoding=utf-8 fileencodings=
+scriptencoding utf-8
+set encoding=utf-8
+
+autocmd BufNewFile,BufRead  *   try
+autocmd BufNewFile,BufRead  *   set encoding=utf-8
+autocmd BufNewFile,BufRead  *   endtry
+
+"Going over all of this would take too much time
+"This basically set everything in utf-8 in every circumtances
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Convert to UNIX fileformat (avoid CRLF)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set fileformat=unix
+"Set every files as Unix (LF) as Windows might set CRLF wich is not working
+"for unix
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Ignore 'useless' extensions for wildmenu
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set wildignore+=*.a,*.o,*.so,*.pyc,.git
+set wildignore+=*.jpg,*.png,*.gif,*.bmp,*.ico,*.pdf
+set wildignore+=*.tmp,*.swp
+
+"Tell NerdTree and Popup windows ignore thoses
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Set Vim Language
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let $LANG='en'
+"Setting env LANG var to english
+
+set langmenu=en
+"Setting menu language to en
+
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+"Sourcing evrything ("don't why but you need to do it)
+
