@@ -28,7 +28,7 @@ The following comments are the copyright and licensing information from the defa
 qtile config. Copyright (c) 2010 Aldo Cortesi, 2010, 2014 dequis, 2012 Randall Ma,
 2012-2014 Tycho Andersen, 2012 Craig Barnes, 2013 horsik, 2013 Tao Sauvage
 
-Modified by Derek Taylor (http://www.gitlab.com/dwt1/ )
+Modified by Derek Taylor ([[http://www.gitlab.com/dwt1/][http://www.gitlab.com/dwt1/]])
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
 software and associated documentation files (the "Software"), to deal in the Software

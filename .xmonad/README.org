@@ -30,11 +30,11 @@
 [[https://gitlab.com/dwt1/dotfiles/-/raw/master/.screenshots/dotfiles05-thumb.png]]
 
 Xmonad is a dynamically tiling X11 window manager that is written and
-configured in Haskell. Official documentation: https://xmonad.org
+configured in Haskell. Official documentation: [[https://xmonad.org][https://xmonad.org]]
 
 This is the xmonad configuration of Derek Taylor (DistroTube)
-- My YouTube: http://www.youtube.com/c/DistroTube
-- My GitLab:  http://www.gitlab.com/dwt1/
+- My YouTube: [[http://www.youtube.com/c/DistroTube][http://www.youtube.com/c/DistroTube]]
+- My GitLab:  [[http://www.gitlab.com/dwt1/][http://www.gitlab.com/dwt1/]]
 
 Keep in mind, that my configs are purposely bloated with examples of
 what you can do with xmonad. It is written more as a study guide rather
