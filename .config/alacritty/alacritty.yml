@@ -244,7 +244,6 @@ colors:
   # If only text is unset the cell text color will remain the same.
   selection:
     text: '0xbbc2cf'
-    background: '0x282c34'
 
   # Normal colors
   normal:
