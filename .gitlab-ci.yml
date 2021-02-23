@@ -1,0 +1,52 @@
+Docs
+
+ Tell us how you feel about GitLab. Take our two minute survey!  ×
+ |
+
+GitLab Docs 
+GitLab CI/CD 
+Keyword reference for the .gitlab-ci.yml file 
+The .gitlab-ci.yml file
+The .gitlab-ci.yml file
+To use GitLab CI/CD, you need:
+
+Application code hosted in a Git repository.
+A file called .gitlab-ci.yml in the root of your repository, which contains the CI/CD configuration.
+In the .gitlab-ci.yml file, you can define:
+
+The scripts you want to run.
+Other configuration files and templates you want to include.
+Dependencies and caches.
+The commands you want to run in sequence and those you want to run in parallel.
+The location to deploy your application to.
+Whether you want to run the scripts automatically or trigger any of them manually.
+The scripts are grouped into jobs, and jobs run as part of a larger pipeline. You can group multiple independent jobs into stages that run in a defined order.
+
+You should organize your jobs in a sequence that suits your application and is in accordance with the tests you wish to perform. To visualize the process, imagine the scripts you add to jobs are the same as CLI commands you run on your computer.
+
+When you add a .gitlab-ci.yml file to your repository, GitLab detects it and an application called GitLab Runner runs the scripts defined in the jobs.
+
+A .gitlab-ci.yml file might contain:
+
+stages:
+  - build
+  - test
+
+build-code-job:
+  stage: build
+  script:
+    - echo "Check the ruby version, then build some Ruby project files:"
+    - ruby -v
+    - rake
+
+test-code-job1:
+  stage: test
+  script:
+    - echo "If the files are built successfully, test some files with one command:"
+    - rake test1
+
+test-code-job2:
+  stage: test
+  script:
+    - echo "If the files are built successfully, test other files with a different command:"
+    - rake test2
