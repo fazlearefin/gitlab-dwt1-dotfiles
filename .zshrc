@@ -1,8 +1,8 @@
-#  ____ _____ 
+#  ____ _____
 # |  _ \_   _|  Derek Taylor (DistroTube)
 # | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/ 
-# |____/ |_| 
+# | |_| || |    http://www.gitlab.com/dwt1/
+# |____/ |_|
 # My zsh config. Not much to see here; just some pretty standard stuff.
 
 ### EXPORT
@@ -109,7 +109,7 @@ ZSH=$HOME/.oh-my-zsh
 # Defning the plugins needs to happen before sourcing oh-my-zsh.
 plugins=(command-not-found
          emacs
-         git 
+         git
          history
          zsh-interactive-cd)
 
@@ -117,7 +117,7 @@ plugins=(command-not-found
 # Your plugins will not work without this source.
 source $ZSH/oh-my-zsh.sh
 
-### ALIASES ### 
+### ALIASES ###
 
 # root privileges
 alias doas="doas --"
@@ -150,7 +150,6 @@ alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"
 alias doomupgrade="~/.emacs.d/bin/doom upgrade"
 alias doompurge="~/.emacs.d/bin/doom purge"
-
 # bat
 # alias cat='bat'
 
@@ -195,7 +194,8 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
 alias vifm='./.config/vifm/scripts/vifmrun'
-
+alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
+alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
@@ -260,7 +260,7 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 alias tips='lbrynet txo spend --type=support --is_not_my_input --blocking'
 
 # Thinkorswim
-alias tos="/home/dt/thinkorswim/thinkorswim" 
+alias tos="/home/dt/thinkorswim/thinkorswim"
 
 # force all kakoune windows into one session
 alias kak="/usr/bin/kak -c mysession"

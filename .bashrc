@@ -1,7 +1,7 @@
-#  ____ _____ 
+#  ____ _____
 # |  _ \_   _|  Derek Taylor (DistroTube)
 # | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/ 
+# | |_| || |    http://www.gitlab.com/dwt1/
 # |____/ |_|
 #
 # My bash config. Not much to see here; just some pretty standard stuff.
@@ -92,7 +92,7 @@ ex ()
       *.7z)        7z x $1      ;;
       *.deb)       ar x $1      ;;
       *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
+      *.tar.zst)   unzstd $1    ;;
       *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
@@ -178,6 +178,8 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
 alias vifm='./.config/vifm/scripts/vifmrun'
+alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
+alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
@@ -243,7 +245,7 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 alias tips='lbrynet txo spend --type=support --is_not_my_input --blocking'
 
 # Thinkorswim
-alias tos="/home/dt/thinkorswim/thinkorswim" 
+alias tos="/home/dt/thinkorswim/thinkorswim"
 
 # force all kakoune windows into one session
 alias kak="/usr/bin/kak -c mysession"

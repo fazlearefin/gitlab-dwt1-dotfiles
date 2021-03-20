@@ -1,7 +1,7 @@
-#  ____ _____ 
+#  ____ _____
 # |  _ \_   _|  Derek Taylor (DistroTube)
 # | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/ 
+# | |_| || |    http://www.gitlab.com/dwt1/
 # |____/ |_|
 #
 # My fish config. Not much to see here; just some pretty standard stuff.
@@ -17,7 +17,7 @@ set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mod
 ### Uncomment only one of these!
 
 ### "bat" as manpager
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'" 
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 ### "vim" as manpager
 # set -x MANPAGER '/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
@@ -208,7 +208,7 @@ alias clear='clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; ec
 alias doas="doas --"
 
 # navigation
-alias ..='cd ..' 
+alias ..='cd ..'
 alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
@@ -267,6 +267,8 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
 alias vifm='./.config/vifm/scripts/vifmrun'
+alias ncmpcpp='ncmpcpp ncmpcpp_directory=/Users/alichtman/.config/ncmpcpp/'
+alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
