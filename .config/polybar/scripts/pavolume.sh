@@ -150,9 +150,15 @@ function output() {
     volMuteStatus
     if [ "${curStatus}" = 'yes' ]
     then
-        echo " $curVol%"
+        echo "ﱝ mute"
     else
-        echo " $curVol%"
+        if [ $curVol -gt 70 ]; then
+            echo "墳 $curVol%"
+        elif [ $curVol -gt 30 ]; then
+          echo "奔 $curVol%"
+        else
+          echo "奄 $curVol%"
+        fi
     fi
 } #}}}
 
