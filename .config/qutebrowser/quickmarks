@@ -21,7 +21,7 @@ pa http://www.patreon.com/distrotube/
 py https://www.paypal.com/
 sb https://socialblade.com/youtube/c/distrotube
 sky https://www.skysilk.com/
-sp file:///home/dt/.surf/html/homepage.html
+sp file://~/.surf/html/homepage.html
 suck https://suckless.org/
 tee https://teespring.com/stores/distrotube
 tt https://www.tastytrade.com/

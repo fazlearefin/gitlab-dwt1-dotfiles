@@ -7,7 +7,7 @@
      <Include>$HOME/.jwmrc-mjwm</Include>
 
 	 <Separator/>
-	   <Dynamic icon="gnome-documents" label="Recently used">exec: /home/dt/.jwm/menus/recent-files.sh</Dynamic> 
+	   <Dynamic icon="gnome-documents" label="Recently used">exec: ~/.jwm/menus/recent-files.sh</Dynamic> 
 	 <Separator/>
 	  <Program icon="emblem-readonly.png" label="Lock">
 	  xscreensaver-command -activate

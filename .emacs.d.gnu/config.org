@@ -2,7 +2,7 @@
 #+AUTHOR: Derek Taylor (DT)
 #+DESCRIPTION: DT's personal Emacs config.
 #+STARTUP: showeverything
-#+EXPORT_FILE_NAME: /home/dt/Org/html/config.html
+#+EXPORT_FILE_NAME: ~/Org/html/config.html
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+OPTIONS: num:nil ^:{}
 
@@ -162,7 +162,7 @@ Emacs Dashboard is an extensible startup screen showing you recent files, bookma
   (setq dashboard-set-file-icons t)
   (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
   ;;(setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
-  (setq dashboard-startup-banner "/home/dt/.emacs.d/emacs-dash.png")  ;; use custom image as banner
+  (setq dashboard-startup-banner "~/.emacs.d/emacs-dash.png")  ;; use custom image as banner
   (setq dashboard-center-content nil) ;; set to 't' for centered content
   (setq dashboard-items '((recents . 5)
                           (agenda . 5 )

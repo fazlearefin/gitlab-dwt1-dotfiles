@@ -67,7 +67,7 @@ bindsym $mod+Shift+KP_5 exec $myTerm -e rtorrent
 bindsym $mod+Shift+KP_6 exec $myTerm -e youtube-viewer
 bindsym $mod+Shift+KP_7 exec $myTerm -e ncpamixer
 bindsym $mod+Shift+KP_8 exec $myTerm -e calcurse
-bindsym $mod+Shift+KP_9 exec $myTerm -e vim /home/dt/.i3/config
+bindsym $mod+Shift+KP_9 exec $myTerm -e vim ~/.i3/config
 
 # Apps Launched with <SUPER> + <CTRL> + <KEYPAD 1-9>
 bindsym $mod+Ctrl+KP_End exec $myTerm -e htop
@@ -310,7 +310,7 @@ bindsym $mod+9 exec --no-startup-id blurlock
 # Autostart applications
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; picom --config /home/dt/.config/picom/picom.conf
+exec --no-startup-id nitrogen --restore; sleep 1; picom --config ~/.config/picom/picom.conf
 exec --no-startup-id numlockx off
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager

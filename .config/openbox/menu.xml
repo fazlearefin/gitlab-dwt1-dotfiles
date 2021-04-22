@@ -249,7 +249,7 @@
 			</item>
 			<item label="Jitsi">
 				<action name="Execute">
-					<execute>/home/dt/Applications/jitsi-meet-x86_64.AppImage</execute>
+					<execute>~/Applications/jitsi-meet-x86_64.AppImage</execute>
 				</action>
 			</item>
 			<item label="Lynx">
@@ -518,7 +518,7 @@
 			</menu>
 			<item label="App Outlet">
 				<action name="Execute">
-					<execute>/home/dt/Applications/App\ Outlet-1.3.2.AppImage</execute>
+					<execute>~/Applications/App\ Outlet-1.3.2.AppImage</execute>
 				</action>
 			</item>
 			<item label="Network Connections">

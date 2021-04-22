@@ -1630,7 +1630,7 @@ label-indicator-underline = ${colors.foreground}
 type = custom/script
 interval = 1200
 exec = echo "  "
-click-left = "sh /home/dt/xmenu/xmenu.sh"
+click-left = "sh ~/xmenu/xmenu.sh"
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 ################################################################################

@@ -455,16 +455,16 @@ myKeys =
     -- Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     --  launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
-        , ("M-p c", spawn "/home/dt/dmscripts/dcolors")  -- pick color from our scheme
-        , ("M-p e", spawn "/home/dt/dmscripts/dmconf")   -- edit config files
-        , ("M-p i", spawn "/home/dt/dmscripts/dmscrot")  -- screenshots (images)
-        , ("M-p k", spawn "/home/dt/dmscripts/dmkill")   -- kill processes
-        , ("M-p m", spawn "/home/dt/dmscripts/dman")     -- manpages
-        , ("M-p o", spawn "/home/dt/dmscripts/dmqute")   -- qutebrowser bookmarks/history
+        , ("M-p c", spawn "~/dmscripts/dcolors")  -- pick color from our scheme
+        , ("M-p e", spawn "~/dmscripts/dmconf")   -- edit config files
+        , ("M-p i", spawn "~/dmscripts/dmscrot")  -- screenshots (images)
+        , ("M-p k", spawn "~/dmscripts/dmkill")   -- kill processes
+        , ("M-p m", spawn "~/dmscripts/dman")     -- manpages
+        , ("M-p o", spawn "~/dmscripts/dmqute")   -- qutebrowser bookmarks/history
         , ("M-p p", spawn "passmenu")                    -- passmenu
-        , ("M-p q", spawn "/home/dt/dmscripts/dmlogout") -- logout menu
-        , ("M-p r", spawn "/home/dt/dmscripts/dmred")    -- reddio (a reddit viewer)
-        , ("M-p s", spawn "/home/dt/dmscripts/dmsearch") -- search various search engines
+        , ("M-p q", spawn "~/dmscripts/dmlogout") -- logout menu
+        , ("M-p r", spawn "~/dmscripts/dmred")    -- reddio (a reddit viewer)
+        , ("M-p s", spawn "~/dmscripts/dmsearch") -- search various search engines
 
     -- Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))

@@ -147,11 +147,11 @@ startup_notifications = 0
 launcher_tooltip = 0
 launcher_icon_theme  = Breeze-Dark
 
-launcher_item_app = /home/dt/.config/tint2/launchers/obmenu-launch.desktop
-launcher_item_app = /home/dt/.config/tint2/launchers/pcmanfm.desktop
-launcher_item_app = /home/dt/.config/tint2/launchers/Alacritty.desktop
-launcher_item_app = /home/dt/.config/tint2/launchers/brave-browser.desktop
-launcher_item_app = /home/dt/.config/tint2/launchers/emacs.desktop
+launcher_item_app = ~/.config/tint2/launchers/obmenu-launch.desktop
+launcher_item_app = ~/.config/tint2/launchers/pcmanfm.desktop
+launcher_item_app = ~/.config/tint2/launchers/Alacritty.desktop
+launcher_item_app = ~/.config/tint2/launchers/brave-browser.desktop
+launcher_item_app = ~/.config/tint2/launchers/emacs.desktop
 
 #-------------------------------------
 # Clock

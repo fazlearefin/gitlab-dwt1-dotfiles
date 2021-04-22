@@ -217,13 +217,13 @@ myBookmarks = [ ("Site Name", myBrowser ++ "https://www.distrotube.com", "Offici
               ]
 
 myConfigs :: [(String, String, String)]
-myConfigs = [ ("bashrc", myEditor ++ "/home/dt/.bashrc", "the bourne again shell")
-            , ("doom emacs config.el", myEditor ++ "/home/dt/.doom.d/config.el", "doom emacs config")
-            , ("doom emacs init.el", myEditor ++ "/home/dt/.doom.d/init.el", "doom emacs init")
-            , ("dwm", myEditor ++ "/home/dt/dwm-distrotube/config.h", "dwm config file")
-            , ("qtile", myEditor ++ "/home/dt/.config/qtile/config.py", "qtile config")
-            , ("xmonad.hs", myEditor ++ "/home/dt/.xmonad/xmonad.hs", "xmonad config")
-            , ("zshrc", myEditor ++ "/home/dt/.zshrc", "config for the z shell")
+myConfigs = [ ("bashrc", myEditor ++ "~/.bashrc", "the bourne again shell")
+            , ("doom emacs config.el", myEditor ++ "~/.doom.d/config.el", "doom emacs config")
+            , ("doom emacs init.el", myEditor ++ "~/.doom.d/init.el", "doom emacs init")
+            , ("dwm", myEditor ++ "~/dwm-distrotube/config.h", "dwm config file")
+            , ("qtile", myEditor ++ "~/.config/qtile/config.py", "qtile config")
+            , ("xmonad.hs", myEditor ++ "~/.xmonad/xmonad.hs", "xmonad config")
+            , ("zshrc", myEditor ++ "~/.zshrc", "config for the z shell")
             ]
 
 -- Let's take myApplications, myBookmarks and myConfigs and take only
@@ -758,9 +758,9 @@ myKeys =
 main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
-    xmproc0 <- spawnPipe "xmobar -x 0 /home/dt/.config/xmobar/xmobarrc0"
-    xmproc1 <- spawnPipe "xmobar -x 1 /home/dt/.config/xmobar/xmobarrc2"
-    xmproc2 <- spawnPipe "xmobar -x 2 /home/dt/.config/xmobar/xmobarrc1"
+    xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc0"
+    xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrc2"
+    xmproc2 <- spawnPipe "xmobar -x 2 ~/.config/xmobar/xmobarrc1"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks

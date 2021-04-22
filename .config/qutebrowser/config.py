@@ -177,7 +177,7 @@ config.set('content.notifications.enabled', True, 'https://www.youtube.com')
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-c.downloads.location.directory = '/home/dt/Downloads'
+c.downloads.location.directory = '~/Downloads'
 
 # When to show the tab bar.
 # Type: String
@@ -190,7 +190,7 @@ c.tabs.show = 'always'
 
 # Setting default page for when opening new tabs or new windows with
 # commands like :open -t and :open -w .
-c.url.default_page = 'file:///home/dt/.surf/html/homepage.html'
+c.url.default_page = 'file://~/.surf/html/homepage.html'
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`

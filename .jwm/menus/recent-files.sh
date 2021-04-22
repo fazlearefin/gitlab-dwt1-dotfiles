@@ -1,5 +1,5 @@
 #!/bin/sh
-XBEL_PATH=/home/dt/.local/share/recently-used.xbel
+XBEL_PATH=~/.local/share/recently-used.xbel
 MAX_ITEMS=20
 
 if [[ -e $XBEL_PATH ]];then

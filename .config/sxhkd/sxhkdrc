@@ -170,19 +170,19 @@ alt + ctrl + Return
 	dmenu_run
 # edit common config files
 alt + ctrl + e
-   /home/dt/.dmenu/dmenu-edit-configs.sh
+   ~/.dmenu/dmenu-edit-configs.sh
 # surfraw
 alt + ctrl + s
-   /home/dt/.dmenu/dmenu-surfraw.sh 
+   ~/.dmenu/dmenu-surfraw.sh 
 # common system montoring programs
 alt + ctrl + m
-   /home/dt/.dmenu/dmenu-sysmon.sh 
+   ~/.dmenu/dmenu-sysmon.sh 
 # passmenu
 alt + ctrl + p
    exec passmenu 
 # reddio Reddit viewer
 alt + ctrl + r
-   /home/dt/.dmenu/dmenu-reddio.sh 
+   ~/.dmenu/dmenu-reddio.sh 
 # stock trading programs
 alt + ctrl + t
-   /home/dt/.dmenu/dmenu-trading.sh 
+   ~/.dmenu/dmenu-trading.sh 

@@ -245,7 +245,7 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 alias tips='lbrynet txo spend --type=support --is_not_my_input --blocking'
 
 # Thinkorswim
-alias tos="/home/dt/thinkorswim/thinkorswim"
+alias tos="~/thinkorswim/thinkorswim"
 
 # force all kakoune windows into one session
 alias kak="/usr/bin/kak -c mysession"
@@ -258,7 +258,7 @@ alias kakd="/usr/bin/kak -d -s mysession &"
 colorscript random
 
 ### SOURCING BROOT ###
-source /home/dt/.config/broot/launcher/bash/br
+source ~/.config/broot/launcher/bash/br
 
 ### BASH INSULTER ###
 if [ -f /etc/bash.command-not-found ]; then

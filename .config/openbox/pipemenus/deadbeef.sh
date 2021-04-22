@@ -24,7 +24,7 @@
 
 nowplaying=`deadbeef --nowplaying "%n %a - %t - %b - %y" | sed -n '1p' | tr -d '"'`
 tracktime=`deadbeef --nowplaying "%l" | sed -n '1p'`
-playlist_num=`ls -l /home/dt/.config/deadbeef/playlists/* | wc -l | sed -n '1p'`
+playlist_num=`ls -l ~/.config/deadbeef/playlists/* | wc -l | sed -n '1p'`
 
 echo "<openbox_pipe_menu>"
 echo "<menu id=\"root-menu-325671\" label=\""Track Info"\">"
@@ -34,7 +34,7 @@ echo "<separator/>"
 echo "<item label=\"Open Music Player\"><action name=\"Execute\"><execute>deadbeef</execute></action></item>"
 echo "</menu>"
 echo "<menu id=\"root-menu-325676\" label=\"Playlists ($playlist_num)\">"
-for file in $(ls /home/dt/.config/deadbeef/playlists/*.dbpl -1v); do
+for file in $(ls ~/.config/deadbeef/playlists/*.dbpl -1v); do
 NAME=$(echo "$file" | rev | cut -d"/" -f1 | rev)
 echo "<item label=\"$NAME\"><action name=\"Execute\"><execute>deadbeef $file</execute></action></item>"
 done
