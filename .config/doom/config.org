@@ -176,7 +176,7 @@ Emacs Dashboard is an extensible startup screen showing you recent files, bookma
 ** Dashboard in Emacsclient
 This setting ensures that emacsclient always opens on *dashboard* rather than *scratch*.
 #+begin_src emacs-lisp
-(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+(setq doom-fallback-buffer "*dashboard*")
 #+end_src
 
 * DIRED
