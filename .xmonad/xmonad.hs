@@ -6,7 +6,7 @@ import System.Exit (exitSuccess)
 import qualified XMonad.StackSet as W
 
     -- Actions
-import XMonad.Actions.CopyWindow (kill1)
+import XMonad.Actions.CopyWindow (kill1, killAllOtherCopies, copyWindow)
 import XMonad.Actions.CycleWS (Direction1D(..), moveTo, shiftTo, WSType(..), nextScreen, prevScreen)
 import XMonad.Actions.GridSelect
 import XMonad.Actions.MouseResize
@@ -304,6 +304,23 @@ myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y 
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
     where i = fromJust $ M.lookup ws myWorkspaceIndices
+
+-- 'doCopy' copies the managed window into another workspace.
+-- If you use this feature then you need to change your kill keybinding
+-- from kill1 to killAllOtherCopies <+> kill1
+-- I personally have two different keybindings, one for killing only copies, one for killing all of them.
+doCopy :: WorkspaceId -> ManageHook
+doCopy m = ask >>= \w -> doF (copyWindow w m)
+
+-- 'doCopyToAll' simply copies managed window into the all workspaces.
+-- Since scracthpads and dynamic workspaces are not presented in the 'myWorkspaces'
+-- they will not be affected. I personally use this feature for my webcam.
+-- , title =? "video - mpv"  --> doFloat <+> doCopyToAll
+-- If you use this feature then you need to change your kill keybinding
+-- from kill1 to killAllOtherCopies <+> kill1
+-- I personally have two different keybindings, one for killing only copies, one for killing all of them.
+doCopyToAll :: ManageHook
+doCopyToAll = foldr (\w rest -> doCopy (w) <+> rest) (doCopy (myWorkspaces !! 1)) myWorkspaces
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
