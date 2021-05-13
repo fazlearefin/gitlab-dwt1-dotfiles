@@ -366,31 +366,42 @@ Defining our fonts.  Right now I'm using Source Code Pro (SauceCodePro) from the
 
 ** Setting The Font Face
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil
-  :font "Source Code Pro"
-  :height 110
-  :weight 'medium)
-(set-face-attribute 'variable-pitch nil
-  :font "Ubuntu Nerd Font"
-  :height 120
-  :weight 'medium)
-(set-face-attribute 'fixed-pitch nil
-  :font "Source Code Pro"
-  :height 110
-  :weight 'medium)
-;; Makes commented text and keywords italics.
-;; This is working in emacsclient but not emacs.
-;; Your font must have an italic face available.
-(set-face-attribute 'font-lock-comment-face nil
-  :slant 'italic)
-(set-face-attribute 'font-lock-keyword-face nil
-  :slant 'italic)
+;; set-face-attribute does't work until the frame is created so it doesn't work in emacsclient with a daemon running
+;; this function will set correct font regardless of emacs daemon's status
+(defun me/set-font ()
+  (set-face-attribute 'default nil
+    :font "Source Code Pro"
+    :height 110
+    :weight 'medium)
+  (set-face-attribute 'variable-pitch nil
+    :font "Ubuntu Nerd Font"
+    :height 120
+    :weight 'medium)
+  (set-face-attribute 'fixed-pitch nil
+    :font "Source Code Pro"
+    :height 110
+    :weight 'medium)
+  ;; Makes commented text and keywords italics.
+  ;; This is working in emacsclient but not emacs.
+  ;; Your font must have an italic face available.
+  (set-face-attribute 'font-lock-comment-face nil
+    :slant 'italic)
+  (set-face-attribute 'font-lock-keyword-face nil
+  :slant 'italic))
+
+;; if in daemon is running set fonts after frame is made 
+(if (daemonp)
+  (add-hook 'after-make-frame-functions
+    (lambda (frame)
+    (with-selected-frame frame
+      (me/set-font))))
+  (me/set-font))
 
 ;; Uncomment the following line if line spacing needs adjusting.
 (setq-default line-spacing 0.12)
 
 ;; Needed if using emacsclient. Otherwise, your fonts will be smaller than expected.
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-11"))
+;;(add-to-list 'default-frame-alist '(font . "Source Code Pro-11"))
 ;; changes certain keywords to symbols, such as lamda!
 (setq global-prettify-symbols-mode t)
 #+end_src
@@ -558,8 +569,19 @@ Adding packages for programming langauges, so we can have nice things like synta
 A git client for Emacs.  Often cited as a killer feature for Emacs.
 
 #+begin_src emacs-lisp
+;; Magit is awesome but it doesn't work well with git bare repos that many people use to maintain there dotfiles
+;; this is wrapper around the maggit-status command to use with git bare repos
+;; keybind this to manage your git bare repos like dotfiles repos with magit don't forget to set appropriate bare-git-dir and bare-work-tree for your config
+(setq bare-git-dir (concat "--git-dir=" (expand-file-name "~/.dotfiles")))
+(setq bare-work-tree (concat "--work-tree=" (expand-file-name "~")))
+(defun me/magit-status-bare ()
+  "calls magit status on a git bare repo with set appropriate bare-git-dir and bare-work-tree"
+  (interactive)
+  (require 'magit-git)
+  (let ((magit-git-global-arguments (append magit-git-global-arguments (list bare-git-dir bare-work-tree))))
+    (call-interactively 'magit-status)))
 (use-package magit)
- #+end_src
+#+end_src
  
 * NEOTREE
 Neotree is a file tree viewer.  When you open neotree, it jumps to the current file thanks to neo-smart-open.  The neo-window-fixed-size setting makes the neotree width be adjustable.  NeoTree provides following themes: classic, ascii, arrow, icons, and nerd.  Theme can be configed by setting "two" themes for neo-theme: one for the GUI and one for the terminal.  I like to use 'SPC t' for 'toggle' keybindings, so I have used 'SPC t n' for toggle-neotree.
