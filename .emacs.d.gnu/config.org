@@ -368,7 +368,7 @@ Defining our fonts.  Right now I'm using Source Code Pro (SauceCodePro) from the
 #+begin_src emacs-lisp
 ;; set-face-attribute does't work until the frame is created so it doesn't work in emacsclient with a daemon running
 ;; this function will set correct font regardless of emacs daemon's status
- defun me/set-font ()
+(defun me/set-font ()
   (set-face-attribute 'default nil
     :font "Source Code Pro"
     :height 110
@@ -388,14 +388,14 @@ Defining our fonts.  Right now I'm using Source Code Pro (SauceCodePro) from the
     :slant 'italic)
   (set-face-attribute 'font-lock-keyword-face nil
   :slant 'italic))
-  ;; if in daemon is running set fonts after frame is made 
-  (if (daemonp)
-    (add-hook 'after-make-frame-functions
-	      (lambda (frame)
-		(with-selected-frame frame
-		  (me/set-font))))
-    (sam/set-font))
 
+;; if in daemon is running set fonts after frame is made 
+(if (daemonp)
+  (add-hook 'after-make-frame-functions
+    (lambda (frame)
+    (with-selected-frame frame
+      (me/set-font))))
+  (me/set-font))
 
 ;; Uncomment the following line if line spacing needs adjusting.
 (setq-default line-spacing 0.12)
@@ -572,9 +572,10 @@ A git client for Emacs.  Often cited as a killer feature for Emacs.
 ;; Magit is awesome but it doesn't work well with git bare repos many people use to maintain there dotfiles
 ;; this wrapper around the maggit status to use with git bare repos set appropriate file path and working tree for your config 
 ;; keybind this to manage your git bare repos like dotfiles repos with magit don't forget to set appropriate bare-git-dir and bare-work-tree for your config
+;; keybind this
 (setq bare-git-dir (concat "--git-dir=" (expand-file-name "~/.dotfiles")))
 (setq bare-work-tree (concat "--work-tree=" (expand-file-name "~")))
-(defun sam/magit-status-dotfiles ()
+(defun me/magit-status- ()
   "calls magit status on a git bare repo with set appropriate bare-git-dir and bare-work-tree"
   (interactive)
   (require 'magit-git)
