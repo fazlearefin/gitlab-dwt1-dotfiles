@@ -14,6 +14,9 @@
   - [[#use-package][Use-Package]]
   - [[#evil-mode][Evil Mode]]
   - [[#general-keybindings][General Keybindings]]
+- [[#startup-performance][STARTUP PERFORMANCE]]
+  - [[#garbage-collection][Garbage collection]]
+  - [[#native-compil][Native Compil]]
 - [[#all-the-icons][ALL THE ICONS]]
 - [[#buffers-and-bookmarks][BUFFERS AND BOOKMARKS]]
 - [[#dashboard][DASHBOARD]]
@@ -66,6 +69,7 @@
 - [[#splits-and-window-controls][SPLITS AND WINDOW CONTROLS]]
 - [[#theme][THEME]]
 - [[#which-key][WHICH KEY]]
+- [[#runtime-performance][RUNTIME PERFORMANCE]]
 - [[#writeroom-mode][WRITEROOM MODE]]
 
 * IMPORTANT! PUT THIS IN YOUR INIT.EL 
@@ -128,6 +132,42 @@ General.el allows us to set keybindings.  As a longtime Doom Emacs user, I have 
 (use-package general
   :config
   (general-evil-setup t))
+#+end_src
+
+* STARTUP PERFORMANCE
+  This section is where it make emacs faster to load.
+** Garbage collection
+Makes startup faster by reducing the frequency of garbage collection
+#+begin_src emacs-lisp
+;; Using garbage magic hack.
+ (use-package gcmh
+   :config
+   (gcmh-mode 1))
+;; Setting garbage collection threshold
+(setq gc-cons-threshold 402653184
+      gc-cons-percentage 0.6)
+
+;; Profile emacs startup
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "*** Emacs loaded in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
+
+;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
+#+end_src
+** Native Compil
+#+begin_src emacs-lisp
+;; Silence compiler warnings as they can be pretty disruptive
+(if (boundp 'comp-deferred-compilation)
+    (setq comp-deferred-compilation nil)
+    (setq native-comp-deferred-compilation nil))
+;; In noninteractive sessions, prioritize non-byte-compiled source files to
+;; prevent the use of stale byte-code. Otherwise, it saves us a little IO time
+;; to skip the mtime checks on every *.elc file.
+(setq load-prefer-newer noninteractive)
 #+end_src
 
 * ALL THE ICONS
@@ -886,6 +926,13 @@ Which-key is a minor mode for Emacs that displays the key bindings following you
         which-key-allow-imprecise-window-fit t
         which-key-separator " → " ))
 (which-key-mode)
+#+e
+
+* RUNTIME PERFORMANCE
+Dial the GC threshold back down so that garbage collection happens more frequently but in less time.
+#+begin_src emacs-lisp
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
 #+end_src
 
 * WRITEROOM MODE
