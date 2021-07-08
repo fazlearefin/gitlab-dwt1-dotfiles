@@ -60,7 +60,7 @@ I am Derek Taylor (DT), the creator of the DistroTube channel (also DT) on [[htt
 
 * DistroTube Links
 ** Personal Sites
-I maintain to personal websites.  One is a standard http website and one is a Gemini capsule.  To view the Gemini capsule, you need a Gemini client installed.  My preferred Gemini client is a terminal client called 'amfora'.  If you want a graphical Gemini client, 'lagrange' is a nice program.  There is also a Firefox plugin called Geminize.
+I maintain two personal websites.  One is a standard http website and one is a Gemini capsule.  To view the Gemini capsule, you need a Gemini client installed.  My preferred Gemini client is a terminal client called 'amfora'.  If you want a graphical Gemini client, 'lagrange' is a nice program.  There is also a Firefox plugin called Geminize.
 
 - [[https://www.distrotube.com/][DistroTube.com]] (http)
 - [[gemini://distro.tube][Distro.tube]] (gemini)
