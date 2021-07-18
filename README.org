@@ -28,8 +28,8 @@ Dotfiles are the customization files that are used to personalize your Linux or 
 - [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/i3][i3-gaps]]
 - [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/openbox][Openbox]] (you may also want my [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/tint2][tint2]] panel config and [[https://gitlab.com/dwt1/dt-dark-theme][dt-dark-theme]] GTK theme)
 - [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/qtile][Qtile]]
-- [[https://gitlab.com/dwt1/dotfiles/-/blob/master/.spectrwm.conf][Spectrwm]] (you will also need this [[https://gitlab.com/dwt1/dotfiles/-/blob/master/baraction.sh][baraction.sh]] script)
-- [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/xmonad][XMonad]]
+- [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/spectrwm][Spectrwm]] (you will also need this [[https://gitlab.com/dwt1/dotfiles/-/blob/master/baraction.sh][baraction.sh]] script)
+- [[https://gitlab.com/dwt1/dotfiles/-/tree/master/.xmonad][XMonad]]
 
 (*) = /links to another repository of mine/
 
