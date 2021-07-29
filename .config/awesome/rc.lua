@@ -467,7 +467,7 @@ globalkeys = my_table.join(
               {description = "dropdown application", group = "super"}),
 
     -- Widgets popups
-    awful.key({ altkey, }, "c", function () lain.widget.calendar.show(7) end,
+    awful.key({ altkey, }, "c", function () lain.widget.cal().show(7) end,
               {description = "show calendar", group = "widgets"}),
     awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
               {description = "show filesystem", group = "widgets"}),
