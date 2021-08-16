@@ -67,8 +67,9 @@
 - [[#theme][THEME]]
 - [[#which-key][WHICH KEY]]
 - [[#writeroom-mode][WRITEROOM MODE]]
+- [[#exwm][EXWM]]
 
-* IMPORTANT! PUT THIS IN YOUR INIT.EL 
+* IMPORTANT! PUT THIS IN YOUR INIT.EL
 I don't want to use init.el to config Emacs.  I want to use an org file to config Emacs because I like literate configs with lots of comments.  The following code block should be your init.el.  This tells init.el to use the source code blocks from this file (config.org).
 
 #+begin_example
@@ -78,7 +79,7 @@ I don't want to use init.el to config Emacs.  I want to use an org file to confi
   user-emacs-directory))
 #+end_example
 
-* ABOUT THIS CONFIG 
+* ABOUT THIS CONFIG
 This is my personal Emacs config.  I patterned my config to mimic Doom Emacs, which is a distribution of Emacs that uses the "evil" keybindings (Vim keybindings) and includes a number of nice extensions and a bit of configuration out of the box.  I am maintaining this config not just for myself, but also for those that want to explore some of what is possible with Emacs.  I will add a lot of examples of plugins and settings, some of them I may not even use personally.  I do this because many people following me on YouTube and Odysee look at my configs as "documentation".
 
 * A FEW PROGRAMS TO LOAD FIRST
@@ -104,7 +105,7 @@ Install use-package and enable ':ensure t' globally.  The ':ensure' keyword caus
 
 ** Evil Mode
 Evil is an extensible 'vi' layer for Emacs. It emulates the main features of Vim, and provides facilities for writing custom extensions.  Evil Collection is also installed since it adds 'evil' bindings to parts of Emacs that the standard Evil package does not cover, such as: calenda, help-mode adn ibuffer.
-  
+
 #+begin_src emacs-lisp
 (use-package evil
   :init      ;; tweak evil's configuration before loading it
@@ -132,7 +133,7 @@ General.el allows us to set keybindings.  As a longtime Doom Emacs user, I have 
 
 * ALL THE ICONS
 This is an icon set that can be used with dashboard, dired, ibuffer and other Emacs programs.
-  
+
 #+begin_src emacs-lisp
 (use-package all-the-icons)
 #+end_src
@@ -232,7 +233,7 @@ An RSS newsfeed reader for Emacs.
 #+end_src
 
 * EMOJIS
-Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :). 
+Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :).
 
 #+begin_src emacs-lisp
 (use-package emojify
@@ -258,7 +259,7 @@ I choose to use the format 'SPC e' plus 'key' for these (I also use 'SPC e' for 
        "e l"   '(eval-last-sexp :which-key "Eval last sexression")
        "e r"   '(eval-region :which-key "Eval region"))
 #+end_src
-  
+
 * FILE MANAGER (DIRED)
 Dired is the file manager within Emacs.  Below, I setup keybindings for image previews (peep-dired).  I've chosen the format of 'SPC d' plus 'key'.
 
@@ -434,7 +435,7 @@ General.el allows us to set keybindings.  As a longtime Doom Emacs user, I have 
        "o a"   '(org-agenda :which-key "Org agenda")
        )
 #+end_src
-  
+
 * GRAPHICAL USER INTERFACE TWEAKS
 Let's make GNU Emacs look a little better.
 
@@ -456,7 +457,7 @@ Let's make GNU Emacs look a little better.
 (use-package doom-modeline)
 (doom-modeline-mode 1)
 #+end_src
-   
+
 * IVY (COUNSEL/SWIPER)
 Ivy, counsel and swiper are a generic completion mechanism for Emacs.  Ivy-rich allows us to add descriptions alongside the commands in M-x.
 
@@ -560,7 +561,7 @@ A git client for Emacs.  Often cited as a killer feature for Emacs.
 #+begin_src emacs-lisp
 (use-package magit)
  #+end_src
- 
+
 * NEOTREE
 Neotree is a file tree viewer.  When you open neotree, it jumps to the current file thanks to neo-smart-open.  The neo-window-fixed-size setting makes the neotree width be adjustable.  NeoTree provides following themes: classic, ascii, arrow, icons, and nerd.  Theme can be configed by setting "two" themes for neo-theme: one for the GUI and one for the terminal.  I like to use 'SPC t' for 'toggle' keybindings, so I have used 'SPC t n' for toggle-neotree.
 
@@ -584,7 +585,7 @@ Neotree is a file tree viewer.  When you open neotree, it jumps to the current f
         neo-theme (if (display-graphic-p) 'icons 'arrow)
         ;;neo-window-fixed-size nil
         inhibit-compacting-font-caches t
-        projectile-switch-project-action 'neotree-projectile-action) 
+        projectile-switch-project-action 'neotree-projectile-action)
         ;; truncate long file names in neotree
         (add-hook 'neo-after-create-hook
            #'(lambda (_)
@@ -601,7 +602,7 @@ Neotree is a file tree viewer.  When you open neotree, it jumps to the current f
        "t n"   '(neotree-toggle :which-key "Toggle neotree file viewer")
        "d n"   '(neotree-dir :which-key "Open directory in neotree"))
 #+END_SRC
-  
+
 * ORG MODE
 Org Mode is =THE= killer feature within Emacs.  But it does need some tweaking.
 
@@ -632,7 +633,7 @@ Org-bullets gives us attractive bullets rather than asterisks.
 
 ** Org Link Abbreviations
 This allows for the use of abbreviations that will get expanded out into a lengthy URL.
-   
+
 #+begin_src emacs-lisp
 ;; An example of how this works.
 ;; [[arch-wiki:Name_of_Page][Description]]
@@ -645,7 +646,7 @@ This allows for the use of abbreviations that will get expanded out into a lengt
 
 ** Org Todo Keywords
 This lets us create the various TODO tags that we can use in Org.
-   
+
 #+begin_src emacs-lisp
   (setq org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
           '((sequence
@@ -787,7 +788,7 @@ Eshell is an Emacs 'shell' that is written in Elisp.
 + 'eshell-syntax-highlighting' -- adds fish/zsh-like syntax highlighting.
 + 'eshell-rc-script' -- your profile for eshell; like a bashrc for eshell.
 + 'eshell-aliases-file' -- sets an aliases file for the eshell.
-  
+
 #+begin_src emacs-lisp
 (use-package eshell-syntax-highlighting
   :after esh-mode
@@ -845,31 +846,428 @@ We need a nice colorscheme.  The Doom Emacs guys have a nice collection of theme
 #+end_src
 
 * WHICH KEY
-Which-key is a minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup.
+  Which-key is a minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup.
 
-=NOTE:= Which-key has an annoying bug that in some fonts and font sizes, the bottom row in which key gets covered up by the modeline.
+  =NOTE:= Which-key has an annoying bug that in some fonts and font sizes, the bottom row in which key gets covered up by the modeline.
 
-#+begin_src emacs-lisp
-(use-package which-key
-  :init
-  (setq which-key-side-window-location 'bottom
-        which-key-sort-order #'which-key-key-order-alpha
-        which-key-sort-uppercase-first nil
-        which-key-add-column-padding 1
-        which-key-max-display-columns nil
-        which-key-min-display-lines 6
-        which-key-side-window-slot -10
-        which-key-side-window-max-height 0.25
-        which-key-idle-delay 0.8
-        which-key-max-description-length 25
-        which-key-allow-imprecise-window-fit t
-        which-key-separator " → " ))
-(which-key-mode)
-#+end_src
+  #+begin_src emacs-lisp
+    (use-package which-key
+      :init
+      (setq which-key-side-window-location 'bottom
+            which-key-sort-order #'which-key-key-order-alpha
+            which-key-sort-uppercase-first nil
+            which-key-add-column-padding 1
+            which-key-max-display-columns nil
+            which-key-min-display-lines 6
+            which-key-side-window-slot -10
+            which-key-side-window-max-height 0.25
+            which-key-idle-delay 0.8
+            which-key-max-description-length 25
+            which-key-allow-imprecise-window-fit t
+            which-key-separator " → " ))
+    (which-key-mode)
+  #+end_src
 
 * WRITEROOM MODE
-A minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X.
+  A minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X.
 
+  #+begin_src emacs-lisp
+    (use-package writeroom-mode)
+  #+end_src
+
+
+* EXWM
+  a emacs x window manager
 #+begin_src emacs-lisp
-(use-package writeroom-mode)
-#+end_src
+  ;; -*- lexical-binding: t; -*
+
+  (defun me/exwm-set-modeline ()
+    "sets up a modeline for exwm"
+    (progn
+      (setq-default mode-line-format
+                    '((:eval (simple-mode-line-render
+                              ;; left
+                              (format-mode-line
+                               (list
+                                (if (frame-parameter (selected-frame) 'exwm-active)
+                                    '(:eval (format " [%s] " (+ 1 exwm-workspace-current-index))))
+                                "%@"
+                                '(:eval (propertize "%b " 'face '(:inherit font-lock-type-face :weight bold)))
+                                " "
+                                "("
+                                "%c"
+                                ":"
+                                "%l"
+                                ")"
+                                " "
+                                "["
+                                "" mode-name
+                                "" vc-mode
+                                "]"
+                                ))
+                              ;; right
+                              (format-mode-line
+                               (list
+                                '(:eval
+                                  (propertize
+                                   (battery-format "%p (%b %t %r W)"
+                                                   (battery-linux-sysfs)) 'face '(:inherit font-lock-string-face :weight bold)))
+                                " | "
+                                '(:eval
+                                  (propertize
+                                   (format-time-string "%a, %b %d %I:%M %p") 'face '(:inherit font-lock-preprocessor-face :weight bold)))
+                                ))))))
+      (redraw-modeline)))
+
+  ;; function to spawn applications
+  (defun me/exwm-spawn(name command)
+  "spawn application"
+    (interactive)
+    (start-process-shell-command name nil command))
+
+  (defun me/exwm-spawn-in-background (command)
+  "spawn application in background"
+    (let ((command-parts (split-string command "[ ]+")))
+      (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
+
+  (defun me/exwm-toggle-minibuffer ()
+    "Toggle visibility of echo area at the bottom of the screen"
+    (interactive)
+    (if (equal (frame-pixel-height) (x-display-pixel-height))
+        (set-frame-height nil (+ (x-display-pixel-height) (frame-char-height)) nil t)
+      (set-frame-height nil (x-display-pixel-height) nil t)))
+
+  ;; window management functions
+  (defcustom me/skippable-buffer-regexp
+    (rx bos (or "*Messages*" "*scratch*" "*Help*" "*Backtrace*") eos)
+    "Matching buffer names are ignored by `me/next-buffer'
+  and `me/previous-buffer'."
+    :type 'regexp)
+
+  (defun me/change-buffer (change-buffer)
+    "Call CHANGE-BUFFER until `me/skippable-buffer-regexp' doesn't match."
+    (let ((initial (current-buffer)))
+      (funcall change-buffer)
+      (let ((first-change (current-buffer)))
+        (catch 'loop
+          (while (string-match-p me/skippable-buffer-regexp (buffer-name))
+            (funcall change-buffer)
+            (when (eq (current-buffer) first-change)
+              (switch-to-buffer initial)
+              (throw 'loop t)))))))
+
+  (defun me/next-buffer ()
+    "Variant of `next-buffer' that skips `me/skippable-buffer-regexp'."
+    (interactive)
+    (me/change-buffer 'next-buffer))
+
+  (defun me/previous-buffer ()
+    "Variant of `previous-buffer' that skips `me/skippable-buffer-regexp'."
+    (interactive)
+    (me/change-buffer 'previous-buffer))
+
+  (defun me/switch-next-buffer-or-window ()
+    "move focus to next window if exist or cycle forward through the buffer list"
+    (interactive)
+    (if(> (count-windows) 1)
+        (other-window 1)
+      (me/next-buffer)
+      ))
+
+  (defun me/switch-prev-buffer-or-window ()
+    "move focus to next window if exist or cycle backward through the buffer list"
+    (interactive)
+    (if(> (count-windows) 1)
+        (other-window -1)
+      (me/previous-buffer)
+      ))
+
+  (defun me/split-window-right ()
+    "split window right switch to window and rename create new buffer named untitled$"
+    (interactive)
+    (progn
+      (split-window-right)
+      (windmove-right)
+      (switch-to-buffer "scratch")))
+
+  (defun me/split-window-below ()
+    "split window below switch to window and rename create new buffer named untitled$"
+    (interactive)
+    (progn
+      (split-window-below)
+      (windmove-down)
+      (switch-to-buffer "scratch")))
+
+  ;; volume
+  (defun me/exwm-volume-ctl (opt)
+    (progn
+      (start-process-shell-command "volume" nil (concat "amixer set Master " opt))
+      ;; :timeout 2000))
+      (message "Volume is %s [%s]"
+               (string-trim (shell-command-to-string "amixer sget Master | grep -o -m 1 '[[:digit:]]*%' | tr -d '%'"))
+               (string-trim (shell-command-to-string "amixer sget Master | grep -o -m 1 '\[[a-z]*\]' |  tr -d '%[]'")))))
+
+  ;; backlight
+  (defun me/exwm-backlight-ctl (opt)
+    (start-file-process-shell-command "backlight" nil (concat "xbacklight " opt))
+    (sit-for 1)
+    (message "Backlight is %-1.1s" (shell-command-to-string "xbacklight -get")))
+
+  ;; screenshot
+  ;; this requries maim
+  (setq me/screenshot-dir "~/Pictures")
+  (defun me/exwm-screenshot (&optional rename select)
+    "takes screenshot with maim
+      when rename is non-nil asks for a screenshot name
+      when seelct is non-nil does a screenshot of selected part"
+    (interactive)
+    (let ((path
+           (concat me/screenshot-dir
+                   (if rename
+                       (concat (read-string "Screenshot name: ") ".png")
+                     (concat (format-time-string "%y-%m-%d,%H:%M:%S") ".png")))))
+      (if select
+          (start-process-shell-command "maim" nil (concat "maim -s " path))
+        (start-process-shell-command "maim" nil (concat "maim " path)))
+      (sit-for 1)
+      (message "screenshot saved at %s" path)))
+
+  ;; Prompts
+  ;; run prompt
+  (let ((system-executables (seq-mapcat
+                             (lambda (bin)
+                               (directory-files bin nil "^[^.]"))
+                             exec-path)))
+    (defun me/exwm-run-prompt (command)
+      "list executables in path listed in `exec-path' and run selected"
+      (interactive (list (completing-read "Run: " system-executables)))
+      (start-process-shell-command command nil command)))
+
+  ;; system power prompt
+  (let ((system-power-options
+         '(("Suspend"  . "systemctl suspend")
+           ("Poweroff" . "systemctl poweroff")
+           ("Reboot"   . "systemctl reboot")
+           ("Lock"     . "slock"))
+         )        )
+    (defun me/exwm-power-prompt(command)
+      "run system power commands in `system-power-options'"
+      (interactive (list (completing-read "Execute: "  system-power-options)))
+      (when (yes-or-no-p (format "do you realy want to %s the system" command))
+        (start-process-shell-command command nil (cdr(assoc command system-power-options))))
+      ))
+
+  ;; package manager
+  (defun me/exwm-pacman-install-prompt (command)
+    "a prompt to install packages"
+    (interactive (list (completing-read "Pacman Install: " (split-string(shell-command-to-string "pacman -Slq")))))
+    (start-process-shell-command (concat "pacman install" command) nil (concat " xterm -e sudo pacman -S " command)))
+
+  (defun me/exwm-pacman-uninstall-prompt (command)
+    "a prompt to uninstall packages"
+    (interactive (list(completing-read "Pacman Uninstall: " (split-string(shell-command-to-string "pacman -Q")))))
+    (start-process-shell-command (concat "Pacman uninstall" command) nil (concat "xterm -e sudo pacman -Rns " command)))
+
+  (defun me/exwm-paru-install-prompt (command)
+    "a prompt to install packages"
+    (interactive (list(completing-read "Paru Install: " (split-string(shell-command-to-string "paru -Slq")))))
+    (start-process-shell-command (concat "paru install" command) nil (concat " xterm -e paru -S " command)))
+
+  ;; window rules
+  (defun me/exwm-window-rules ()
+    "window rules for exwm"
+    (interactive)
+    (pcase exwm-class-name
+      ("mpv" (exwm-floating-toggle-floating))))
+
+  (defun me/exwm-rename-buffer()
+    "rename exwm buffers to more meaningful name classname:title"
+    (interactive)
+    (exwm-workspace-rename-buffer
+     (concat exwm-class-name "-"
+             (if (<= (length exwm-title) 60)
+                 exwm-title
+               (concat (substring exwm-title 0 59) "...")))))
+
+  (use-package exwm
+    :config
+    ;; enable system tray
+    (require 'exwm-systemtray)
+    (exwm-systemtray-enable)
+
+    ;; hide minibuffer when not in use
+    (setq exwm-workspace-minibuffer-position 'bottom)
+
+    ;; setup modeline for exwm
+    (me/exwm-set-modeline)
+
+    (setq exwm-layout-show-all-buffers nil)
+    (setq exwm-workspace-show-all-buffers nil)
+
+    ;; hide modeline for floating windows and X11 windows
+    (add-hook 'exwm-floating-setup-hook #'exwm-layout-hide-mode-line)
+    (add-hook 'exwm-floating-exit-hook #'exwm-layout-show-mode-line)
+    (add-hook 'exwm-manage-finish-hook #'exwm-layout-hide-mode-line)
+    ;;(add-hook 'exwm-manage-finish-hook #'me/exwm-hide-modeline-and-minibuffer)
+
+    ;; rename buffers
+    (add-hook 'exwm-update-class-hook #'me/exwm-rename-buffer)
+    (add-hook 'exwm-update-title-hook #'me/exwm-rename-buffer)
+
+    ;; window rules
+    (add-hook 'exwm-manage-finish-hook 'me/exwm-window-rules)
+
+
+    ;; mouse folow window
+    (setq mouse-autoselect-window t)
+    (setq focus-follows-mouse t)
+
+    ;; set defualt mode to char mode
+    (setq exwm-manage-configurations '((t char-mode t)))
+
+    ;; initial number of workspaces
+    (setq exwm-workspace-number 4)
+
+    ;; name workspace from 1 insted of 0
+    (setq exwm-workspace-index-map
+          (lambda (index) (number-to-string (1+ index))))
+
+    ;; this is to make sure that XF86 keys work in exwm buffers as well
+    (dolist (k '(Scroll_Lock
+                 XF68Back
+                 XF86AudioLowerVolume
+                 XF86AudioMute
+                 XF86AudioMute
+                 XF86AudioNext
+                 XF86AudioPlay
+                 XF86AudioPrev
+                 XF86AudioRaiseVolume
+                 XF86AudioStop
+                 XF86Forward
+                 XF86MonBrightnessDown
+                 XF86MonBrightnessUp
+                 XF86PowerOff
+                 XF86ScreenSaver
+                 print))
+      (cl-pushnew k exwm-input-prefix-keys))
+
+    ;; switch to ith worspace with s-i and move window to workspace
+    (dotimes (i 10)
+      (exwm-input-set-key (kbd (format "s-%d" i))
+                          `(lambda ()
+                             (interactive)
+                             (exwm-workspace-switch-create (1-, i)))))
+    (exwm-input-set-key (kbd "s-w")  #'exwm-workspace-switch)
+    (exwm-input-set-key (kbd "s-W")  #'exwm-workspace-move-window)
+
+    ;; execute commnds
+    (exwm-input-set-key (kbd "s-x")  #'execute-extended-command)
+    (exwm-input-set-key (kbd "s-;")  #'eval-expression)
+
+    ;; kill restart reset
+    (exwm-input-set-key (kbd "s-c") #'exwm-restart)
+    (exwm-input-set-key (kbd "s-C") #'kill-emacs)
+    (exwm-input-set-key (kbd "s-R") #'exwm-reset)
+
+    ;; edit exwm config
+    (exwm-input-set-key (kbd "s-e") #'(lambda () (interactive) (find-file (expand-file-name "~/.config/exwm/init-exwm.el"))))
+
+    ;; change input methods
+    (exwm-input-set-key (kbd "s-i") #'exwm-input--next-key)
+
+    ;; delete, burry buffer and window
+    (exwm-input-set-key (kbd "s-q") #'kill-this-buffer)
+    (exwm-input-set-key (kbd "s-Q") #'delete-window)
+    (exwm-input-set-key (kbd "s-C-q") #'bury-buffer)
+    (exwm-input-set-key (kbd "s-d") (lambda () (interactive) (kill-matching-buffers "\\*.*\\*" t t)))
+
+    ;; buffer switching
+    (exwm-input-set-key (kbd "s-<tab>") #'switch-to-buffer)
+    (exwm-input-set-key (kbd "s-<iso-lefttab>") #'ibuffer)
+
+    ;; window split
+    (exwm-input-set-key (kbd "s-\\") #'me/split-window-right)
+    (exwm-input-set-key (kbd "s-|") #'me/split-window-below)
+    (exwm-input-set-key (kbd "s-=") #'balance-windows)
+    (exwm-input-set-key (kbd "s-n") #'me/toggle-single-window)
+    (exwm-input-set-key (kbd "s-N") #'me/toggle-window-split)
+
+    ;; window focus switching
+    (exwm-input-set-key (kbd "s-j") #'me/switch-next-buffer-or-window)
+    (exwm-input-set-key (kbd "s-k") #'me/switch-prev-buffer-or-window)
+    (exwm-input-set-key (kbd "s-h") #'windmove-left)
+    (exwm-input-set-key (kbd "s-l") #'windmove-right)
+
+    ;; window moving
+    (exwm-input-set-key (kbd "s-J") #'windmove-swap-states-down)
+    (exwm-input-set-key (kbd "s-K") #'windmove-swap-states-up)
+    (exwm-input-set-key (kbd "s-L") #'windmove-swap-states-right)
+    (exwm-input-set-key (kbd "s-H") #'windmove-swap-states-left)
+
+    ;; window resizing
+    (exwm-input-set-key (kbd "s-C-j") #'enlarge-window)
+    (exwm-input-set-key (kbd "s-C-k") #'shrink-window)
+    (exwm-input-set-key (kbd "s-C-l") #'enlarge-window-horizontally)
+    (exwm-input-set-key (kbd "s-C-h") #'shrink-window-horizontally)
+
+    ;; toggle floating, fullscreen and modeline
+    (exwm-input-set-key (kbd "s-C-t") #'exwm-floating-toggle-floating)
+    (exwm-input-set-key (kbd "s-C-f") #'exwm-layout-toggle-fullscreen)
+    (exwm-input-set-key (kbd "s-C-m") #'exwm-layout-toggle-mode-line)
+    (exwm-input-set-key (kbd "s-M") #'me/exwm-toggle-minibuffer)
+
+    ;; winner mode
+    (exwm-input-set-key (kbd "s-u") #' winner-undo)
+    (exwm-input-set-key (kbd "s-U")  #' winner-redo)
+
+    ;; spawn applications
+    (exwm-input-set-key (kbd "s-t") #'eshell)
+    (exwm-input-set-key (kbd "s-f") #'dired-jump)
+    (exwm-input-set-key (kbd "s-m") #'mu4e)
+    (exwm-input-set-key (kbd "s-r") #'elfeed)
+    (exwm-input-set-key (kbd "s-F") (lambda() (interactive) (me/exwm-spawn "pcmanfm" "pcmanfm")))
+    (exwm-input-set-key (kbd "s-T") (lambda() (interactive) (me/exwm-spawn "xterm" "xterm")))
+    (exwm-input-set-key (kbd "s-b") (lambda() (interactive) (me/exwm-spawn "chromium" "chromium --disable-software-rasterizer --profile-directory='Profile 1'")))
+    (exwm-input-set-key (kbd "s-B") (lambda() (interactive) (me/exwm-spawn "chromium" "chromium --disable-software-rasterizer --profile-directory='Profile 2'")))
+
+    ;; application launcher
+    (exwm-input-set-key (kbd "s-SPC") #'me/exwm-run-prompt)
+
+    ;; password prompt
+    (exwm-input-set-key (kbd "s-p P") #'pass)
+    (exwm-input-set-key (kbd "s-p c") #'password-store-clear)
+    (exwm-input-set-key (kbd "s-p e") #'password-store-edit)
+    (exwm-input-set-key (kbd "s-p p") #'password-store-copy)
+    (exwm-input-set-key (kbd "s-p u") #'password-store-copy-field)
+
+    ;; system prompts
+    (exwm-input-set-key (kbd "s-s p") #'me/exwm-power-prompt)
+    (exwm-input-set-key (kbd "s-s m") #'man)
+    (exwm-input-set-key (kbd "s-s h") #'proced)
+
+    ;; pacman prompts
+    (exwm-input-set-key (kbd "s-P i") #'me/exwm-pacman-install-prompt)
+    (exwm-input-set-key (kbd "s-P r") #'me/exwm-pacman-uninstall-prompt)
+    (exwm-input-set-key (kbd "s-P u") (lambda() (interactive) (start-process-shell-command "pacman update" nil "xterm -e sudo pacman -Syu")))
+    (exwm-input-set-key (kbd "s-P y") #'me/exwm-paru-install-prompt)
+
+    ;; volume control
+    (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (lambda () (interactive) (me/exwm-volume-ctl "5%+")))
+    (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") (lambda () (interactive) (me/exwm-volume-ctl "5%-")))
+    (exwm-input-set-key (kbd "<XF86AudioMute>")        (lambda () (interactive) (me/exwm-volume-ctl "toggle")))
+
+    ;; backlight control
+    (exwm-input-set-key (kbd "<XF86MonBrightnessUp>")   (lambda () (interactive) (me/exwm-backlight-ctl "-inc +2")))
+    (exwm-input-set-key (kbd "<XF86MonBrightnessDown>") (lambda () (interactive) (me/exwm-backlight-ctl "-dec +2")))
+
+    ;;screenshot
+    (exwm-input--set-key (kbd "<print>") (lambda () (interactive) (me/exwm-screenshot nil nil)))
+    (exwm-input--set-key (kbd "S-<print>") (lambda () (interactive) (me/exwm-screenshot nil t)))
+    (exwm-input--set-key (kbd "s-<print>") (lambda () (interactive) (me/exwm-screenshot t nil)))
+    (exwm-input--set-key (kbd "s-S-<print>") (lambda () (interactive) (me/exwm-screenshot t t)))
+
+    (exwm-enable))
+
+  ;;(provide 'init.exwm.el)
+
+    #+end_src
