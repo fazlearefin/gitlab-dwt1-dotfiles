@@ -87,7 +87,8 @@ conky.config = {
 conky.text = [[
 ${alignc}${color0}${font Ubuntu:size=30}${time %H:%M}${font}
 ${voffset 6}${alignc}${color0}${font Ubuntu:size=14}${time %b %d, %Y}${font}${color}
-${voffset 18}${goto 12}${color3}CPU${goto 50}$cpu%
+${voffset 6}${color lightgrey}${font Ubuntu:size=10}Uptime: $uptime ${alignr}${color lightgrey}Load: $loadavg
+${voffset 18}${goto 12}${color3}${font}CPU${goto 50}$cpu%
 ${color2}${goto 12}${cpubar 8,254}
 ${voffset 5}${goto 12}$font${color1}${top name 1}$alignr$color${top cpu 1}%
 ${goto 12}${color1}${top name 2}$alignr$color${top cpu 2}%
@@ -97,6 +98,9 @@ ${color2}${goto 12}${membar 8,254}${color}
 ${goto 12}${voffset 5}${color1}${top_mem name 1}$alignr$color${top_mem mem_res 1}
 ${goto 12}${color1}${top_mem name 2}$alignr$color${top_mem mem_res 2}
 ${goto 12}${color1}${top_mem name 3}$alignr$color${top_mem mem_res 3}
+${voffset 18}${goto 12}${color3}NET
+${goto 12}${color1}Down: ${downspeed eno1} k/s ${alignr}Up: ${upspeed eno1} k/s
+${color2}${downspeedgraph eno1 20,120 ${color2} eeeeee} ${alignr}${upspeedgraph eno1 20,120 ${color2} eeeeee}$color
 ${voffset 18}${color1}${alignc}XMONAD KEYBINDINGS${color}
 ${color1}${hr}${color}
 ${color1}[S]+[RET]${alignr}${color2}open terminal${color}
