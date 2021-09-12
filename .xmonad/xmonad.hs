@@ -243,7 +243,7 @@ spirals  = renamed [Replace "spirals"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ mySpacing' 8
+           $ mySpacing 8
            $ spiral (6/7)
 threeCol = renamed [Replace "threeCol"]
            $ smartBorders
