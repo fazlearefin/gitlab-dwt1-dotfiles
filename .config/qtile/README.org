@@ -319,11 +319,12 @@ group_names = [("WWW", {'layout': 'monadtall'}),
                ("VID", {'layout': 'monadtall'}),
                ("GFX", {'layout': 'floating'})]
 
-groups = [Group(name, **kwargs) for name, kwargs in group_names]
+# Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
+# MOD4 + index Number : Switch to Group[index]
+# MOD4 + shift + index Number : Send active window to another Group
+from libqtile.dgroups import simple_key_binder
+dgroups_key_binder = simple_key_binder("mod4")
 
-for i, (name, kwargs) in enumerate(group_names, 1):
-    keys.append(Key([mod], str(i), lazy.group[name].toscreen()))        # Switch to another group
-    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name))) # Send current window to another group
 #+END_SRC
 
 * Settings For Some Layouts
@@ -701,7 +702,6 @@ mouse = [
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
-dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 main = None
 follow_mouse_focus = True
