@@ -206,7 +206,9 @@ end
 
 
 ### ALIASES ###
-alias clear='/bin/clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo; echo'
+# \x1b[2J   <- clears tty
+# \x1b[1;1H <- goes to (1, 1) (start)
+alias clear='echo -en "\x1b[2J\x1b[1;1H" ; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo; echo'
 
 # root privileges
 alias doas="doas --"
