@@ -23,7 +23,7 @@
 
 Xmonad is a dynamically tiling X11 window manager that is written and configured in Haskell.
 - XMonad Official Website: [[https://xmonad.org][https://xmonad.org]]
-- Haskell Official Website: https://haskell.org
+- Haskell Official Website: [[https://haskell.org][https://haskell.org]]
 
 This is the xmonad configuration of Derek Taylor (DistroTube)
 - My YouTube: [[http://www.youtube.com/c/DistroTube][http://www.youtube.com/c/DistroTube]]
