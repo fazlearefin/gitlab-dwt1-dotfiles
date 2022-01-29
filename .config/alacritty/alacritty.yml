@@ -33,6 +33,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
+  #opacity setting here
+  opacity: 0.80
+
   padding:
     x: 6
     y: 6
@@ -608,7 +611,7 @@ colors: *DoomOne
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-window.opacity: 1.0
+# window.opacity: 1.0  
 # window.opacity: 0.80
 
 #selection:
