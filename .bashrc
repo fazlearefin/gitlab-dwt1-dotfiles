@@ -59,6 +59,10 @@ if [ -d "/var/lib/flatpak/exports/bin/" ] ;
   then PATH="/var/lib/flatpak/exports/bin/:$PATH"
 fi
 
+if [ -d "$HOME/.config/emacs/bin/" ] ;
+  then PATH="$HOME/.config/emacs/bin/:$PATH"
+fi
+
 ### SETTING OTHER ENVIRONMENT VARIABLES
 if [ -z "$XDG_CONFIG_HOME" ] ; then
     export XDG_CONFIG_HOME="$HOME/.config"
