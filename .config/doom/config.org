@@ -29,6 +29,7 @@
 - [[#eww][EWW]]
 - [[#exwm][EXWM]]
 - [[#fonts][FONTS]]
+- [[#imenu][IMENU]]
 - [[#insert-date][INSERT DATE]]
 - [[#ivy][IVY]]
   - [[#ivy-posframe][IVY-POSFRAME]]
@@ -567,6 +568,27 @@ Settings related to fonts within Doom Emacs:
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+#+END_SRC
+
+* IMENU
+Imenu produces menus for accessing locations in documents, typically in the current buffer. You can access the locations using an ordinary menu (menu bar or other) or using minibuffer completion, or you can install 'imenu-list' and have the imenu displayed as a vertical split that you can toggle show/hide.
+
+| COMMAND                 | DESCRIPTION                      | KEYBINDING |
+|-------------------------+----------------------------------+------------|
+| counsel-imenu           | /Menu to jump to places in buffer/ | SPC s i    |
+| imenu-list-smart-toggle | /Toggle imenu shown in a sidebar/  | SPC t i    |
+
+#+BEGIN_SRC emacs-lisp
+(setq imenu-list-focus-after-activation t)
+
+(map! :leader
+      (:prefix ("s" . "Search")
+       :desc "Menu to jump to places in buffer" "i" #'counsel-imenu))
+
+(map! :leader
+      (:prefix ("t" . "Toggle")
+       :desc "Toggle imenu shown in a sidebar" "i" #'imenu-list-smart-toggle))
+
 #+END_SRC
 
 * INSERT DATE
