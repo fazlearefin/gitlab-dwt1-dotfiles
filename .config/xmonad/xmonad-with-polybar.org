@@ -187,13 +187,19 @@ myStartupHook = do
   spawnOnce "volumeicon"
   spawnOnce "notify-log $HOME/.log/notify.log"
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+<<<<<<< HEAD
 
+=======
+>>>>>>> 10dba929669221d591cd1e0d58cc67ace8b03906
   -- We killed any running conky processes earlier in the autostart, 
   -- so now we sleep for 2 seconds and then restart conky.
   spawn "polybar-xmonad"
   spawnOnce "sleep 2 && xmonad --restart"
   spawn ("sleep 3 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 10dba929669221d591cd1e0d58cc67ace8b03906
   -- Select only =ONE= of the following four ways to set the wallpaper.
   spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
@@ -644,7 +650,8 @@ myKeys c =
   , ("M-S-q", addName "Quit XMonad"            $ spawn "dm-logout")
   , ("M-S-c", addName "Kill focused window"    $ kill1)
   , ("M-S-a", addName "Kill all windows on WS" $ killAll)
-  , ("M-S-<Return>", addName "Run prompt"      $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "~/.local/bin/dm-run"])
+ -- , ("M-S-<Return>", addName "Run prompt"      $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "~/.local/bin/dm-run"])
+  , ("M-S-<Return>", addName "Run prompt"      $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "emacsclient -cF '((visibility . nil))' -e '(emacs-run-launcher)'"])
   , ("M-S-b", addName "Toggle bar show/hide"   $ sendMessage ToggleStruts)
   , ("M-/", addName "DTOS Help"                $ spawn "~/.local/bin/dtos-help")]
 
