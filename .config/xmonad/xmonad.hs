@@ -1,4 +1,4 @@
-  -- Base
+-- Base
 import XMonad
 import System.Directory
 import System.IO (hClose, hPutStr, hPutStrLn)
@@ -21,6 +21,7 @@ import Data.Char (isSpace, toUpper)
 import Data.Maybe (fromJust)
 import Data.Monoid
 import Data.Maybe (isJust)
+import Data.Ratio  
 import Data.Tree
 import qualified Data.Map as M
 
@@ -28,7 +29,7 @@ import qualified Data.Map as M
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, manageDocks, ToggleStruts(..))
-import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
+import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat, doRectFloat)
 import XMonad.Hooks.ServerMode
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.StatusBar
@@ -125,7 +126,6 @@ myStartupHook = do
   spawn "killall conky"                    -- kill current conky on each restart
   spawn "killall xmobar" -- adding this in case of switching between xmobar and polybar.
   spawn "killall trayer" -- adding this in case of switching between xmobar and polybar.
-
   spawnOnce "lxsession"
   spawnOnce "picom"
   spawnOnce "nm-applet"
@@ -133,10 +133,13 @@ myStartupHook = do
   spawnOnce "notify-log $HOME/.log/notify.log"
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
 
+  -- We killed any running conky processes earlier in the autostart, 
+  -- so now we sleep for 2 seconds and then restart conky.
   spawn "polybar-xmonad"
   spawnOnce "sleep 2 && xmonad --restart"
   spawn ("sleep 3 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
 
+  -- Select only =ONE= of the following four ways to set the wallpaper.
   spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
   -- spawnOnce "feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*"  -- feh set random wallpaper
@@ -463,6 +466,7 @@ myManageHook = composeAll
   , className =? "Yad"             --> doCenterFloat
   , title =? "Oracle VM VirtualBox Manager"   --> doFloat
   , title =? "Order Chain - Market Snapshots" --> doFloat
+  , title =? "emacs-run-launcher" --> doFloat
   , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
   , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
   , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
