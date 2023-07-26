@@ -212,7 +212,7 @@
 			</item>
 			<item label="Canto RSS Reader">
 				<action name="Execute">
-					<execute>termite -e 'canto-curses' -t 'Canto RSS Reader' </execute>
+					<execute>alacritty -t 'Canto RSS Reader' -e 'canto-curses' </execute>
 				</action>
 			</item>
 			<item label="Deluge">
@@ -244,7 +244,7 @@
 			</item>
 			<item label="Irssi IRC">
 				<action name="Execute">
-					<execute>termite -e 'irssi' -t 'irssi'</execute>
+					<execute>alacritty -t 'irssi' -e 'irssi'</execute>
 				</action>
 			</item>
 			<item label="Jitsi">
@@ -254,12 +254,12 @@
 			</item>
 			<item label="Lynx">
 				<action name="Execute">
-					<execute>termite -e 'lynx www.google.com' -t 'lynx web browser'</execute>
+					<execute>alacritty -t 'lynx web browser' -e 'lynx www.google.com'</execute>
 				</action>
 			</item>
 			<item label="Mutt Email">
 				<action name="Execute">
-					<execute>termite -e 'mutt' -t 'mutt email'</execute>
+					<execute>alacritty -t 'mutt email' -e 'mutt'</execute>
 				</action>
 			</item>
 			<item label="TeamViewer">
@@ -351,7 +351,7 @@
 		<menu id="root-menu-943454" label="Sound &amp; Video">
 			<item label="AlsaMixer">
 				<action name="Execute">
-					<execute>termite -e 'alsamixer' -t 'alsamixer'</execute>
+					<execute>alacritty -t 'alsamixer' -e 'alsamixer'</execute>
 				</action>
 			</item>
 			<item label="Anoise ">
@@ -492,17 +492,17 @@
 			<menu id="root-menu-454721-901149" label="System Monitoring">
 				<item label="Glances">
 					<action name="Execute">
-						<execute>termite -e 'glances' -t 'glances'</execute>
+						<execute>alacritty -t 'glances' -e 'glances'</execute>
 					</action>
 				</item>
 				<item label="Htop">
 					<action name="Execute">
-						<execute>termite -e 'htop' -t 'htop'</execute>
+						<execute>alacritty -t 'htop' -e 'htop'</execute>
 					</action>
 				</item>
 				<item label="Nmon">
 					<action name="Execute">
-						<execute>termite -e 'nmon' -t 'nmon'</execute>
+						<execute>alacritty -t 'nmon' -e 'nmon'</execute>
 					</action>
 				</item>
 				<item label="Stacer">
@@ -512,7 +512,7 @@
 				</item>
 				<item label="Stress Terminal UI">
 					<action name="Execute">
-						<execute>termite -e 's-tui' -t 'Stress Terminal UI'</execute>
+						<execute>alacritty -t 'Stress Terminal UI' -e 's-tui'</execute>
 					</action>
 				</item>
 			</menu>
@@ -561,7 +561,7 @@
 			</item>
 			<item label="Ranger">
 				<action name="Execute">
-					<execute>termite -e 'ranger' -t 'ranger file manager'</execute>
+					<execute>alacritty -t 'ranger file manager' -e 'ranger'</execute>
 				</action>
 			</item>
 			<item label="Snap Store">
@@ -720,9 +720,9 @@
 					<execute>alacritty -e nvim ~/.config/qtile/config.py</execute>
 				</action>
 			</item>
-			<item label="Termite Config">
+			<item label="Alacritty Config">
 				<action name="Execute">
-					<execute>alacritty -e nvim ~/.config/termite/config</execute>
+					<execute>alacritty -e nvim ~/.config/alacritty/config</execute>
 				</action>
 			</item>
 			<item label="Xmonad Config">

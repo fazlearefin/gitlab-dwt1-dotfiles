@@ -555,9 +555,9 @@
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>Termite</name>
+          <name>Alacritty</name>
         </startupnotify>
-        <command>termite</command>
+        <command>alacritty</command>
       </action>
     </keybind>
     <!-- Keybindings for running applications -->
