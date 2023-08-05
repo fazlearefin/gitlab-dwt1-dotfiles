@@ -24,13 +24,13 @@
 
 
 # output the initial menu
-# NOTE: If you do not use the "termite" terminal program or the "ranger" file manager, edit the <command> below.
+# NOTE: If you do not use the "alacritty" terminal program or the "ranger" file manager, edit the <command> below.
 cat <<EOF
 <openbox_pipe_menu>
     <item label="Color Scripts">
         <action name="Execute">
             <command>
-                 termite -e 'ranger ~/color-scripts' 
+                 alacritty -e 'ranger ~/color-scripts' 
             </command>
         </action>
     </item>
@@ -45,10 +45,10 @@ echo "    <menu id=\"color-scripts-01-15\" label=\"01-15\">"
 for file in $(ls ~/shell-color-scripts/* | head -15); do
 NAME=$(echo "$file" | rev | cut -d"/" -f1 | rev)
 echo "    <menu id=\"$NAME\" label=\"$NAME\">"
-# NOTE: If you do not use the "termite" terminal program, then change "termite" to your preferred terminal (ex. xterm, urxvt, etc.)
-echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>termite -e '$file' -t '$file'</execute></action></item>"
+# NOTE: If you do not use the "alacritty" terminal program, then change "alacritty" to your preferred terminal (ex. xterm, urxvt, etc.)
+echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>alacritty -t '$file' -e '$file'</execute></action></item>"
 # NOTE: If you do not use the "vim" text editor, then change "vim" to your preferred editor (ex. nano, geany, etc.)
-echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>termite -e 'vim $file'</execute></action></item>"
+echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>alacritty -e 'vim $file'</execute></action></item>"
 echo "    </menu>"
 done
 echo "    </menu>"
@@ -58,10 +58,10 @@ echo "    <menu id=\"color-scripts-16-30\" label=\"16-30\">"
 for file in $(ls ~/shell-color-scripts/* | tail -37 | head -15); do
 NAME=$(echo "$file" | rev | cut -d"/" -f1 | rev)
 echo "    <menu id=\"$NAME\" label=\"$NAME\">"
-# NOTE: If you do not use the "termite" terminal program, then change "termite" to your preferred terminal (ex. xterm, urxvt, etc.)
-echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>termite -e '$file' -t '$file'</execute></action></item>"
+# NOTE: If you do not use the "alacritty" terminal program, then change "alacritty" to your preferred terminal (ex. xterm, urxvt, etc.)
+echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>alacritty -t '$file' -e '$file'</execute></action></item>"
 # NOTE: If you do not use the "vim" text editor, then change "vim" to your preferred editor (ex. nano, geany, etc.)
-echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>termite -e 'vim $file'</execute></action></item>"
+echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>alacritty -e 'vim $file'</execute></action></item>"
 echo "    </menu>"
 done
 echo "    </menu>"
@@ -71,10 +71,10 @@ echo "    <menu id=\"color-scripts-31-45\" label=\"31-45\">"
 for file in $(ls ~/shell-color-scripts/* | tail -22 | head -15); do
 NAME=$(echo "$file" | rev | cut -d"/" -f1 | rev)
 echo "    <menu id=\"$NAME\" label=\"$NAME\">"
-# NOTE: If you do not use the "termite" terminal program, then change "termite" to your preferred terminal (ex. xterm, urxvt, etc.)
-echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>termite -e '$file' -t '$file'</execute></action></item>"
+# NOTE: If you do not use the "alacritty" terminal program, then change "alacritty" to your preferred terminal (ex. xterm, urxvt, etc.)
+echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>alacritty -t '$file' -e '$file'</execute></action></item>"
 # NOTE: If you do not use the "vim" text editor, then change "vim" to your preferred editor (ex. nano, geany, etc.)
-echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>termite -e 'vim $file'</execute></action></item>"
+echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>alacritty -e 'vim $file'</execute></action></item>"
 echo "    </menu>"
 done
 echo "    </menu>"
@@ -84,10 +84,10 @@ echo "    <menu id=\"color-scripts-46+\" label=\"46+\">"
 for file in $(ls ~/shell-color-scripts/* | tail -7 | head -15); do
 NAME=$(echo "$file" | rev | cut -d"/" -f1 | rev)
 echo "    <menu id=\"$NAME\" label=\"$NAME\">"
-# NOTE: If you do not use the "termite" terminal program, then change "termite" to your preferred terminal (ex. xterm, urxvt, etc.)
-echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>termite -e '$file' -t '$file'</execute></action></item>"
+# NOTE: If you do not use the "alacritty" terminal program, then change "alacritty" to your preferred terminal (ex. xterm, urxvt, etc.)
+echo "<item label=\"Run in terminal\"><action name=\"Execute\"><execute>alacritty -t '$file' -e '$file'</execute></action></item>"
 # NOTE: If you do not use the "vim" text editor, then change "vim" to your preferred editor (ex. nano, geany, etc.)
-echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>termite -e 'vim $file'</execute></action></item>"
+echo "<item label=\"Edit in vim\"><action name=\"Execute\"><execute>alacritty -e 'vim $file'</execute></action></item>"
 echo "    </menu>"
 done
 echo "    </menu>"
