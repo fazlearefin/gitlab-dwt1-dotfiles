@@ -7,10 +7,11 @@ lxsession &
 picom &
 /usr/bin/emacs --daemon &
 killall conky &
-sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$COLORSCHEME"-01.conkyrc
+sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$COLORSCHEME"-01.conkyrc &
 killall volumeicon &
 volumeicon &
 nm-applet &
+"$HOME"/.screenlayout/layout.sh &
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
 # 1. Uncomment to restore last saved wallpaper
