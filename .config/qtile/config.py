@@ -33,7 +33,7 @@ from libqtile.lazy import lazy
 # from libqtile.utils import guess_terminal
 
 # Make sure 'qtile-extras' is installed or this config will not work.
-# from qtile_extras import widget
+from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
@@ -142,8 +142,27 @@ keys = [
     ])
 
 ]
+groups = []
+group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 
-groups = [Group(i) for i in "123456789"]
+#group_labels = ["DEV", "WWW", "SYS", "SYS", "DOC", "VBOX", "CHAT", "MUS", "VID", "GFX",]
+group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
+#group_labels = ["", "", "", "", "", "", "", "", "",]
+
+
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+
+#group_layouts = ["monadtall", "matrix", "monadtall", "bsp", "monadtall", "matrix", "monadtall", "bsp", "monadtall", "monadtall",]
+
+for i in range(len(group_names)):
+    groups.append(
+        Group(
+            name=group_names[i],
+            layout=group_layouts[i].lower(),
+            label=group_labels[i],
+        ))
+    
+# groups = [Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend(
@@ -179,7 +198,6 @@ layouts = [
     #layout.MonadWide(**layout_theme),
     #layout.Bsp(**layout_theme),
     #layout.Stack(stacks=2, **layout_theme),
-    layout.Columns(**layout_theme),
     #layout.RatioTile(**layout_theme),
     #layout.Tile(shift_windows=True, **layout_theme),
     #layout.VerticalTile(**layout_theme),
@@ -188,6 +206,7 @@ layouts = [
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
     layout.Stack(num_stacks=2),
+    layout.Columns(**layout_theme),
     layout.RatioTile(**layout_theme),
     layout.TreeTab(
          font = "Ubuntu",
@@ -225,7 +244,7 @@ colors = [["#282c34", "#282c34"],
 
 widget_defaults = dict(
     font="Ubuntu Bold",
-    fontsize = 10,
+    fontsize = 12,
     padding = 2,
     background=colors[2]
 )
@@ -252,16 +271,16 @@ def init_widgets_list():
 
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[2],
                        background = colors[0]
                        ),
               widget.GroupBox(
-                       font = "Ubuntu Bold",
-                       fontsize = 9,
+                       font = "Ubuntu Mono Bold",
+                       fontsize = 10,
                        margin_y = 3,
-                       margin_x = 0,
-                       padding_y = 5,
+                       margin_x = 4,
+                       padding_y = 2,
                        padding_x = 3,
                        borderwidth = 3,
                        active = colors[2],
@@ -307,7 +326,8 @@ def init_widgets_list():
               widget.WindowName(
                        foreground = colors[6],
                        background = colors[0],
-                       padding = 0
+                       padding = 0,
+                       max_chars = 40
                        ),
               widget.Systray(
                        background = colors[0],
@@ -315,12 +335,13 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[0],
                        background = colors[0]
                        ),
               widget.Net(
-                       interface = "enp6s0",
+                       interface = "enp5s0",
+                       prefix='M',
                        format = 'Net: {down} ↓↑ {up}',
                        foreground = colors[3],
                        background = colors[0],
@@ -336,7 +357,7 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[0],
                        background = colors[0]
                        ),
@@ -344,7 +365,7 @@ def init_widgets_list():
                        foreground = colors[4],
                        background = colors[0],
                        threshold = 90,
-                       fmt = 'Temp: {}',
+                       fmt = '🌡  Temp: {}',
                        padding = 5,
                        decorations=[
                            BorderDecoration(
@@ -357,14 +378,14 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[0],
                        background = colors[0]
                        ),
               widget.CheckUpdates(
                        update_interval = 1800,
                        distro = "Arch_checkupdates",
-                       display_format = "Updates: {updates} ",
+                       display_format = "⚠  Updates: {updates} ",
                        foreground = colors[5],
                        colour_have_updates = colors[5],
                        colour_no_updates = colors[5],
@@ -382,7 +403,7 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[0],
                        background = colors[0]
                        ),
@@ -390,7 +411,8 @@ def init_widgets_list():
                        foreground = colors[9],
                        background = colors[0],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-                       fmt = 'Mem: {}',
+                       measure_mem = 'G',
+                       fmt = '✇  Mem: {}',
                        padding = 5,
                        decorations=[
                            BorderDecoration(
@@ -403,14 +425,14 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[0],
                        background = colors[0]
                        ),
               widget.Volume(
                        foreground = colors[7],
                        background = colors[0],
-                       fmt = 'Vol: {}',
+                       fmt = '🕫  Vol: {}',
                        padding = 5,
                        decorations=[
                            BorderDecoration(
@@ -423,16 +445,14 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[0],
                        background = colors[0]
                        ),
-
-
               widget.KeyboardLayout(
                        foreground = colors[8],
                        background = colors[0],
-                       fmt = 'Keyboard: {}',
+                       fmt = '⌨  Kbd: {}',
                        padding = 5,
                        decorations=[
                            BorderDecoration(
@@ -445,14 +465,15 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 4,
                        foreground = colors[0],
                        background = colors[0]
                        ),
               widget.Clock(
                        foreground = colors[6],
                        background = colors[0],
-                       format = "%A, %B %d - %H:%M ",
+                       format = "⏱  %a, %b %d - %H:%M",
+                       padding = 5,
                        decorations=[
                            BorderDecoration(
                                colour = colors[6],
@@ -461,9 +482,7 @@ def init_widgets_list():
                                padding_y = None,
                            )
                        ],
-
                        ),
-
               widget.Sep(
                        linewidth = 0,
                        padding = 6,
@@ -483,9 +502,9 @@ def init_widgets_screen2():
     return widgets_screen2                 # Monitor 2 will display all widgets in widgets_list
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=20)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=24)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=24)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=24))]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
