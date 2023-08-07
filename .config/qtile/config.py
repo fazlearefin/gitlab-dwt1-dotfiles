@@ -390,7 +390,7 @@ def init_widgets_list():
                        foreground = colors[5],
                        colour_have_updates = colors[5],
                        colour_no_updates = colors[5],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('pamac-manager')},
                        padding = 5,
                        background = colors[0],
                        decorations=[
@@ -412,7 +412,6 @@ def init_widgets_list():
                        foreground = colors[9],
                        background = colors[0],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-                       measure_mem = 'G',
                        fmt = '✇  Mem: {}',
                        padding = 5,
                        decorations=[
