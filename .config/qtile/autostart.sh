@@ -9,8 +9,8 @@ picom &
 killall conky &
 sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$COLORSCHEME"-01.conkyrc &
 killall volumeicon &
-volumeicon &
-nm-applet &
+# volumeicon &
+# nm-applet &
 "$HOME"/.screenlayout/layout.sh &
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###

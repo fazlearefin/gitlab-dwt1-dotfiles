@@ -145,7 +145,7 @@ keys = [
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 
-#group_labels = ["DEV", "WWW", "SYS", "SYS", "DOC", "VBOX", "CHAT", "MUS", "VID", "GFX",]
+#group_labels = ["DEV", "WWW", "SYS", "DOC", "VBOX", "CHAT", "MUS", "VID", "GFX",]
 group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 #group_labels = ["", "", "", "", "", "", "", "", "",]
 
@@ -162,8 +162,6 @@ for i in range(len(group_names)):
             label=group_labels[i],
         ))
     
-# groups = [Group(i) for i in "123456789"]
-
 for i in groups:
     keys.extend(
         [
@@ -494,7 +492,7 @@ def init_widgets_list():
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    # del widgets_screen1[9:10]               # Slicing removes unwanted widgets (systray) on Monitors 1,3
+    #del widgets_screen1[9:10]               # Slicing removes unwanted widgets (systray) on Monitors 1,3
     return widgets_screen1
 
 def init_widgets_screen2():
