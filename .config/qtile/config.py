@@ -231,7 +231,7 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = [["#282c34", "#282c34"],
+colors = [["#282c34ee", "#282c34cc"],
           ["#1c1f24", "#1c1f24"],
           ["#dfdfdf", "#dfdfdf"],
           ["#ff6c6b", "#ff6c6b"],
@@ -266,7 +266,8 @@ def init_widgets_list():
               widget.Image(
                        filename = "~/.config/qtile/icons/python-white.png",
                        scale = "False",
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)}
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
+                       background = colors[0]
                        ),
 
               widget.Sep(
@@ -299,7 +300,7 @@ def init_widgets_list():
                        text = '|',
                        font = "Ubuntu Mono",
                        background = colors[0],
-                       foreground = '474747',
+                       foreground = '#cccccc',
                        padding = 2,
                        fontsize = 14
                        ),
@@ -319,7 +320,7 @@ def init_widgets_list():
                        text = '|',
                        font = "Ubuntu Mono",
                        background = colors[0],
-                       foreground = '474747',
+                       foreground = '#cccccc',
                        padding = 2,
                        fontsize = 14
                        ),
@@ -329,10 +330,10 @@ def init_widgets_list():
                        padding = 0,
                        max_chars = 40
                        ),
-              widget.Systray(
-                       background = colors[0],
-                       padding = 5
-                       ),
+              # widget.Systray(
+              #          background = "#000000",
+              #          padding = 5
+              #          ),
               widget.Sep(
                        linewidth = 0,
                        padding = 4,
@@ -502,9 +503,9 @@ def init_widgets_screen2():
     return widgets_screen2                 # Monitor 2 will display all widgets in widgets_list
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=24)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=24)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=24))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), background="#00000000", size=24)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen1(), background="#00000000", size=24))]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
