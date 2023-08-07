@@ -341,7 +341,7 @@ def init_widgets_list():
                        background = colors[0]
                        ),
               widget.Net(
-                       interface = "enp5s0",
+                       interface = "enp6s0",
                        prefix='M',
                        format = 'Net: {down} ↓↑ {up}',
                        foreground = colors[3],
