@@ -495,7 +495,7 @@ def init_widgets_list():
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    del widgets_screen1[9:10]               # Slicing removes unwanted widgets (systray) on Monitors 1,3
+    # del widgets_screen1[9:10]               # Slicing removes unwanted widgets (systray) on Monitors 1,3
     return widgets_screen1
 
 def init_widgets_screen2():
