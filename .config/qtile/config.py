@@ -33,6 +33,7 @@ from libqtile.lazy import lazy
 
 # Make sure 'qtile-extras' is installed or this config will not work.
 from qtile_extras import widget
+from qtile_extras.widget import StatusNotifier
 from qtile_extras.widget.decorations import BorderDecoration
 
 # Allows you to input a name when adding treetab section.
@@ -446,22 +447,23 @@ def init_widgets_list():
                        length = 8,
                        foreground = colors[2]
                        ),
+
               ]
     return widgets_list
 
 # I use 3 monitors which means that I need 3 bars, but some widgets (such as the systray)
 # can only have one instance, otherwise it will crash.  So I define the follow two lists.
-# The first one creates a bar with every widget EXCEPT the 18th widget (the systray).
+# The first one creates a bar with every widget EXCEPT index 15 and 16 (systray and spacer).
 # The second one creates a bar with all widgets.
  
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    del widgets_screen1[15]   # Removes unwanted widgets (systray) on Monitors 1,3
+    del widgets_screen1[15:16]   # Removes widgets 15 and 16 for bars on Monitors 1 + 3
     return widgets_screen1
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    return widgets_screen2    # Monitor 2 will display ALL widgets in widgets_list
+    return widgets_screen2       # Monitor 2 will display ALL widgets in widgets_list
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
 # For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
