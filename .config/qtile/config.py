@@ -194,7 +194,7 @@ for i in range(len(group_names)):
             layout=group_layouts[i].lower(),
             label=group_labels[i],
         ))
-    
+ 
 for i in groups:
     keys.extend(
         [
@@ -205,19 +205,19 @@ for i in groups:
                 lazy.group[i.name].toscreen(),
                 desc="Switch to group {}".format(i.name),
             ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
+            # mod1 + shift + letter of group = move focused window to group
             Key(
                 [mod, "shift"],
                 i.name,
                 lazy.window.togroup(i.name, switch_group=False),
-                desc="Switch to & move focused window to group {}".format(i.name),
+                desc="Move focused window to group {}".format(i.name),
             ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
+
+# If using transparency, make sure you add (background="#00000000") to 'Screen' line(s).
+# Then, you can use RGBA color codes to add transparency to the colors below.
+# For ex: colors = [["#282c34ee", "#282c34dd"], ...
 
 colors = [["#282c34ee", "#282c34dd"],
           ["#1c1f24", "#1c1f24"],
@@ -285,10 +285,6 @@ extension_defaults = widget_defaults.copy()
 
 def init_widgets_list():
     widgets_list = [
-              widget.Sep(
-                       linewidth = 0,
-                       foreground = colors[2]
-                       ),
               widget.Image(
                        filename = "~/.config/qtile/icons/python-white.png",
                        scale = "False",
@@ -346,15 +342,11 @@ def init_widgets_list():
                        foreground = colors[6],
                        max_chars = 40
                        ),
-              # widget.Systray(
-              #          background = "#000000",
-              #          padding = 5
-              #          ),
-              widget.Net(
-                       interface = "enp6s0",
-                       prefix='M',
-                       format = 'Net: {down} ↓↑ {up}',
+             widget.GenPollText(
+                       update_interval = 300,
+                       func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
                        foreground = colors[3],
+                       fmt = 'Kernel: {}',
                        decorations=[
                            BorderDecoration(
                                colour = colors[3],
@@ -364,10 +356,12 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.ThermalSensor(
+
+              widget.Net(
+                       interface = "enp5s0",
+                       prefix='M',
+                       format = 'Net: {down} ↓↑ {up}',
                        foreground = colors[4],
-                       threshold = 90,
-                       fmt = '🌡  Temp: {}',
                        decorations=[
                            BorderDecoration(
                                colour = colors[4],
@@ -377,30 +371,32 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.CheckUpdates(
-                       update_interval = 1800,
-                       distro = "Arch_checkupdates",
-                       display_format = "⚠  Updates: {updates} ",
-                       foreground = colors[5],
-                       colour_have_updates = colors[5],
-                       colour_no_updates = colors[5],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('pamac-manager')},
+              widget.Memory(
+                       foreground = colors[9],
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                       format = '{MemUsed: .0f}{mm}',
+                       fmt = '✇  Mem: {} used',
                        decorations=[
                            BorderDecoration(
-                               colour = colors[5],
+                               colour = colors[9],
                                border_width = [0, 0, 2, 0],
                                padding_x = 5,
                                padding_y = None,
                            )
                        ],
                        ),
-              widget.Memory(
-                       foreground = colors[9],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-                       fmt = '✇  Mem: {}',
+              widget.DF(
+                       update_interval = 60,
+                       foreground = colors[5],
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
+                       partition = '/',
+                       #format = '[{p}] {uf}{m} ({r:.0f}%)',
+                       format = '{uf}{m} free',
+                       fmt = '✇  Disk: {}',
+                       visible_on_warn = False,
                        decorations=[
                            BorderDecoration(
-                               colour = colors[9],
+                               colour = colors[5],
                                border_width = [0, 0, 2, 0],
                                padding_x = 5,
                                padding_y = None,
@@ -443,26 +439,37 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Sep(
-                       linewidth = 0,
-                       foreground = colors[0]
+              widget.Spacer(
+                       length = 6,
+                       foreground = colors[2]
+                       ),
+              widget.Systray(
+                       padding = 4
                        ),
               ]
     return widgets_list
 
+# I use 3 monitors which means that I need 3 bars, but some widgets (such as the systray)
+# can only have one instance, otherwise it will crash.  So I define the follow two lists.
+# The first one creates a bar with every widget EXCEPT the 18th widget (the systray).
+# The second one creates a bar with all widgets.
+ 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    #del widgets_screen1[9]               # Removes unwanted widgets (systray) on Monitors 1,3
+    del widgets_screen1[16]   # Removes unwanted widgets (systray) on Monitors 1,3
     return widgets_screen1
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    return widgets_screen2                 # Monitor 2 will display all widgets in widgets_list
+    return widgets_screen2    # Monitor 2 will display ALL widgets in widgets_list
+
+# For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
+# For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), background="#00000000", size=24)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen1(), background="#00000000", size=24))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=24)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=24)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=24))]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
