@@ -6,9 +6,7 @@ festival --tts $HOME/.config/qtile/welcome_msg &
 lxsession &
 picom &
 /usr/bin/emacs --daemon &
-killall conky &
 sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$COLORSCHEME"-01.conkyrc &
-killall volumeicon &
 # volumeicon &
 # nm-applet &
 "$HOME"/.screenlayout/layout.sh &
