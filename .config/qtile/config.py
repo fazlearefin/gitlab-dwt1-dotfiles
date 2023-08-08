@@ -439,12 +439,12 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Spacer(
-                       length = 6,
-                       foreground = colors[2]
-                       ),
               widget.Systray(
                        padding = 4
+                       ),
+              widget.Spacer(
+                       length = 8,
+                       foreground = colors[2]
                        ),
               ]
     return widgets_list
@@ -456,7 +456,7 @@ def init_widgets_list():
  
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    del widgets_screen1[16]   # Removes unwanted widgets (systray) on Monitors 1,3
+    del widgets_screen1[15]   # Removes unwanted widgets (systray) on Monitors 1,3
     return widgets_screen1
 
 def init_widgets_screen2():
