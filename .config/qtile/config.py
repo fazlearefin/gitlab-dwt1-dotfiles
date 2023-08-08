@@ -219,7 +219,7 @@ for i in groups:
         ]
     )
 
-colors = [["#282c34ee", "#282c34cc"],
+colors = [["#282c34ee", "#282c34dd"],
           ["#1c1f24", "#1c1f24"],
           ["#dfdfdf", "#dfdfdf"],
           ["#ff6c6b", "#ff6c6b"],
@@ -326,7 +326,7 @@ def init_widgets_list():
                        fontsize = 14
                        ),
               widget.CurrentLayoutIcon(
-                       custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+                       # custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
                        foreground = colors[2],
                        padding = 0,
                        scale = 0.7
