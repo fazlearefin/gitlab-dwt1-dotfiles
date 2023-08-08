@@ -72,18 +72,35 @@ keys = [
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "j", 
+    Key([mod, "shift"], "h",
+        lazy.layout.shuffle_left(),
+        lazy.layout.move_left().when(layout=["treetab"]),
+        desc="Move window to the left/move tab left in treetab"),
+
+    Key([mod, "shift"], "l",
+        lazy.layout.shuffle_right(),
+        lazy.layout.move_right().when(layout=["treetab"]),
+        desc="Move window to the right/move tab right in treetab"),
+
+    Key([mod, "shift"], "j",
         lazy.layout.shuffle_down(),
         lazy.layout.section_down().when(layout=["treetab"]),
         desc="Move window down/move down a section in treetab"
     ),
-    Key([mod, "shift"], "k", 
+    Key([mod, "shift"], "k",
         lazy.layout.shuffle_up(),
         lazy.layout.section_up().when(layout=["treetab"]),
         desc="Move window downup/move up a section in treetab"
     ),
+
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    Key([mod, "shift"], "space", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
+
+    # Treetab prompt
+    Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
 
     # Grow/shrink windows left/right. 
     # This is mainly for the 'monadtall' and 'monadwide' layouts
@@ -110,23 +127,10 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc='toggle floating'),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
 
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key([mod, "shift"], "space", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
-
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
     
-    # Treetab controls
-    Key([mod, "control"], "k", lazy.layout.section_up(), desc='Move up a section in treetab'),
-    Key([mod, "control"], "j", lazy.layout.section_down(), desc='Move down a section in treetab'),
-    Key([mod, "shift"], "h", lazy.layout.move_left(), desc='Move up a section in treetab'),
-    Key([mod, "shift"], "l", lazy.layout.move_right(), desc='Move down a section in treetab'),
-    Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
-
     # Emacs programs launched using the key chord CTRL+e followed by 'key'
     KeyChord([mod],"e", [
         Key([], "e", lazy.spawn(myEmacs), desc='Emacs Dashboard'),
@@ -219,19 +223,20 @@ layout_theme = {"border_width": 2,
                 }
 
 layouts = [
-    #layout.MonadWide(**layout_theme),
     #layout.Bsp(**layout_theme),
-    #layout.Stack(stacks=2, **layout_theme),
+    #layout.Floating(**layout_theme)
     #layout.RatioTile(**layout_theme),
     #layout.Tile(shift_windows=True, **layout_theme),
     #layout.VerticalTile(**layout_theme),
     #layout.Matrix(**layout_theme),
-    #layout.Zoomy(**layout_theme),
     layout.MonadTall(**layout_theme),
-    layout.Max(**layout_theme),
-    layout.Stack(num_stacks=2),
+    #layout.MonadWide(**layout_theme),
+    layout.Max(
+         border_width = 0,
+         margin = 0,
+         ),
+    layout.Stack(**layout_theme, num_stacks=2),
     layout.Columns(**layout_theme),
-    layout.RatioTile(**layout_theme),
     layout.TreeTab(
          font = "Ubuntu Bold",
          fontsize = 11,
@@ -253,7 +258,7 @@ layouts = [
          vspace = 3,
          panel_width = 240
          ),
-    layout.Floating(**layout_theme)
+    layout.Zoomy(**layout_theme),
 ]
 
 widget_defaults = dict(
