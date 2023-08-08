@@ -36,6 +36,12 @@ from libqtile.lazy import lazy
 from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
 
+# Allows you to input a name when adding treetab section.
+@lazy.layout.function
+def add_treetab_section(layout):
+    prompt = qtile.widgets_map["prompt"]
+    prompt.start_input("Section name: ", layout.cmd_add_section)
+
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 myTerm = "alacritty"      # My terminal of choice
 myBrowser = "qutebrowser" # My browser of choice
@@ -68,8 +74,16 @@ keys = [
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "j", 
+        lazy.layout.shuffle_down(),
+        lazy.layout.section_down().when(layout=["treetab"]),
+        desc="Move window down/move down a section in treetab"
+    ),
+    Key([mod, "shift"], "k", 
+        lazy.layout.shuffle_up(),
+        lazy.layout.section_up().when(layout=["treetab"]),
+        desc="Move window downup/move up a section in treetab"
+    ),
 
     # Grow/shrink windows left/right. 
     # This is mainly for the 'monadtall' and 'monadwide' layouts
@@ -107,8 +121,11 @@ keys = [
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
     
     # Treetab controls
+    Key([mod, "control"], "k", lazy.layout.section_up(), desc='Move up a section in treetab'),
+    Key([mod, "control"], "j", lazy.layout.section_down(), desc='Move down a section in treetab'),
     Key([mod, "shift"], "h", lazy.layout.move_left(), desc='Move up a section in treetab'),
     Key([mod, "shift"], "l", lazy.layout.move_right(), desc='Move down a section in treetab'),
+    Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
 
     # Emacs programs launched using the key chord CTRL+e followed by 'key'
     KeyChord([mod],"e", [
@@ -152,8 +169,6 @@ group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
-#group_layouts = ["monadtall", "matrix", "monadtall", "bsp", "monadtall", "matrix", "monadtall", "bsp", "monadtall", "monadtall",]
-
 for i in range(len(group_names)):
     groups.append(
         Group(
@@ -186,10 +201,21 @@ for i in groups:
         ]
     )
 
+colors = [["#282c34ee", "#282c34cc"],
+          ["#1c1f24", "#1c1f24"],
+          ["#dfdfdf", "#dfdfdf"],
+          ["#ff6c6b", "#ff6c6b"],
+          ["#98be65", "#98be65"],
+          ["#da8548", "#da8548"],
+          ["#51afef", "#51afef"],
+          ["#c678dd", "#c678dd"],
+          ["#46d9ff", "#46d9ff"],
+          ["#a9a1e1", "#a9a1e1"]]
+
 layout_theme = {"border_width": 2,
                 "margin": 8,
-                "border_focus": "e1acff",
-                "border_normal": "1D2330"
+                "border_focus": colors[8],
+                "border_normal": colors[0]
                 }
 
 layouts = [
@@ -207,73 +233,53 @@ layouts = [
     layout.Columns(**layout_theme),
     layout.RatioTile(**layout_theme),
     layout.TreeTab(
-         font = "Ubuntu",
-         fontsize = 10,
-         sections = ["FIRST", "SECOND", "THIRD", "FOURTH"],
+         font = "Ubuntu Bold",
+         fontsize = 11,
+         border_width = 0,
+         bg_color = colors[0],
+         active_bg = colors[8],
+         active_fg = colors[1],
+         inactive_bg = colors[1],
+         inactive_fg = colors[2],
+         padding_left = 8,
+         padding_x = 8,
+         padding_y = 6,
+         sections = ["ONE", "TWO", "THREE"],
          section_fontsize = 10,
-         border_width = 2,
-         bg_color = "1c1f24",
-         active_bg = "c678dd",
-         active_fg = "000000",
-         inactive_bg = "a9a1e1",
-         inactive_fg = "1c1f24",
-         padding_left = 0,
-         padding_x = 0,
-         padding_y = 5,
-         section_top = 10,
-         section_bottom = 20,
+         section_fg = colors[2],
+         section_top = 15,
+         section_bottom = 15,
          level_shift = 8,
          vspace = 3,
-         panel_width = 200
+         panel_width = 240
          ),
     layout.Floating(**layout_theme)
 ]
 
-colors = [["#282c34ee", "#282c34cc"],
-          ["#1c1f24", "#1c1f24"],
-          ["#dfdfdf", "#dfdfdf"],
-          ["#ff6c6b", "#ff6c6b"],
-          ["#98be65", "#98be65"],
-          ["#da8548", "#da8548"],
-          ["#51afef", "#51afef"],
-          ["#c678dd", "#c678dd"],
-          ["#46d9ff", "#46d9ff"],
-          ["#a9a1e1", "#a9a1e1"]]
-
 widget_defaults = dict(
     font="Ubuntu Bold",
     fontsize = 12,
-    padding = 2,
-    background=colors[2]
+    padding = 5,
+    background=colors[0]
 )
 extension_defaults = widget_defaults.copy()
 
-# screens = [
-#     Screen(
-#         top=bar.Bar(
-#             [
-                
 def init_widgets_list():
     widgets_list = [
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
-                       foreground = colors[2],
-                       background = colors[0]
+                       foreground = colors[2]
                        ),
               widget.Image(
                        filename = "~/.config/qtile/icons/python-white.png",
                        scale = "False",
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
-                       background = colors[0]
                        ),
-
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[2],
-                       background = colors[0]
-                       ),
+              widget.Prompt(
+                       font = "Ubuntu Mono",
+                       fontsize=14,
+                       foreground = colors[2]
+              ),
               widget.GroupBox(
                        font = "Ubuntu Mono Bold",
                        fontsize = 10,
@@ -291,13 +297,11 @@ def init_widgets_list():
                        this_screen_border = colors [4],
                        other_current_screen_border = colors[6],
                        other_screen_border = colors[4],
-                       foreground = colors[2],
-                       background = colors[0]
+                       foreground = colors[2]
                        ),
              widget.TextBox(
                        text = '|',
                        font = "Ubuntu Mono",
-                       background = colors[0],
                        foreground = '#cccccc',
                        padding = 2,
                        fontsize = 14
@@ -305,46 +309,33 @@ def init_widgets_list():
               widget.CurrentLayoutIcon(
                        custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
                        foreground = colors[2],
-                       background = colors[0],
                        padding = 0,
                        scale = 0.7
                        ),
               widget.CurrentLayout(
                        foreground = colors[2],
-                       background = colors[0],
                        padding = 5
                        ),
              widget.TextBox(
                        text = '|',
                        font = "Ubuntu Mono",
-                       background = colors[0],
                        foreground = '#cccccc',
                        padding = 2,
                        fontsize = 14
                        ),
               widget.WindowName(
                        foreground = colors[6],
-                       background = colors[0],
-                       padding = 0,
                        max_chars = 40
                        ),
               # widget.Systray(
               #          background = "#000000",
               #          padding = 5
               #          ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
               widget.Net(
                        interface = "enp6s0",
                        prefix='M',
                        format = 'Net: {down} ↓↑ {up}',
                        foreground = colors[3],
-                       background = colors[0],
-                       padding = 5,
                        decorations=[
                            BorderDecoration(
                                colour = colors[3],
@@ -354,18 +345,10 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
               widget.ThermalSensor(
                        foreground = colors[4],
-                       background = colors[0],
                        threshold = 90,
                        fmt = '🌡  Temp: {}',
-                       padding = 5,
                        decorations=[
                            BorderDecoration(
                                colour = colors[4],
@@ -375,12 +358,6 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
               widget.CheckUpdates(
                        update_interval = 1800,
                        distro = "Arch_checkupdates",
@@ -389,8 +366,6 @@ def init_widgets_list():
                        colour_have_updates = colors[5],
                        colour_no_updates = colors[5],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('pamac-manager')},
-                       padding = 5,
-                       background = colors[0],
                        decorations=[
                            BorderDecoration(
                                colour = colors[5],
@@ -400,18 +375,10 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
               widget.Memory(
                        foreground = colors[9],
-                       background = colors[0],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                        fmt = '✇  Mem: {}',
-                       padding = 5,
                        decorations=[
                            BorderDecoration(
                                colour = colors[9],
@@ -421,17 +388,9 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
               widget.Volume(
                        foreground = colors[7],
-                       background = colors[0],
                        fmt = '🕫  Vol: {}',
-                       padding = 5,
                        decorations=[
                            BorderDecoration(
                                colour = colors[7],
@@ -441,17 +400,9 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
-              widget.KeyboardLayout(
+               widget.KeyboardLayout(
                        foreground = colors[8],
-                       background = colors[0],
                        fmt = '⌨  Kbd: {}',
-                       padding = 5,
                        decorations=[
                            BorderDecoration(
                                colour = colors[8],
@@ -461,17 +412,9 @@ def init_widgets_list():
                            )
                        ],
                        ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 4,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
               widget.Clock(
                        foreground = colors[6],
-                       background = colors[0],
                        format = "⏱  %a, %b %d - %H:%M",
-                       padding = 5,
                        decorations=[
                            BorderDecoration(
                                colour = colors[6],
@@ -483,16 +426,14 @@ def init_widgets_list():
                        ),
               widget.Sep(
                        linewidth = 0,
-                       padding = 6,
-                       foreground = colors[0],
-                       background = colors[0]
+                       foreground = colors[0]
                        ),
               ]
     return widgets_list
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    #del widgets_screen1[9:10]               # Slicing removes unwanted widgets (systray) on Monitors 1,3
+    #del widgets_screen1[9]               # Removes unwanted widgets (systray) on Monitors 1,3
     return widgets_screen1
 
 def init_widgets_screen2():
@@ -509,10 +450,6 @@ if __name__ in ["config", "__main__"]:
     widgets_list = init_widgets_list()
     widgets_screen1 = init_widgets_screen1()
     widgets_screen2 = init_widgets_screen2()
-
-
-# tripleScreens = [screens, screens, screens]
-
 
 # Drag floating layouts.
 mouse = [
@@ -539,7 +476,7 @@ floating_layout = layout.Floating(
         Match(title='Qalculate!'),        # qalculate-gtk
         Match(wm_class='kdenlive'),       # kdenlive
         Match(wm_class='pinentry-gtk-2'), # GPG key password entry
-        Match(title="pinentry"),  # GPG key password entry
+        Match(title="pinentry"),          # GPG key password entry
     ]
 )
 auto_fullscreen = True
