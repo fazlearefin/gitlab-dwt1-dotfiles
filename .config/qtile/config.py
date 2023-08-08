@@ -26,8 +26,7 @@
 
 import os
 import subprocess
-from libqtile import qtile
-from libqtile import bar, hook, layout, widget
+from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 # from libqtile.utils import guess_terminal
@@ -59,7 +58,7 @@ keys = [
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.spawn("dm-logout"), desc="Logout menu"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-
+    
     # Switch between windows
     # Some layouts like 'monadtall' only need to use j/k to move
     # through the stack, but other layouts like 'columns' will
@@ -130,6 +129,21 @@ keys = [
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
+    
+    # An example of using the extension 'CommandSet' to give 
+    # a list of commands that can be executed in dmenu style.
+    Key([mod], 'z', lazy.run_extension(extension.CommandSet(
+        commands={
+            'play/pause': '[ $(mocp -i | wc -l) -lt 2 ] && mocp -p || mocp -G',
+            'next': 'mocp -f',
+            'previous': 'mocp -r',
+            'quit': 'mocp -x',
+            'open': 'urxvt -e mocp',
+            'shuffle': 'mocp -t shuffle',
+            'repeat': 'mocp -t repeat',
+            },
+        pre_commands=['[ $(mocp -i | wc -l) -lt 1 ] && mocp -S'],
+        ))),
     
     # Emacs programs launched using the key chord CTRL+e followed by 'key'
     KeyChord([mod],"e", [
