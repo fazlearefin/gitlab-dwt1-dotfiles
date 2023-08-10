@@ -360,8 +360,7 @@ def init_widgets_list():
                        foreground = colors[1]
               ),
               widget.GroupBox(
-                       font = "Ubuntu Mono Bold",
-                       fontsize = 10,
+                       fontsize = 11,
                        margin_y = 3,
                        margin_x = 4,
                        padding_y = 2,
@@ -531,9 +530,9 @@ def init_widgets_screen2():
 # For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=24)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=24)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=24))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26))]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
