@@ -32,6 +32,7 @@ from libqtile.lazy import lazy
 # from libqtile.utils import guess_terminal
 
 # Make sure 'qtile-extras' is installed or this config will not work.
+from qtile_extras import widget
 #from qtile_extras.widget import StatusNotifier
 from qtile_extras.widget.decorations import BorderDecoration
 
