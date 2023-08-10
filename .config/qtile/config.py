@@ -376,7 +376,7 @@ def init_widgets_list():
                        this_screen_border = colors [4],
                        other_current_screen_border = colors[7],
                        other_screen_border = colors[4],
-                       foreground = colors[1]
+                       #foreground = colors[1]
                        ),
              widget.TextBox(
                        text = '|',
