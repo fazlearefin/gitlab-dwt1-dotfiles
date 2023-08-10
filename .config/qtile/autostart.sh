@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 
-COLORSCHEME="DoomOne"
+COLORSCHEME="doom-one"
 
 festival --tts $HOME/.config/qtile/welcome_msg &
 lxsession &
