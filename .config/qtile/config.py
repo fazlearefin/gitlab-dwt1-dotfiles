@@ -33,8 +33,8 @@ from libqtile.lazy import lazy
 
 # Make sure 'qtile-extras' is installed or this config will not work.
 from qtile_extras import widget
-#from qtile_extras.widget import StatusNotifier
 from qtile_extras.widget.decorations import BorderDecoration
+#from qtile_extras.widget import StatusNotifier
 
 # Allows you to input a name when adding treetab section.
 @lazy.layout.function
@@ -409,7 +409,7 @@ def init_widgets_list():
                        update_interval = 300,
                        func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
                        foreground = colors[3],
-                       fmt = 'Kernel: {}',
+                       fmt = '❤ Kernel: {}',
                        decorations=[
                            BorderDecoration(
                                colour = colors[3],
@@ -419,11 +419,8 @@ def init_widgets_list():
                            )
                        ],
                        ),
-
-              widget.Net(
-                       interface = "enp5s0",
-                       prefix='M',
-                       format = 'Net: {down} ↓↑ {up}',
+              widget.CPU(
+                       format = '🏼 Cpu: {load_percent}%',
                        foreground = colors[4],
                        decorations=[
                            BorderDecoration(
@@ -438,7 +435,7 @@ def init_widgets_list():
                        foreground = colors[8],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                        format = '{MemUsed: .0f}{mm}',
-                       fmt = '✇  Mem: {} used',
+                       fmt = '🖥  Mem: {} used',
                        decorations=[
                            BorderDecoration(
                                colour = colors[8],
