@@ -351,7 +351,7 @@ def init_widgets_list():
                  update_interval = 300,
                  func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
                  foreground = colors[3],
-                 fmt = '❤ Kernel: {}',
+                 fmt = '❤  {}',
                  decorations=[
                      BorderDecoration(
                          colour = colors[3],
