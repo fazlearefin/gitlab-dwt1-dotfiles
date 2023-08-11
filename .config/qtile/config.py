@@ -24,12 +24,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import colors
 import os
 import subprocess
 from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
-# from libqtile.utils import guess_terminal
 
 # Make sure 'qtile-extras' is installed or this config will not work.
 from qtile_extras import widget
@@ -216,84 +216,23 @@ for i in groups:
         ]
     )
 
-# If using transparency, make sure you add (background="#00000000") to 'Screen' line(s).
-# Then, you can use RGBA color codes to add transparency to the colors below.
-# For ex: colors = [["#282c34ee", "#282c34dd"], ...
 
-doom_one = [
-    ["#282c34", "#282c34"], # bg
-    ["#bbc2cf", "#bbc2cf"], # fg
-    ["#1c1f24", "#1c1f24"], # color01
-    ["#ff6c6b", "#ff6c6b"], # color02
-    ["#98be65", "#98be65"], # color03
-    ["#da8548", "#da8548"], # color04
-    ["#51afef", "#51afef"], # color05
-    ["#c678dd", "#c678dd"], # color06
-    ["#46d9ff", "#46d9ff"]  # color15
-    ]
+### COLORSCHEME ###
+# Colors are defined in a separate 'colors.py' file.
+# There 10 colorschemes available to choose from:
+colors = colors.doom_one
+# colors = colors.dracula
+# colors = colors.gruvbox_dark
+# colors = colors.monokai_pro
+# colors = colors.nord
+# colors = colors.oceanic_next
+# colors = colors.palenight
+# colors = colors.solarized_dark
+# colors = colors.solarized_light
+# colors = colors.tomorrow_night
 
-dracula  = [
-    ["#282a36", "#282a36"], # bg
-    ["#f8f8f2", "#f8f8f2"], # fg
-    ["#000000", "#000000"], # color01
-    ["#ff5555", "#ff5555"], # color02
-    ["#50fa7b", "#50fa7b"], # color03
-    ["#f1fa8c", "#f1fa8c"], # color04
-    ["#bd93f9", "#bd93f9"], # color05
-    ["#ff79c6", "#ff79c6"], # color06
-    ["#9aedfe", "#9aedfe"]  # color15
-    ]
-
-gruvbox_dark  = [
-    ["#282828", "#282828"], # bg
-    ["#ebdbb2", "#ebdbb2"], # fg
-    ["#000000", "#000000"], # color01
-    ["#fb4934", "#fb4934"], # color02
-    ["#98971a", "#98971a"], # color03
-    ["#d79921", "#d79921"], # color04
-    ["#83a598", "#83a598"], # color05
-    ["#d3869b", "#d3869b"], # color06
-    ["#b8bb26", "#b8bb26"], # color11
-    ]
-monokai_pro = [
-    ["#2D2A2E", "#2D2A2E"], # bg
-    ["#FCFCFA", "#FCFCFA"], # fg
-    ["#403E41", "#403E41"], # color01
-    ["#FF6188", "#FF6188"], # color02
-    ["#A9DC76", "#A9DC76"], # color03
-    ["#FFD866", "#FFD866"], # color04
-    ["#FC9867", "#FC9867"], # color05
-    ["#AB9DF2", "#AB9DF2"], # color06
-    ["#78DCE8", "#78DCE8"]  # color07
-    ]
-
-nord = [
-    ["#2E3440", "#2E3440"], # bg
-    ["#D8DEE9", "#D8DEE9"], # fg
-    ["#3B4252", "#3B4252"], # color01
-    ["#BF616A", "#BF616A"], # color02
-    ["#A3BE8C", "#A3BE8C"], # color03
-    ["#EBCB8B", "#EBCB8B"], # color04
-    ["#81A1C1", "#81A1C1"], # color05
-    ["#B48EAD", "#B48EAD"], # color06
-    ["#88C0D0", "#88C0D0"]  # color07
-    ]
-
-oceanic_next = [
-    ["#1b2b34", "#1b2b34"], # bg
-    ["#d8dee9", "#d8dee9"], # fg
-    ["#29414f", "#29414f"], # color01
-    ["#ec5f67", "#ec5f67"], # color02
-    ["#99c794", "#99c794"], # color03
-    ["#fac863", "#fac863"], # color04
-    ["#6699cc", "#6699cc"], # color05
-    ["#c594c5", "#c594c5"], # color06
-    ["#5fb3b3", "#5fb3b3"]  # color07
-    ]
-
-
-colors = doom_one
-
+# Some settings that I use on almost every layout, which saves us
+# from having to type these out for each individual layout.
 layout_theme = {"border_width": 2,
                 "margin": 8,
                 "border_focus": colors[8],
@@ -339,174 +278,166 @@ layouts = [
     layout.Zoomy(**layout_theme),
 ]
 
+# Some settings that I use on almost every widget, which saves us
+# from having to type these out for each individual widget.
 widget_defaults = dict(
     font="Ubuntu Bold",
     fontsize = 12,
-    padding = 5,
+    padding = 0,
     background=colors[0]
 )
+
 extension_defaults = widget_defaults.copy()
+
 
 def init_widgets_list():
     widgets_list = [
-              widget.Image(
-                       filename = "~/.config/qtile/icons/python-white.png",
-                       scale = "False",
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
-                       ),
-              widget.Prompt(
-                       font = "Ubuntu Mono",
-                       fontsize=14,
-                       foreground = colors[1]
-              ),
-              widget.GroupBox(
-                       fontsize = 11,
-                       margin_y = 3,
-                       margin_x = 4,
-                       padding_y = 2,
-                       padding_x = 3,
-                       borderwidth = 3,
-                       active = colors[8],
-                       inactive = colors[1],
-                       rounded = False,
-                       highlight_color = colors[2],
-                       highlight_method = "line",
-                       this_current_screen_border = colors[7],
-                       this_screen_border = colors [4],
-                       other_current_screen_border = colors[7],
-                       other_screen_border = colors[4],
-                       #foreground = colors[1]
-                       ),
-             widget.TextBox(
-                       text = '|',
-                       font = "Ubuntu Mono",
-                       foreground = colors[1],
-                       padding = 2,
-                       fontsize = 14
-                       ),
-              widget.CurrentLayoutIcon(
-                       # custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                       foreground = colors[1],
-                       padding = 0,
-                       scale = 0.7
-                       ),
-              widget.CurrentLayout(
-                       foreground = colors[1],
-                       padding = 5
-                       ),
-             widget.TextBox(
-                       text = '|',
-                       font = "Ubuntu Mono",
-                       foreground = colors[1],
-                       padding = 2,
-                       fontsize = 14
-                       ),
-              widget.WindowName(
-                       foreground = colors[6],
-                       max_chars = 40
-                       ),
-             widget.GenPollText(
-                       update_interval = 300,
-                       func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
-                       foreground = colors[3],
-                       fmt = '❤ Kernel: {}',
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[3],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.CPU(
-                       format = '🏼 Cpu: {load_percent}%',
-                       foreground = colors[4],
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[4],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.Memory(
-                       foreground = colors[8],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-                       format = '{MemUsed: .0f}{mm}',
-                       fmt = '🖥  Mem: {} used',
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[8],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.DF(
-                       update_interval = 60,
-                       foreground = colors[5],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
-                       partition = '/',
-                       #format = '[{p}] {uf}{m} ({r:.0f}%)',
-                       format = '{uf}{m} free',
-                       fmt = '✇  Disk: {}',
-                       visible_on_warn = False,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[5],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.Volume(
-                       foreground = colors[7],
-                       fmt = '🕫  Vol: {}',
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[7],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-               widget.KeyboardLayout(
-                       foreground = colors[8],
-                       fmt = '⌨  Kbd: {}',
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[8],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.Clock(
-                       foreground = colors[6],
-                       format = "⏱  %a, %b %d - %H:%M",
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[6],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.Systray(
-                       padding = 4
-                       ),
-              widget.Spacer(
-                       length = 8,
-                       ),
+        widget.Image(
+                 filename = "~/.config/qtile/icons/python-white.png",
+                 scale = "False",
+                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
+                 ),
+        widget.Prompt(
+                 font = "Ubuntu Mono",
+                 fontsize=14,
+                 foreground = colors[1]
+        ),
+        widget.GroupBox(
+                 fontsize = 11,
+                 margin_y = 3,
+                 margin_x = 4,
+                 padding_y = 2,
+                 padding_x = 3,
+                 borderwidth = 3,
+                 active = colors[8],
+                 inactive = colors[1],
+                 rounded = False,
+                 highlight_color = colors[2],
+                 highlight_method = "line",
+                 this_current_screen_border = colors[7],
+                 this_screen_border = colors [4],
+                 other_current_screen_border = colors[7],
+                 other_screen_border = colors[4],
+                 ),
+        widget.TextBox(
+                 text = '|',
+                 font = "Ubuntu Mono",
+                 foreground = colors[1],
+                 padding = 2,
+                 fontsize = 14
+                 ),
+        widget.CurrentLayoutIcon(
+                 # custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+                 foreground = colors[1],
+                 padding = 0,
+                 scale = 0.7
+                 ),
+        widget.CurrentLayout(
+                 foreground = colors[1],
+                 padding = 5
+                 ),
+        widget.TextBox(
+                 text = '|',
+                 font = "Ubuntu Mono",
+                 foreground = colors[1],
+                 padding = 2,
+                 fontsize = 14
+                 ),
+        widget.WindowName(
+                 foreground = colors[6],
+                 max_chars = 40
+                 ),
+        widget.GenPollText(
+                 update_interval = 300,
+                 func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
+                 foreground = colors[3],
+                 fmt = '❤ Kernel: {}',
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[3],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.CPU(
+                 format = '🏼  Cpu: {load_percent}%',
+                 foreground = colors[4],
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[4],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.Memory(
+                 foreground = colors[8],
+                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                 format = '{MemUsed: .0f}{mm}',
+                 fmt = '🖥  Mem: {} used',
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[8],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.DF(
+                 update_interval = 60,
+                 foreground = colors[5],
+                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
+                 partition = '/',
+                 #format = '[{p}] {uf}{m} ({r:.0f}%)',
+                 format = '{uf}{m} free',
+                 fmt = '✇  Disk: {}',
+                 visible_on_warn = False,
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[5],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.Volume(
+                 foreground = colors[7],
+                 fmt = '🕫  Vol: {}',
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[7],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.KeyboardLayout(
+                 foreground = colors[8],
+                 fmt = '⌨  Kbd: {}',
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[8],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.Clock(
+                 foreground = colors[6],
+                 format = "⏱  %a, %b %d - %H:%M",
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[6],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.Systray(padding = 3),
+        widget.Spacer(length = 8),
 
-              ]
+        ]
     return widgets_list
 
 # I use 3 monitors which means that I need 3 bars, but some widgets (such as the systray)
@@ -516,7 +447,7 @@ def init_widgets_list():
  
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    del widgets_screen1[15:16]   # Removes widgets 15 and 16 for bars on Monitors 1 + 3
+    del widgets_screen1[22:23]   # Removes widgets 15 and 16 for bars on Monitors 1 + 3
     return widgets_screen1
 
 def init_widgets_screen2():
