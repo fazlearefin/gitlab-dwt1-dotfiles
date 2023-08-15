@@ -121,11 +121,14 @@
 
  (dt/leader-keys
     "h" '(:ignore t :wk "Help")
+    "h b" '(describe-bindings :wk "Describe bindings")
     "h f" '(describe-function :wk "Describe function")
     "h t" '(load-theme :wk "Load theme")
     "h v" '(describe-variable :wk "Describe variable")
-    ;;"h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload emacs config"))
-    "h r r" '(reload-init-file :wk "Reload emacs config"))
+    "h r r" '((lambda () (interactive)
+                (load-file "~/.config/emacs/init.el")
+                (ignore (elpaca-process-queues)))
+              :wk "Reload emacs config"))
 
   (dt/leader-keys
     "m" '(:ignore t :wk "Org")
@@ -316,15 +319,16 @@ one, an error is signaled."
   (setq dashboard-set-file-icons t)
   (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
   ;;(setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
-  (setq dashboard-startup-banner (concat user-emacs-directory "images/dtmacs-logo.png"))  ;; use custom image as banner
+  (setq dashboard-startup-banner "/home/dt/.config/emacs/images/dtmacs-logo.png")  ;; use custom image as banner
   (setq dashboard-center-content nil) ;; set to 't' for centered content
   (setq dashboard-items '((recents . 5)
                           (agenda . 5 )
                           (bookmarks . 3)
                           (projects . 3)
                           (registers . 3)))
+  :custom 
   (dashboard-modify-heading-icons '((recents . "file-text")
-                              (bookmarks . "book")))
+				    (bookmarks . "book")))
   :config
   (dashboard-setup-startup-hook))
 
@@ -488,11 +492,6 @@ one, an error is signaled."
 (use-package rainbow-mode
   :diminish
   :hook org-mode prog-mode)
-
-(defun reload-init-file ()
-  (interactive)
-  (load-file user-init-file)
-  (load-file user-init-file))
 
 (use-package eshell-toggle
   :custom

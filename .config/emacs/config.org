@@ -38,7 +38,6 @@
   - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
 - [[#projectile][PROJECTILE]]
 - [[#rainbow-mode][RAINBOW MODE]]
-- [[#reload-emacs][RELOAD EMACS]]
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
   - [[#eshell][Eshell]]
   - [[#vterm][Vterm]]
@@ -181,11 +180,14 @@
 
  (dt/leader-keys
     "h" '(:ignore t :wk "Help")
+    "h b" '(describe-bindings :wk "Describe bindings")
     "h f" '(describe-function :wk "Describe function")
     "h t" '(load-theme :wk "Load theme")
     "h v" '(describe-variable :wk "Describe variable")
-    ;;"h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload emacs config"))
-    "h r r" '(reload-init-file :wk "Reload emacs config"))
+    "h r r" '((lambda () (interactive)
+                (load-file "~/.config/emacs/init.el")
+                (ignore (elpaca-process-queues)))
+              :wk "Reload emacs config"))
 
   (dt/leader-keys
     "m" '(:ignore t :wk "Org")
@@ -412,17 +414,19 @@ Emacs Dashboard is an extensible startup screen showing you recent files, bookma
   (setq dashboard-set-file-icons t)
   (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
   ;;(setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
-  (setq dashboard-startup-banner (concat user-emacs-directory "images/dtmacs-logo.png"))  ;; use custom image as banner
+  (setq dashboard-startup-banner "/home/dt/.config/emacs/images/dtmacs-logo.png")  ;; use custom image as banner
   (setq dashboard-center-content nil) ;; set to 't' for centered content
   (setq dashboard-items '((recents . 5)
                           (agenda . 5 )
                           (bookmarks . 3)
                           (projects . 3)
                           (registers . 3)))
+  :custom 
   (dashboard-modify-heading-icons '((recents . "file-text")
-                              (bookmarks . "book")))
+				      (bookmarks . "book")))
   :config
   (dashboard-setup-startup-hook))
+
 #+end_src
 
 * DIMINISH
@@ -705,16 +709,6 @@ Display the actual color as a background for any hex color value (ex. #ffffff). 
 (use-package rainbow-mode
   :diminish
   :hook org-mode prog-mode)
-#+end_src
-
-* RELOAD EMACS
-This is just an example of how to create a simple function in Emacs.  Use this function to reload Emacs after adding changes to the config.  Yes, I am loading the user-init-file twice in this function, which is a hack because for some reason, just loading the user-init-file once does not work properly.
-
-#+begin_src emacs-lisp
-(defun reload-init-file ()
-  (interactive)
-  (load-file user-init-file)
-  (load-file user-init-file))
 #+end_src
 
 * SHELLS AND TERMINALS
