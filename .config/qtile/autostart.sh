@@ -2,13 +2,13 @@
 
 COLORSCHEME="doom-one"
 
-festival --tts $HOME/.config/qtile/welcome_msg &
 lxsession &
 picom &
 /usr/bin/emacs --daemon &
 sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$COLORSCHEME"-01.conkyrc &
-# volumeicon &
-# nm-applet &
+copyq &
+nm-applet &
+pamac-tray-icon-plasma &
 "$HOME"/.screenlayout/layout.sh &
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
