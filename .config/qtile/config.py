@@ -220,17 +220,24 @@ for i in groups:
 ### COLORSCHEME ###
 # Colors are defined in a separate 'colors.py' file.
 # There 10 colorschemes available to choose from:
-colors = colors.doom_one
-# colors = colors.dracula
-# colors = colors.gruvbox_dark
-# colors = colors.monokai_pro
-# colors = colors.nord
-# colors = colors.oceanic_next
-# colors = colors.palenight
-# colors = colors.solarized_dark
-# colors = colors.solarized_light
-# colors = colors.tomorrow_night
+#
+# colors = colors.DoomOne
+# colors = colors.Dracula
+# colors = colors.GruvboxDark
+# colors = colors.MonokaiPro
+# colors = colors.Nord
+# colors = colors.OceanicNext
+# colors = colors.Palenight
+# colors = colors.SolarizedDark
+# colors = colors.SolarizedLight
+# colors = colors.TomorrowNight
+#
+# It is best not manually change the colorscheme; instead run 'dtos-colorscheme'
+# which is set to 'MOD + p c'
 
+colors = colors.DoomOne
+
+### LAYOUTS ###
 # Some settings that I use on almost every layout, which saves us
 # from having to type these out for each individual layout.
 layout_theme = {"border_width": 2,

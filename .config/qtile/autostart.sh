@@ -6,7 +6,8 @@ COLORSCHEME=$(grep "^colors = colors.*" "$HOME"/.config/qtile/config.py | cut -d
 lxsession &
 picom &
 /usr/bin/emacs --daemon &
-sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$CONKYSTYLE"/"$COLORSCHEME".conkyrc &
+killall conky
+sleep 2 && conky -c "$HOME"/.config/conky/qtile/"$CONKYSTYLE"/"$COLORSCHEME".conkyrc &
 copyq &
 nm-applet &
 pamac-tray-icon-plasma &

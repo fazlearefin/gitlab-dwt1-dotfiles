@@ -35,16 +35,17 @@ if [ "$choice" ]; then
     xmonad --restart || echo "Xmonad not running"
 
     ## AWESOME ##
-    sed -i "s/^local colorscheme = .*/local colorscheme = \"$choice\"/g" "$HOME"/.config/awesome/README.org
-    sed -i "s/^local colorscheme = .*/local colorscheme = \"$choice\"/g" "$HOME"/.config/awesome/rc.lua
+    sed -i "s/^local colorscheme = .*/local colorscheme = \"$choice\"/g" "$HOME"/.config/awesome/README.org || echo "Cannot find awesome README.org"
+    sed -i "s/^local colorscheme = .*/local colorscheme = \"$choice\"/g" "$HOME"/.config/awesome/rc.lua || echo "Cannot find awesome rc.lua"
     echo 'awesome.restart()' | awesome-client || echo "Awesome not running"
 
     ## BSPWM ##
-    sed -i "s/^COLORSCHEME=.*/COLORSCHEME=\"$choice\"/g" "$HOME"/.config/bspwm/bspwmrc
+    sed -i "s/^COLORSCHEME=.*/COLORSCHEME=\"$choice\"/g" "$HOME"/.config/bspwm/bspwmrc || echo "Cannot find bspwmrc"
     bspc wm -r || echo "Bswpm not running"
 
     ## QTILE ##
-    sed -i "s/^COLORSCHEME=.*/COLORSCHEME=\"$choice\"/g" "$HOME"/.config/qtile/autostart.sh
+    sed -i "s/^colors = colors.*/colors = colors.$choice/g" "$HOME"/.config/qtile/config.py || echo "Cannot find colors = colors."
+    sed -i "s/^colors=colors.*/colors = colors.$choice/g" "$HOME"/.config/qtile/config.py  || echo "Cannot find colors=colors."
     qtile cmd-obj -o cmd -f restart && $HOME/.config/qtile/autostart.sh || echo "Qtile not running"
 
     ## ALACRITTY ##
@@ -70,7 +71,7 @@ if [ "$choice" ]; then
     -e "s/color13.*color13/color13    = \${$choice.color13/g" \
     -e "s/color14.*color14/color14    = \${$choice.color14/g" \
     -e "s/color15.*color15/color15    = \${$choice.color15/g" \
-    -e "s/^alert.*/alert      = \${$choice.color1}/g" "$HOME"/.config/polybar/README.org
+    -e "s/^alert.*/alert      = \${$choice.color1}/g" "$HOME"/.config/polybar/README.org || echo "Cannot find polybar README.org"
 
     sed -i -e "s/^background .*background/background = \${$choice.background/g" \
     -e "s/^foreground .*foreground/foreground = \${$choice.foreground/g" \
@@ -90,7 +91,7 @@ if [ "$choice" ]; then
     -e "s/color13.*color13/color13    = \${$choice.color13/g" \
     -e "s/color14.*color14/color14    = \${$choice.color14/g" \
     -e "s/color15.*color15/color15    = \${$choice.color15/g" \
-    -e "s/^alert.*/alert      = \${$choice.color1}/g" "$HOME"/.config/polybar/config.ini
+    -e "s/^alert.*/alert      = \${$choice.color1}/g" "$HOME"/.config/polybar/config.ini || echo cannot find polybar config.ini
 
 # What to do if we just escape without choosing anything.
 else

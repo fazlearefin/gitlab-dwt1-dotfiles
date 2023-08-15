@@ -2,7 +2,7 @@
 # Then, you can use RGBA color codes to add transparency to the colors below.
 # For ex: colors = [["#282c34ee", "#282c34dd"], ...
 
-doom_one = [
+DoomOne = [
     ["#282c34", "#282c34"], # bg
     ["#bbc2cf", "#bbc2cf"], # fg
     ["#1c1f24", "#1c1f24"], # color01
@@ -14,7 +14,7 @@ doom_one = [
     ["#46d9ff", "#46d9ff"]  # color15
     ]
 
-dracula  = [
+Dracula  = [
     ["#282a36", "#282a36"], # bg
     ["#f8f8f2", "#f8f8f2"], # fg
     ["#000000", "#000000"], # color01
@@ -26,7 +26,7 @@ dracula  = [
     ["#9aedfe", "#9aedfe"]  # color15
     ]
 
-gruvbox_dark  = [
+GruvboxDark  = [
     ["#282828", "#282828"], # bg
     ["#ebdbb2", "#ebdbb2"], # fg
     ["#000000", "#000000"], # color01
@@ -37,7 +37,7 @@ gruvbox_dark  = [
     ["#d3869b", "#d3869b"], # color06
     ["#b8bb26", "#b8bb26"], # color11
     ]
-monokai_pro = [
+MonokaiPro = [
     ["#2D2A2E", "#2D2A2E"], # bg
     ["#FCFCFA", "#FCFCFA"], # fg
     ["#403E41", "#403E41"], # color01
@@ -49,7 +49,7 @@ monokai_pro = [
     ["#78DCE8", "#78DCE8"]  # color07
     ]
 
-nord = [
+Nord = [
     ["#2E3440", "#2E3440"], # bg
     ["#D8DEE9", "#D8DEE9"], # fg
     ["#3B4252", "#3B4252"], # color01
@@ -61,7 +61,7 @@ nord = [
     ["#88C0D0", "#88C0D0"]  # color07
     ]
 
-oceanic_next = [
+OceanicNext = [
     ["#1b2b34", "#1b2b34"], # bg
     ["#d8dee9", "#d8dee9"], # fg
     ["#29414f", "#29414f"], # color01
@@ -73,7 +73,7 @@ oceanic_next = [
     ["#5fb3b3", "#5fb3b3"]  # color07
     ]
 
-palenight = [
+Palenight = [
     ["#292d3e", "#292d3e"], # bg
     ["#d0d0d0", "#d0d0d0"], # fg
     ["#434758", "#434758"], # color01
@@ -85,7 +85,7 @@ palenight = [
     ["#89ddff", "#89ddff"]  # color15
     ]
 
-solarized_dark = [
+SolarizedDark = [
     ["#002b36", "#002b36"], # bg
     ["#839496", "#839496"], # fg
     ["#073642", "#073642"], # color01
@@ -97,7 +97,7 @@ solarized_dark = [
     ["#2aa198", "#2aa198"]  # color15
     ]
 
-solarized_light = [
+SolarizedLight = [
     ["#fdf6e3", "#fdf6e3"], # bg
     ["#657b83", "#657b83"], # fg
     ["#ece5ac", "#ece5ac"], # color01
@@ -109,7 +109,7 @@ solarized_light = [
     ["#2aa198", "#2aa198"]  # color15
     ]
 
-tomorrow_night = [
+TomorrowNight = [
     ["#1d1f21", "#1d1f21"], # bg
     ["#c5c8c6", "#c5c8c6"], # fg
     ["#373b41", "#373b41"], # color01
