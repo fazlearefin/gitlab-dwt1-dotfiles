@@ -1,11 +1,12 @@
 #!/usr/bin/env bash 
 
-COLORSCHEME="doom-one"
+CONKYSTYLE="01"
+COLORSCHEME=$(grep "^colors = colors.*" "$HOME"/.config/qtile/config.py | cut -d '.' -f2)
 
 lxsession &
 picom &
 /usr/bin/emacs --daemon &
-sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$COLORSCHEME"-01.conkyrc &
+sleep 3 && conky -c "$HOME"/.config/conky/qtile/"$CONKYSTYLE"/"$COLORSCHEME".conkyrc &
 copyq &
 nm-applet &
 pamac-tray-icon-plasma &

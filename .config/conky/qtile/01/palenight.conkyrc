@@ -1,7 +1,7 @@
 --[[
-##########################################
-##  solarized-light-01.conkyrc (Qtile)  ##
-##########################################
+#########################################
+##  tomorrow-night-01.conkyrc (Qtile)  ##
+#########################################
 ]]
 
 conky.config = {
@@ -74,17 +74,17 @@ conky.config = {
 	own_window_argb_value = 255,			    -- real transparency - composite manager required 0-255
 	own_window_argb_visual = true,				-- use ARGB - composite manager required
 	own_window_class = 'Conky',					-- manually set the WM_CLASS name for use with xprop
-	own_window_colour = '#fdf6e3',				-- set colour if own_window_transparent no
+	own_window_colour = '#292d3e',				-- set colour if own_window_transparent no
 	own_window_transparent = false,				-- if own_window_argb_visual is true sets background opacity 0%
 	own_window_title = 'xmonad_conky',			-- set the name manually
 	own_window_type = 'override',				-- if own_window true options are: normal/override/dock/desktop/panel
 	own_window_hints = 'undecorated,below,above,sticky,skip_taskbar,skip_pager',  -- if own_window true - just hints - own_window_type sets it
 
-	--Colors (Solarized Light)
-	color0 = '#2aa198',
-	color1 = '#657b83',
-	color2 = '#268bd2',
-	color3 = '#d33682',
+	--Colors (Palenight)
+	color0 = '#c792ea',
+	color1 = '#d0d0d0',
+	color2 = '#82aaff',
+	color3 = '#ffcb6b',
 };
 
 conky.text = [[
@@ -110,18 +110,16 @@ ${color1}[S]+j/k${alignr}${color2}move win focus${color}
 ${color1}[S]+[SHIFT]+hjkl${alignr}${color2}move window${color}
 ${color1}[S]+[1-9]${alignr}${color2}switch workspace${color}
 ${color1}[S]+[SHIFT]+[1-9]${alignr}${color2}send window${color}
-${color1}[S]+h/l${alignr}${color2}shrink/expand${color}
+${color1}[S]+[=]/[-]${alignr}${color2}shrink/expand${color}
 ${color1}${hr}${color}
 ${color1}[S]+e, e${alignr}${color2}launch emacs${color}
 ${color1}[S]+e, b${alignr}${color2}ibuffer${color}
 ${color1}[S]+e, d${alignr}${color2}dired${color}
-${color1}[S]+e, n${alignr}${color2}elfeed${color}
 ${color1}[S]+e, s${alignr}${color2}eshell${color}
 ${color1}[S]+e, v${alignr}${color2}vterm${color}
 ${color1}${hr}${color}
 ${color1}[S]+p, h${alignr}${color2}dm-hub${color}
 ${color1}[S]+p, b${alignr}${color2}dm-setbg${color}
-${color1}[S]+p, e${alignr}${color2}dm-confedit${color}
 ${color1}[S]+p, m${alignr}${color2}dm-man${color}
 ${color1}[S]+p, o${alignr}${color2}dm-bookman${color}
 ${color1}[S]+p, s${alignr}${color2}dm-websearch${color}
