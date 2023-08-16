@@ -447,19 +447,18 @@ def init_widgets_list():
         ]
     return widgets_list
 
-# I use 3 monitors which means that I need 3 bars, but some widgets (such as the systray)
-# can only have one instance, otherwise it will crash.  So I define the follow two lists.
-# The first one creates a bar with every widget EXCEPT index 15 and 16 (systray and spacer).
-# The second one creates a bar with all widgets.
- 
+# Monitor 1 will display ALL widgets in widgets_list. It is important that this
+# is the only monitor that displays all widgets because the systray widget will
+# crash if you try to run multiple instances of it.
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    del widgets_screen1[22:23]   # Removes widgets 15 and 16 for bars on Monitors 1 + 3
-    return widgets_screen1
+    return widgets_screen1 
 
+# All other monitors' bars will display everything but widgets 22 (systray) and 23 (spacer).
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    return widgets_screen2       # Monitor 2 will display ALL widgets in widgets_list
+    del widgets_screen2[22:23]
+    return widgets_screen2
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
 # For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
@@ -467,7 +466,7 @@ def init_widgets_screen2():
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26)),
             Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26))]
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26))]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
