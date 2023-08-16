@@ -77,7 +77,7 @@
           evil-want-keybinding nil
           evil-vsplit-window-right t
           evil-split-window-below t
-          evil-undo-system 'undo-redo)
+          evil-undo-system 'undo-redo)  ;; Adds vim-like C-r redo functionality
     (evil-mode))
   (use-package evil-collection
     :after evil
@@ -144,13 +144,24 @@
     "TAB TAB" '(comment-line :wk "Comment lines"))
 
   (dt/leader-keys
-    "b" '(:ignore t :wk "Buffer")
-    "b b" '(switch-to-buffer :wk "Switch buffer")
+    "b" '(:ignore t :wk "Bookmarks/Buffers")
+    "b b" '(counsel-switch-buffer :wk "Switch buffer")
+    "b c" '(clone-indirect-buffer :wk "Create indirect buffer copy in a split")
+    "b C" '(clone-indirect-buffer-other-window :wk "Clone indirect buffer in new window")
+    "b d" '(bookmark-delete :wk "Delete bookmark")
     "b i" '(ibuffer :wk "Ibuffer")
     "b k" '(kill-this-buffer :wk "Kill this buffer")
+    "b K" '(kill-some-buffers :wk "Kill multiple buffers")
+    "b l" '(list-bookmarks :wk "List bookmarks")
+    "b m" '(bookmark-set :wk "Set bookmark")
     "b n" '(next-buffer :wk "Next buffer")
     "b p" '(previous-buffer :wk "Previous buffer")
-    "b r" '(revert-buffer :wk "Reload buffer"))
+    "b r" '(revert-buffer :wk "Reload buffer")
+    "b R" '(rename-buffer :wk "Rename buffer")
+    "b s" '(basic-save-buffer :wk "Save buffer")
+    "b S" '(save-some-buffers :wk "Save multiple buffers")
+    "b w" '(bookmark-save :wk "Save current bookmarks to bookmark file")
+    "b y" '(yank-buffer :wk "Yank buffer"))
 
   (dt/leader-keys
     "d" '(:ignore t :wk "Dired")
@@ -171,14 +182,38 @@
 
  (dt/leader-keys
     "h" '(:ignore t :wk "Help")
+    "h a" '(counsel-apropos :wk "Apropos")
     "h b" '(describe-bindings :wk "Describe bindings")
+    "h c" '(describe-char :wk "Describe character under cursor")
+    "h d" '(:ignore t :wk "Emacs documentation")
+    "h d a" '(about-emacs :wk "About Emacs")
+    "h d d" '(view-emacs-debugging :wk "View Emacs debugging")
+    "h d f" '(view-emacs-FAQ :wk "View Emacs FAQ")
+    "h d m" '(info-emacs-manual :wk "The Emacs manual")
+    "h d n" '(view-emacs-news :wk "View Emacs news")
+    "h d o" '(describe-distribution :wk "How to obtain Emacs")
+    "h d p" '(view-emacs-problems :wk "View Emacs problems")
+    "h d t" '(view-emacs-todo :wk "View Emacs todo")
+    "h d w" '(describe-no-warranty :wk "Describe no warranty")
+    "h e" '(view-echo-area-messages :wk "View echo area messages")
     "h f" '(describe-function :wk "Describe function")
-    "h t" '(load-theme :wk "Load theme")
-    "h v" '(describe-variable :wk "Describe variable")
+    "h F" '(describe-face :wk "Describe face")
+    "h g" '(describe-gnu-project :wk "Describe GNU Project")
+    "h i" '(info :wk "Info")
+    "h I" '(describe-input-method :wk "Describe input method")
+    "h k" '(describe-key :wk "Describe key")
+    "h l" '(view-lossage :wk "Display recent keystrokes and the commands run")
+    "h L" '(describe-language-environment :wk "Describe language environment")
+    "h m" '(describe-mode :wk "Describe mode")
+    "h r" '(:ignore t :wk "Reload")
     "h r r" '((lambda () (interactive)
                 (load-file "~/.config/emacs/init.el")
                 (ignore (elpaca-process-queues)))
-              :wk "Reload emacs config"))
+              :wk "Reload emacs config")
+    "h t" '(load-theme :wk "Load theme")
+    "h v" '(describe-variable :wk "Describe variable")
+    "h w" '(where-is :wk "Prints keybinding for command if set")
+    "h x" '(describe-command :wk "Display full documentation for command"))
 
   (dt/leader-keys
     "m" '(:ignore t :wk "Org")
@@ -203,8 +238,10 @@
   (dt/leader-keys
     "t" '(:ignore t :wk "Toggle")
     "t e" '(eshell-toggle :wk "Toggle eshell")
+    "t f" '(flycheck-mode :wk "Toggle flycheck")
     "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
     "t n" '(neotree-toggle :wk "Toggle neotree file viewer")
+    "t r" '(rainbow-mode :wk "Toggle rainbow mode")
     "t t" '(visual-line-mode :wk "Toggle truncated lines")
     "t v" '(vterm-toggle :wk "Toggle vterm"))
 
@@ -276,7 +313,7 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :config
-  (setq doom-modeline-height 30      ;; sets modeline height
+  (setq doom-modeline-height 35      ;; sets modeline height
         doom-modeline-bar-width 5    ;; sets right bar width
         doom-modeline-persp-name t   ;; adds perspective name to modeline
         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
@@ -406,7 +443,7 @@
   :diminish
   :config
   (setq which-key-side-window-location 'bottom
-	  which-key-sort-order #'which-key-key-order
+	  which-key-sort-order #'which-key-key-order-alpha
 	  which-key-allow-imprecise-window-fit nil
 	  which-key-sort-uppercase-first nil
 	  which-key-add-column-padding 1
