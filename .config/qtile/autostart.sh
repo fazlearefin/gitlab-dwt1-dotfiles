@@ -1,13 +1,18 @@
 #!/usr/bin/env bash 
 
-CONKYSTYLE="01"
-COLORSCHEME=$(grep "^colors = colors.*" "$HOME"/.config/qtile/config.py | cut -d '.' -f2)
+COLORSCHEME="DoomOne"
+
+if [[ $(systemd-detect-virt) = "none" ]]; then
+    echo "Not running in a Virtual Machine";
+else
+    xrandr -s 1920x1080 || echo "Cannot set 1920x1080 resolution.";
+fi
+
 
 lxsession &
 picom &
 /usr/bin/emacs --daemon &
-killall conky
-sleep 2 && conky -c "$HOME"/.config/conky/qtile/"$CONKYSTYLE"/"$COLORSCHEME".conkyrc &
+sleep 2 && conky -c "$HOME"/.config/conky/qtile/01/"$COLORSCHEME".conkyrc &
 copyq &
 nm-applet &
 pamac-tray-icon-plasma &
