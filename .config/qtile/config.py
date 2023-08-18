@@ -300,7 +300,7 @@ extension_defaults = widget_defaults.copy()
 def init_widgets_list():
     widgets_list = [
         widget.Image(
-                 filename = "~/.config/qtile/icons/python-white.png",
+                 filename = "~/.config/qtile/icons/logo.png",
                  scale = "False",
                  mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
                  ),
