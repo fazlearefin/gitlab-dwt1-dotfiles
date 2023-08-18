@@ -28,7 +28,7 @@
 				 "--eval" "(byte-recompile-directory \".\" 0 'force)")))
 	   ((require 'elpaca))
 	   ((elpaca-generate-autoloads "elpaca" repo)))
-      (kill-buffer buffer)
+      (progn (message "%s" (buffer-string)) (kill-buffer buffer))
     (error "%s" (with-current-buffer buffer (buffer-string))))
 ((error) (warn "%s" err) (delete-directory repo 'recursive))))
   (unless (require 'elpaca-autoloads nil t)
