@@ -368,7 +368,7 @@ def init_widgets_list():
                  ),
         widget.Spacer(length = 8),
         widget.CPU(
-                 format = '🏼  Cpu: {load_percent}%',
+                 format = '▓  Cpu: {load_percent}%',
                  foreground = colors[4],
                  decorations=[
                      BorderDecoration(
@@ -398,7 +398,7 @@ def init_widgets_list():
                  partition = '/',
                  #format = '[{p}] {uf}{m} ({r:.0f}%)',
                  format = '{uf}{m} free',
-                 fmt = '✇  Disk: {}',
+                 fmt = '🖴  Disk: {}',
                  visible_on_warn = False,
                  decorations=[
                      BorderDecoration(
