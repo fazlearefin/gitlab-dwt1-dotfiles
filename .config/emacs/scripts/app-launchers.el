@@ -5,7 +5,7 @@
 ;; Counsel-Linux-App
 ;; Since we have counsel installed, we can use 'counsel-linux-app' to launch our Linux apps.  It list the apps by their executable command, so it's kind of tricky to use.
 
-(defun emacs-counsel-launcher ()
+(defun dt/emacs-counsel-launcher ()
   "Create and select a frame called emacs-counsel-launcher which consists only of a minibuffer and has specific dimensions. Runs counsel-linux-app on that frame, which is an emacs command that prompts you to select an app and open it in a dmenu like behaviour. Delete the frame after that command has exited"
   (interactive)
   (with-selected-frame 
@@ -32,7 +32,7 @@
 ;; create a global keyboard shortcut with the following code
 ;; emacsclient -cF "((visibility . nil))" -e "(emacs-run-launcher)"
 
-(defun emacs-run-launcher ()
+(defun dt/emacs-run-launcher ()
   "Create and select a frame called emacs-run-launcher which consists only of a minibuffer and has specific dimensions. Runs app-launcher-run-app on that frame, which is an emacs command that prompts you to select an app and open it in a dmenu like behaviour. Delete the frame after that command has exited"
   (interactive)
   (with-selected-frame 

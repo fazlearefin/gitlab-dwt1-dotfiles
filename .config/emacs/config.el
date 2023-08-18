@@ -141,7 +141,9 @@
   (dt/leader-keys
     "SPC" '(counsel-M-x :wk "Counsel M-x")
     "." '(find-file :wk "Find file")
-    "TAB TAB" '(comment-line :wk "Comment lines"))
+    "=" '(perspective-map :wk "Perspective") ;; Lists all the perspective keybindings
+    "TAB TAB" '(comment-line :wk "Comment lines")
+    "u" '(universal-argument :wk "Universal argument"))
 
   (dt/leader-keys
     "b" '(:ignore t :wk "Bookmarks/Buffers")
@@ -183,8 +185,17 @@
 
   (dt/leader-keys
     "f" '(:ignore t :wk "Files")    
-    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Open emacs config")
-    "f e" '((lambda () (interactive) (dired "~/.config/emacs/")) :wk "Open file in user-emacs-directory")
+    "f c" '((lambda () (interactive)
+              (find-file "~/.config/emacs/config.org")) 
+            :wk "Open emacs config.org")
+    "f e" '((lambda () (interactive)
+              (dired "~/.config/emacs/")) 
+            :wk "Open user-emacs-directory in dired")
+    "f d" '(find-grep-dired :wk "Search for string in files in DIR")
+    "f g" '(counsel-grep-or-swiper :wk "Search for string current file")
+    "f i" '((lambda () (interactive)
+              (find-file "~/.config/emacs/init.el")) 
+            :wk "Open emacs init.el")
     "f j" '(counsel-file-jump :wk "Jump to a file below current directory")
     "f l" '(counsel-locate :wk "Locate a file")
     "f r" '(counsel-recentf :wk "Find recent files")
@@ -276,6 +287,13 @@
   ;; set for us, so no need to specify each individually.
   (dt/leader-keys
     "p" '(projectile-command-map :wk "Projectile"))
+
+  (dt/leader-keys
+    "s" '(:ignore t :wk "Search")
+    "s d" '(dictionary-search :wk "Search dictionary")
+    "s m" '(man :wk "Man pages")
+    "s t" '(tldr :wk "Lookup TLDR docs for a command")
+    "s w" '(woman :wk "Similar to man but doesn't require man"))
 
   (dt/leader-keys
     "t" '(:ignore t :wk "Toggle")
@@ -416,6 +434,23 @@
 
 (require 'org-tempo)
 
+(use-package perspective
+  :init 
+  (persp-mode)
+  :config
+  ;; Sets a file to write to when we save states
+  (setq persp-state-default-file "~/.config/emacs/sessions"))
+
+;; This will group buffers by persp-name in ibuffer.
+(add-hook 'ibuffer-hook
+          (lambda ()
+            (persp-ibuffer-set-filter-groups)
+            (unless (eq ibuffer-sorting-mode 'alphabetic)
+              (ibuffer-do-sort-by-alphabetic))))
+
+;; Automatically save perspective states to file when Emacs exits.
+(add-hook 'kill-emacs-hook #'persp-state-save)
+
 (use-package projectile
   :config
   (projectile-mode 1))
@@ -493,6 +528,8 @@
   (doom-themes-neotree-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+
+(use-package tldr)
 
 (add-to-list 'default-frame-alist '(alpha-background . 100)) ; For all new frames henceforth
 
