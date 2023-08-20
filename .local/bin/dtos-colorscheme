@@ -46,6 +46,7 @@ if [ "$choice" ]; then
     ## QTILE ##
     sed -i "s/^colors = colors.*/colors = colors.$choice/g" "$HOME"/.config/qtile/config.py || echo "Cannot find colors = colors."
     sed -i "s/^colors=colors.*/colors = colors.$choice/g" "$HOME"/.config/qtile/config.py  || echo "Cannot find colors=colors."
+    sed -i "s/^COLORSCHEME=.*/COLORSCHEME=$choice/g" "$HOME"/.config/qtile/autostart.sh || echo "Cannot find COLORSCHEME."
     qtile cmd-obj -o cmd -f restart && $HOME/.config/qtile/autostart.sh || echo "Qtile not running"
 
     ## ALACRITTY ##

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 
-COLORSCHEME="DoomOne"
+COLORSCHEME=DoomOne
 
 if [[ $(systemd-detect-virt) = "none" ]]; then
     echo "Not running in a Virtual Machine";
@@ -12,6 +12,7 @@ fi
 lxsession &
 picom &
 /usr/bin/emacs --daemon &
+killall conky
 sleep 2 && conky -c "$HOME"/.config/conky/qtile/01/"$COLORSCHEME".conkyrc &
 copyq &
 nm-applet &
