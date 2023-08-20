@@ -11,6 +11,8 @@
 (use-package all-the-icons-dired
   :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
 
+(global-auto-revert-mode t)
+
 (setq backup-directory-alist '((".*" . "~/.Trash")))
 
 (use-package company

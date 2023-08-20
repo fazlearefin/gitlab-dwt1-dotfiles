@@ -9,6 +9,7 @@
   - [[#adding-the-scripts-directory-to-path][Adding the scripts directory to path]]
   - [[#sourcing-the-scripts][Sourcing the scripts]]
 - [[#all-the-icons][ALL THE ICONS]]
+- [[#auto-revert-mode][AUTO REVERT MODE]]
 - [[#backup][BACKUP]]
 - [[#company][COMPANY]]
 - [[#dashboard][DASHBOARD]]
@@ -77,6 +78,14 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
 
 (use-package all-the-icons-dired
   :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
+#+end_src
+
+* AUTO REVERT MODE
+By default, Emacs does not automatically show the changes in a file that has been edited in a different program.  So if you have =file1= open in Emacs, and then also edit =file1= via the command line or another text editor, the Emacs buffer does not reflect those changes.  The following line corrects this problem.  
+
+#+begin_src emacs-lisp
+(global-auto-revert-mode t)
+
 #+end_src
 
 * BACKUP 
