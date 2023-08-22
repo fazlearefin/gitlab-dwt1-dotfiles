@@ -24,12 +24,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import colors
 import os
 import subprocess
 from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
+import colors
 
 # Make sure 'qtile-extras' is installed or this config will not work.
 from qtile_extras import widget
