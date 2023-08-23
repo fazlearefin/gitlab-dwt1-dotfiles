@@ -165,7 +165,7 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 #+end_src
 
 * ELFEED
-An RSS newsfeed reader for Emacs.
+An RSS newsfeed reader for Emacs.  Move through the articles with 'j/k'.  Move through the stories with 'CTRL j/k' when in other frame.
 
 #+begin_src emacs-lisp
 (use-package elfeed
@@ -199,6 +199,8 @@ An RSS newsfeed reader for Emacs.
   (setq elfeed-goodies/entry-pane-size 0.5))
 
 #+end_src
+
+#+RESULTS:
 
 * EVIL
 [[https://github.com/emacs-evil/evil][Evil]] is an extensible vi/vim layer for Emacs.  Because...let's face it.  The Vim keybindings are just plain better.
