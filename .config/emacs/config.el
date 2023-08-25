@@ -184,7 +184,7 @@
     "b C" '(clone-indirect-buffer-other-window :wk "Clone indirect buffer in new window")
     "b d" '(bookmark-delete :wk "Delete bookmark")
     "b i" '(ibuffer :wk "Ibuffer")
-    "b k" '(kill-this-buffer :wk "Kill this buffer")
+    "b k" '(kill-current-buffer :wk "Kill current buffer")
     "b K" '(kill-some-buffers :wk "Kill multiple buffers")
     "b l" '(list-bookmarks :wk "List bookmarks")
     "b m" '(bookmark-set :wk "Set bookmark")
