@@ -473,6 +473,7 @@
   :init 
   (persp-mode)
   :config
+  (setq persp-suppress-no-prefix-key-warning t)
   ;; Sets a file to write to when we save states
   (setq persp-state-default-file "~/.config/emacs/sessions"))
 
