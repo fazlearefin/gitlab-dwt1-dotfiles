@@ -2,6 +2,9 @@
 
 COLORSCHEME=DoomOne
 
+### CHECKS IF VIRTUAL MACHINE ###
+# If so, this sets an appropriate screen resolution.
+# This is needed as part of DTOS.
 if [[ $(systemd-detect-virt) = "none" ]]; then
     echo "Not running in a Virtual Machine";
 elif xrandr | grep "1366x768"; then
@@ -11,7 +14,19 @@ elif xrandr | grep "1920x1080"; then
 else echo "Could not set a resolution."
 fi
 
+### Fix Emacs elpaca symlinks ###
+# This runs the fix-elpaca-symlinks scripts which 
+# fixes all of the symlinks in .config/emacs/elpaca/build.
+# This is needed as part of DTOS.
+if [[ -f "$HOME/.config/fix-elpaca-symlinks/log" ]]; then
+    echo "fix-eplaca-symlinks has been run previously."
+else
+    /usr/local/bin/fix-elpaca-symlinks
+    touch "$HOME/.config/fix-elpaca-symlinks/log" 
+    echo "has-been-run: TRUE" > "$HOME/.config/fix-elpaca-symlinks/log" 
+fi
 
+### AUTOSTART PROGRAMS ###
 lxsession &
 picom &
 /usr/bin/emacs --daemon &
