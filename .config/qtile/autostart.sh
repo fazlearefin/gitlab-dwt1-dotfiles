@@ -1,7 +1,6 @@
 #!/usr/bin/env bash 
 
 COLORSCHEME=DoomOne
-CONKYSTYLE=01
 
 ### CHECKS IF VIRTUAL MACHINE ###
 # If so, this sets an appropriate screen resolution.
@@ -10,16 +9,28 @@ if [[ $(systemd-detect-virt) = "none" ]]; then
     echo "Not running in a Virtual Machine";
 elif xrandr | grep "1366x768"; then
     xrandr -s 1366x768 || echo "Cannot set 1366x768 resolution.";
-    CONKYSTYLE=02
 elif xrandr | grep "1920x1080"; then
     xrandr -s 1920x1080 || echo "Cannot set 1920x1080 resolution.";
 else echo "Could not set a resolution."
 fi
 
-### Fix Emacs elpaca symlinks ###
+### SETS CONKY STYLE BASED ON SCREEN RESOLUTION
+# Checks screen resolution.  If 1080p or higher, then we use '01' conky.
+# If less than 1080p (laptops?), then we use the smaller '02' conky.
+resolutionHeight=$(xrandr | grep "primary" | awk '{print $4}' | awk -F "+" '{print $1}' | awk -F 'x' '{print $2}')
+
+if [[ $resolutionHeight -ge 1080 ]]; then
+    sleep 2 && conky -c "$HOME"/.config/conky/qtile/01/"$COLORSCHEME".conkyrc &
+elif [[ $resolutionHeight -lt 1080 ]]; then
+    sleep 2 && conky -c "$HOME"/.config/conky/qtile/02/"$COLORSCHEME".conkyrc &
+else
+    sleep 2 && conky -c "$HOME"/.config/conky/qtile/02/"$COLORSCHEME".conkyrc &
+fi
+
+### FIX EMACS ELPACA SYMLINKS ###
 # This runs the fix-elpaca-symlinks scripts which 
 # fixes all of the symlinks in .config/emacs/elpaca/build.
-# This is needed as part of DTOS.
+# This is needed as part of DTOS and is only run ONCE!
 if [[ -f "$HOME/.config/fix-elpaca-symlinks/log" ]]; then
     echo "fix-eplaca-symlinks has been run previously."
 else
@@ -33,7 +44,6 @@ lxsession &
 picom &
 /usr/bin/emacs --daemon &
 killall conky
-sleep 2 && conky -c "$HOME"/.config/conky/qtile/"$CONKYSTYLE"/"$COLORSCHEME".conkyrc &
 copyq &
 nm-applet &
 pamac-tray-icon-plasma &
