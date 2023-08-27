@@ -130,21 +130,6 @@ keys = [
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
     
-    # An example of using the extension 'CommandSet' to give 
-    # a list of commands that can be executed in dmenu style.
-    Key([mod], 'z', lazy.run_extension(extension.CommandSet(
-        commands={
-            'play/pause': '[ $(mocp -i | wc -l) -lt 2 ] && mocp -p || mocp -G',
-            'next': 'mocp -f',
-            'previous': 'mocp -r',
-            'quit': 'mocp -x',
-            'open': 'alacritty -e htop',
-            'shuffle': 'mocp -t shuffle',
-            'repeat': 'mocp -t repeat',
-            },
-        pre_commands=['[ $(mocp -i | wc -l) -lt 1 ] && mocp -S'],
-        ))),
-    
     # Emacs programs launched using the key chord CTRL+e followed by 'key'
     KeyChord([mod],"e", [
         Key([], "e", lazy.spawn(myEmacs), desc='Emacs Dashboard'),
@@ -152,10 +137,12 @@ keys = [
         Key([], "b", lazy.spawn(myEmacs + "--eval '(ibuffer)'"), desc='Emacs Ibuffer'),
         Key([], "d", lazy.spawn(myEmacs + "--eval '(dired nil)'"), desc='Emacs Dired'),
         Key([], "i", lazy.spawn(myEmacs + "--eval '(erc)'"), desc='Emacs ERC'),
-        Key([], "n", lazy.spawn(myEmacs + "--eval '(elfeed)'"), desc='Emacs Elfeed'),
         Key([], "s", lazy.spawn(myEmacs + "--eval '(eshell)'"), desc='Emacs Eshell'),
         Key([], "v", lazy.spawn(myEmacs + "--eval '(vterm)'"), desc='Emacs Vterm'),
-        Key([], "w", lazy.spawn(myEmacs + "--eval '(eww \"distro.tube\")'"), desc='Emacs EWW')
+        Key([], "w", lazy.spawn(myEmacs + "--eval '(eww \"distro.tube\")'"), desc='Emacs EWW'),
+        Key([], "F4", lazy.spawn("killall emacs"),
+                      lazy.spawn("/usr/bin/emacs --daemon"),
+                      desc='Kill/restart the Emacs daemon')
     ]),
     # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
     KeyChord([mod], "p", [
