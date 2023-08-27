@@ -11,7 +11,7 @@
 (use-package all-the-icons-dired
   :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
 
-(setq backup-directory-alist '((".*" . "~/.Trash")))
+(setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
 
 (use-package company
   :defer 2
