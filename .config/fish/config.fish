@@ -151,6 +151,7 @@ alias .5='cd ../../../../..'
 alias vim='nvim'
 alias em='/usr/bin/emacs -nw'
 alias emacs="emacsclient -c -a 'emacs'"
+alias rem="killall emacs || echo 'Emacs server not running'; /usr/bin/emacs --daemon"
 
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first' # my preferred listing
