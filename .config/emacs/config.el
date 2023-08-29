@@ -419,6 +419,7 @@
 
 (use-package haskell-mode)
 (use-package lua-mode)
+(use-package php-mode)
 
 (global-set-key [escape] 'keyboard-escape-quit)
 
