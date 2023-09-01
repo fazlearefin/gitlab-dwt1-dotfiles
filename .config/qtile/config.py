@@ -406,22 +406,22 @@ def init_widgets_list():
                  ),
         widget.Spacer(length = 8),
         widget.KeyboardLayout(
-                 foreground = colors[8],
+                 foreground = colors[4],
                  fmt = '⌨  Kbd: {}',
                  decorations=[
                      BorderDecoration(
-                         colour = colors[8],
+                         colour = colors[4],
                          border_width = [0, 0, 2, 0],
                      )
                  ],
                  ),
         widget.Spacer(length = 8),
         widget.Clock(
-                 foreground = colors[6],
+                 foreground = colors[8],
                  format = "⏱  %a, %b %d - %H:%M",
                  decorations=[
                      BorderDecoration(
-                         colour = colors[6],
+                         colour = colors[8],
                          border_width = [0, 0, 2, 0],
                      )
                  ],
