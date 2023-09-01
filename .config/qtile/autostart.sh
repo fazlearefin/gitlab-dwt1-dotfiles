@@ -51,13 +51,13 @@ resolutionHeight=$(xrandr | grep "primary" | awk '{print $4}' | awk -F "+" '{pri
 if [[ $resolutionHeight -ge 1080 ]]; then
     killall conky || echo "Conky not running."
     sleep 2
-    conky -c "$HOME"/.config/conky/qtile/01/"$COLORSCHEME".conkyrc || echo "Couldn't start conky."
+    conky -c "$HOME"/.config/conky/qtile/01/"$COLORSCHEME".conf || echo "Couldn't start conky."
 elif [[ $resolutionHeight -lt 1080 ]]; then
     killall conky || echo "Conky not running."
     sleep 2
-    conky -c "$HOME"/.config/conky/qtile/02/"$COLORSCHEME".conkyrc || echo "Couldn't start conky."
+    conky -c "$HOME"/.config/conky/qtile/02/"$COLORSCHEME".conf || echo "Couldn't start conky."
 else
     killall conky || echo "Conky not running."
     sleep 2
-    conky -c "$HOME"/.config/conky/qtile/02/"$COLORSCHEME".conkyrc || echo "Couldn't start conky."
+    conky -c "$HOME"/.config/conky/qtile/02/"$COLORSCHEME".conf || echo "Couldn't start conky."
 fi
