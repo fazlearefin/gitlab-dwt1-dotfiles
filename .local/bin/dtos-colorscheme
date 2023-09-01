@@ -28,48 +28,74 @@ options=("DoomOne"
 
 choice=$(printf '%s\n' "${options[@]}" | ${DMENU} 'Choose color scheme:' "${@}")
 
+if [[ $choice = "DoomOne" ]]; then
+    ## EMACS ##
+    sed -i "s/load-theme '.*/load-theme 'doom-one t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+    emacsclient -e "(load-theme 'doom-one t)" || echo "Emacsclient not running."
+    ## ALACRITTY ##
+    sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "Dracula" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-dracula t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-dracula t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "GruvboxDark" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-gruvbox t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-gruvbox t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "MonokaiPro" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-monokai-pro t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-monokai-pro t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "Nord" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-nord t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-nord t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "OceanicNext" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-oceanic-next t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-oceanic-next t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "Palenight" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-palenight t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-palenight t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "SolarizedDark" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-solarized-dark t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-solarized-dark t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "SolarizedLight" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-solarized-light t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-solarized-light t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+elif [[ $choice = "TomorrowNight" ]]; then
+      ## EMACS ##
+      sed -i "s/load-theme '.*/load-theme 'doom-tomorrow-night t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+      emacsclient -e "(load-theme 'doom-tomorrow-night t)" || echo "Emacsclient not running."
+      ## ALACRITTY ##
+      sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
+fi
+
 if [ "$choice" ]; then
     ## QTILE ##
     sed -i "s/^colors = colors.*/colors = colors.$choice/g" "$HOME"/.config/qtile/config.py || echo "Cannot find colors = colors."
     sed -i "s/^colors=colors.*/colors = colors.$choice/g" "$HOME"/.config/qtile/config.py  || echo "Cannot find colors=colors."
     sed -i "s/^COLORSCHEME=.*/COLORSCHEME=$choice/g" "$HOME"/.config/qtile/autostart.sh || echo "Cannot find COLORSCHEME."
     qtile cmd-obj -o cmd -f restart && $HOME/.config/qtile/autostart.sh || echo "Qtile not running"
-
-    ## ALACRITTY ##
-    sed -i "s/^colors: .*/colors: \*$choice/g" "$HOME"/.config/alacritty/alacritty.yml || echo "Error setting Alacritty colors"
-
-    ## EMACS ##
-    if [[ $choice = "DoomOne" ]]; then
-        sed -i "s/load-theme '.*/load-theme 'doom-one t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-        emacsclient -e "(load-theme 'doom-one t)" || echo "Emacsclient not running."
-    elif [[ $choice = "Dracula" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-dracula t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-dracula t)" || echo "Emacsclient not running."
-    elif [[ $choice = "GruvboxDark" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-gruvbox t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-gruvbox t)" || echo "Emacsclient not running."
-    elif [[ $choice = "MonokaiPro" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-monokai-pro t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-monokai-pro t)" || echo "Emacsclient not running."
-    elif [[ $choice = "Nord" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-nord t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-nord t)" || echo "Emacsclient not running."
-    elif [[ $choice = "OceanicNext" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-oceanic-next t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-oceanic-next t)" || echo "Emacsclient not running."
-    elif [[ $choice = "Palenight" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-palenight t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-palenight t)" || echo "Emacsclient not running."
-    elif [[ $choice = "SolarizedDark" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-solarized-dark t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-solarized-dark t)" || echo "Emacsclient not running."
-    elif [[ $choice = "SolarizedLight" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-solarized-light t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-solarized-light t)" || echo "Emacsclient not running."
-    elif [[ $choice = "TomorrowNight" ]]; then
-          sed -i "s/load-theme '.*/load-theme 'doom-tomorrow-night t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
-          emacsclient -e "(load-theme 'doom-tomorrow-night t)" || echo "Emacsclient not running."
-    fi
 
     ## XMONAD ##
     sed  -i "s/import Colors.*/import Colors.$choice/g" "$HOME"/.config/xmonad/README.org || echo "Cannot modify README.org"
@@ -99,7 +125,7 @@ if [ "$choice" ]; then
     -e "s/color8 .*color8/color8     = \${$choice.color8/g"  \
     -e "s/color9 .*color9/color9     = \${$choice.color9/g"  \
     -e "s/color10.*color10/color10    = \${$choice.color10/g" \
-    sed -i "s/load-theme \'.*/load-theme \'$choice t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org."
+    sed -i "s/load-theme \'.*/load-theme \'$choice t)/g" "$HOME"/.config/emacs/config.org || echo "Cannot find config.org." \
     -e "s/color11.*color11/color11    = \${$choice.color11/g" \
     -e "s/color12.*color12/color12    = \${$choice.color12/g" \
     -e "s/color13.*color13/color13    = \${$choice.color13/g" \
