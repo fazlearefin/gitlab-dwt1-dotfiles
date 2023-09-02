@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Main
-cpuTemp=$(sensors | grep Tctl | awk -F '+' '{print $2}')
+cpuTemp=$(sensors | grep Tctl | head -1 | awk -F '+' '{print $2}')
 
 if [[ -n $cpuTemp ]]; then 
     echo "$cpuTemp"; 
