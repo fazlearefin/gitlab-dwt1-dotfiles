@@ -35,16 +35,23 @@ from qtile_extras.widget.decorations import BorderDecoration
 #from qtile_extras.widget import StatusNotifier
 import colors
 
+mod = "mod4"              # Sets mod key to SUPER/WINDOWS
+myTerm = "alacritty"      # My terminal of choice
+myBrowser = "brave" # My browser of choice
+myEmacs = "emacsclient -c -a 'emacs' " # The space at the end is IMPORTANT!
+
 # Allows you to input a name when adding treetab section.
 @lazy.layout.function
 def add_treetab_section(layout):
     prompt = qtile.widgets_map["prompt"]
     prompt.start_input("Section name: ", layout.cmd_add_section)
 
-mod = "mod4"              # Sets mod key to SUPER/WINDOWS
-myTerm = "alacritty"      # My terminal of choice
-myBrowser = "brave" # My browser of choice
-myEmacs = "emacsclient -c -a 'emacs' " # The space at the end is IMPORTANT!
+# A function for hide/show all the windows in a group
+@lazy.function
+def minimize_all(qtile):
+    for win in qtile.current_group.windows:
+        if hasattr(win, "toggle_minimize"):
+            win.toggle_minimize()
 
 # A list of available commands that can be bound to keys can be found
 # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -125,6 +132,7 @@ keys = [
     Key([mod], "m", lazy.layout.maximize(), desc='Toggle between min and max sizes'),
     Key([mod], "t", lazy.window.toggle_floating(), desc='toggle floating'),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+    Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
 
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
