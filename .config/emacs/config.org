@@ -38,7 +38,7 @@
   - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
 - [[#perspective][PERSPECTIVE]]
 - [[#projectile][PROJECTILE]]
-- [[#rainbow-delimters][RAINBOW DELIMTERS]]
+- [[#rainbow-delimiters][RAINBOW DELIMITERS]]
 - [[#rainbow-mode][RAINBOW MODE]]
 - [[#sane-defaults][SANE DEFAULTS]]
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
@@ -740,7 +740,7 @@ Org-tempo is not a separate package but a module within org that can be enabled.
   (projectile-mode 1))
 #+end_src
 
-* RAINBOW DELIMTERS
+* RAINBOW DELIMITERS
 Adding rainbow coloring to parentheses.
 
 #+begin_src emacs-lisp
