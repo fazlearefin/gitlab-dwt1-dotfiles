@@ -10,7 +10,7 @@
 # https://github.com/baskerville/bspwm
 
 #### VARIABLES ####
-COLORSCHEME="MonokaiPro"
+COLORSCHEME="DoomOne"
 
 #### AUTOSTART ####
 sxhkd &
