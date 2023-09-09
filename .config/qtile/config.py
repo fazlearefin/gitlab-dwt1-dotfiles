@@ -506,9 +506,7 @@ floating_layout = layout.Floating(
         Match(title="tastycharts"),       # tastytrade pop-out charts
         Match(title="tastytrade"),        # tastytrade pop-out side gutter
         Match(title="tastytrade - Portfolio Report"), # tastytrade pop-out allocation
-        Match(wm_class="tasty.javafx.launcher.LauncherFxApp",
-              title=None
-        ), # tastytrade settings
+        Match(wm_class="tasty.javafx.launcher.LauncherFxApp"), # tastytrade settings
     ]
 )
 auto_fullscreen = True
