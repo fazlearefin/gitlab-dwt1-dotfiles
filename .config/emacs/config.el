@@ -210,9 +210,11 @@
   (dt/leader-keys
     "d" '(:ignore t :wk "Dired")
     "d d" '(dired :wk "Open dired")
+    "d f" '(wdired-finish-edit :wk "Writable dired finish edit")
     "d j" '(dired-jump :wk "Dired jump to current")
     "d n" '(neotree-dir :wk "Open directory in neotree")
-    "d p" '(peep-dired :wk "Peep-dired"))
+    "d p" '(peep-dired :wk "Peep-dired")
+    "d w" '(wdired-change-to-wdired-mode :wk "Writable dired"))
 
   (dt/leader-keys
     "e" '(:ignore t :wk "Eshell/Evaluate")    
