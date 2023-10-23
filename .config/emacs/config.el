@@ -241,7 +241,7 @@
     "d w" '(wdired-change-to-wdired-mode :wk "Writable dired"))
 
   (dt/leader-keys
-    "e" '(:ignore t :wk "Eshell/Evaluate")    
+    "e" '(:ignore t :wk "Eshell/Eval/EWW")    
     "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
     "e d" '(eval-defun :wk "Evaluate defun containing or after point")
     "e e" '(eval-expression :wk "Evaluate and elisp expression")
