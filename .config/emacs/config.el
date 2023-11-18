@@ -402,7 +402,7 @@
     "t v" '(vterm-toggle :wk "Toggle vterm"))
 
   (dt/leader-keys
-    "w" '(:ignore t :wk "Windows")
+    "w" '(:ignore t :wk "Windows/Words")
     ;; Window splits
     "w c" '(evil-window-delete :wk "Close window")
     "w n" '(evil-window-new :wk "New window")
@@ -418,7 +418,11 @@
     "w H" '(buf-move-left :wk "Buffer move left")
     "w J" '(buf-move-down :wk "Buffer move down")
     "w K" '(buf-move-up :wk "Buffer move up")
-    "w L" '(buf-move-right :wk "Buffer move right"))
+    "w L" '(buf-move-right :wk "Buffer move right")
+    ;; Words
+    "w d" '(downcase-word :wk "Downcase word")
+    "w u" '(upcase-word :wk "Upcase word")
+    "w =" '(count-words :wk "Count words/lines for buffer"))
 )
 
 (use-package git-timemachine
