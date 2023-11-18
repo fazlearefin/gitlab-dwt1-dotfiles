@@ -14,6 +14,7 @@
 - [[#dashboard][DASHBOARD]]
 - [[#diminish][DIMINISH]]
 - [[#dired][DIRED]]
+- [[#drag-stuff][DRAG-STUFF]]
 - [[#elfeed][ELFEED]]
 - [[#eradio][ERADIO]]
 - [[#evil][EVIL]]
@@ -165,6 +166,16 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 
 #+end_src
 
+* DRAG-STUFF
+[[https://github.com/rejeep/drag-stuff.el][Drag Stuff]] is a minor mode for Emacs that makes it possible to drag stuff (words, region, lines) around in Emacs.  When 'drag-stuff-define-keys' is enabled, then the following keybindings are set: M-up, M-down, M-left, and M-right.
+
+#+begin_src emacs-lisp
+(use-package drag-stuff
+  :init
+  (drag-stuff-global-mode 1)
+  (drag-stuff-define-keys))
+
+#+end_src
 * ELFEED
 An RSS newsfeed reader for Emacs.  Move through the articles with 'j/k'.  Move through the stories with 'CTRL j/k' when in other frame.
 

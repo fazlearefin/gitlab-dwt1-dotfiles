@@ -70,6 +70,11 @@
     (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
 )
 
+(use-package drag-stuff
+  :init
+  (drag-stuff-global-mode 1)
+  (drag-stuff-define-keys))
+
 (use-package elfeed
   :config
   (setq elfeed-search-feed-face ":foreground #ffffff :weight bold"
