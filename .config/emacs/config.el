@@ -70,12 +70,11 @@
     (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
 )
 
-<<<<<<< HEAD
 (use-package drag-stuff
   :init
   (drag-stuff-global-mode 1)
   (drag-stuff-define-keys))
-=======
+
 (setq ediff-split-window-function 'split-window-horizontally
       ediff-window-setup-function 'ediff-setup-windows-plain)
 
@@ -85,7 +84,6 @@
   (define-key ediff-mode-map "k" 'ediff-previous-difference))
 
 (add-hook 'ediff-mode-hook 'dt-ediff-hook)
->>>>>>> ada9eb05c6d0f92d0c6f610f2c1db552fe05340e
 
 (use-package elfeed
   :config
@@ -535,7 +533,6 @@
 (require 'org-tempo)
 
 (use-package pdf-tools
-  :ensure t
   :defer t
   :commands (pdf-loader-install)
   :mode "\\.pdf\\'"
@@ -544,6 +541,9 @@
               ("k" . pdf-view-previous-line-or-previous-page))
   :init (pdf-loader-install)
   :config (add-to-list 'revert-without-query ".pdf"))
+
+;;(add-hook 'pdf-view-mode-hook #'dt/turn-off-line-numbers)
+(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
 
 (use-package perspective
   :custom

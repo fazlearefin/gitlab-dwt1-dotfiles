@@ -772,7 +772,7 @@ Org-tempo is not a separate package but a module within org that can be enabled.
 #+end_src
 
 * PDFs
-Handle viewing and annotating pdf's.
+[[https://github.com/vedang/pdf-tools][pdf-tools]] is a replacement of DocView for viewing PDF files inside Emacs.  It uses the =poppler= library, which also means that 'pdf-tools' can by used to modify PDFs.  I use to disable 'display-line-numbers-mode' in 'pdf-view-mode' because line numbers crash it.
 
 #+begin_src emacs-lisp
 (use-package pdf-tools
@@ -785,6 +785,8 @@ Handle viewing and annotating pdf's.
   :init (pdf-loader-install)
   :config (add-to-list 'revert-without-query ".pdf"))
 
+;;(add-hook 'pdf-view-mode-hook #'dt/turn-off-line-numbers)
+(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
 #+end_src
 
 * PERSPECTIVE
