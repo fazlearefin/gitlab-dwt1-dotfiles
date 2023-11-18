@@ -70,10 +70,22 @@
     (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
 )
 
+<<<<<<< HEAD
 (use-package drag-stuff
   :init
   (drag-stuff-global-mode 1)
   (drag-stuff-define-keys))
+=======
+(setq ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(defun dt-ediff-hook ()
+  (ediff-setup-keymap)
+  (define-key ediff-mode-map "j" 'ediff-next-difference)
+  (define-key ediff-mode-map "k" 'ediff-previous-difference))
+
+(add-hook 'ediff-mode-hook 'dt-ediff-hook)
+>>>>>>> ada9eb05c6d0f92d0c6f610f2c1db552fe05340e
 
 (use-package elfeed
   :config
@@ -246,10 +258,12 @@
     "d w" '(wdired-change-to-wdired-mode :wk "Writable dired"))
 
   (dt/leader-keys
-    "e" '(:ignore t :wk "Eshell/Eval/EWW")    
+    "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")    
     "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
     "e d" '(eval-defun :wk "Evaluate defun containing or after point")
     "e e" '(eval-expression :wk "Evaluate and elisp expression")
+    "e f" '(ediff-files :wk "Run ediff on a pair of files")
+    "e F" '(ediff-files3 :wk "Run ediff on three files")
     "e h" '(counsel-esh-history :which-key "Eshell history")
     "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
     "e r" '(eval-region :wk "Evaluate elisp in region")
@@ -520,6 +534,17 @@
 
 (require 'org-tempo)
 
+(use-package pdf-tools
+  :ensure t
+  :defer t
+  :commands (pdf-loader-install)
+  :mode "\\.pdf\\'"
+  :bind (:map pdf-view-mode-map
+              ("j" . pdf-view-next-line-or-next-page)
+              ("k" . pdf-view-previous-line-or-previous-page))
+  :init (pdf-loader-install)
+  :config (add-to-list 'revert-without-query ".pdf"))
+
 (use-package perspective
   :custom
   ;; NOTE! I have also set 'SCP =' to open the perspective menu.
@@ -570,6 +595,9 @@
 (scroll-bar-mode -1)         ;; Disable the scroll bar
 (tool-bar-mode -1)           ;; Disable the tool bar
 (setq org-edit-src-content-indentation 0) ;; Set src block automatic indent to 0 instead of 2.
+(setq use-file-dialog nil)   ;; No file dialog
+(setq use-dialog-box nil)    ;; No dialog box
+(setq pop-up-windows nil)    ;; No popup windows
 
 (use-package eshell-toggle
   :custom

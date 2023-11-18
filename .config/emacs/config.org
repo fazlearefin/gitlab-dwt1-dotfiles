@@ -14,7 +14,11 @@
 - [[#dashboard][DASHBOARD]]
 - [[#diminish][DIMINISH]]
 - [[#dired][DIRED]]
+<<<<<<< HEAD
 - [[#drag-stuff][DRAG-STUFF]]
+=======
+- [[#ediff][EDIFF]]
+>>>>>>> ada9eb05c6d0f92d0c6f610f2c1db552fe05340e
 - [[#elfeed][ELFEED]]
 - [[#eradio][ERADIO]]
 - [[#evil][EVIL]]
@@ -38,6 +42,7 @@
   - [[#diminish-org-indent-mode][Diminish Org Indent Mode]]
   - [[#org-level-headers][Org Level Headers]]
   - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
+- [[#pdfs][PDFs]]
 - [[#perspective][PERSPECTIVE]]
 - [[#projectile][PROJECTILE]]
 - [[#rainbow-delimiters][RAINBOW DELIMITERS]]
@@ -166,6 +171,7 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 
 #+end_src
 
+<<<<<<< HEAD
 * DRAG-STUFF
 [[https://github.com/rejeep/drag-stuff.el][Drag Stuff]] is a minor mode for Emacs that makes it possible to drag stuff (words, region, lines) around in Emacs.  When 'drag-stuff-define-keys' is enabled, then the following keybindings are set: M-up, M-down, M-left, and M-right.
 
@@ -176,6 +182,23 @@ This package implements hiding or abbreviation of the modeline displays (lighter
   (drag-stuff-define-keys))
 
 #+end_src
+=======
+* EDIFF
+'ediff' is a diff program that is built into Emacs.  By default, 'ediff' splits files vertically and places the 'help' frame in its own window.  I have changed this so the two files are split horizontally and the 'help' frame appears as a lower split within the existing window.  Also, I create my own 'dt-ediff-hook' where I add 'j/k' for moving to next/prev diffs.  By default, this is set to 'n/p'.
+
+#+begin_src emacs-lisp
+(setq ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(defun dt-ediff-hook ()
+  (ediff-setup-keymap)
+  (define-key ediff-mode-map "j" 'ediff-next-difference)
+  (define-key ediff-mode-map "k" 'ediff-previous-difference))
+
+(add-hook 'ediff-mode-hook 'dt-ediff-hook)
+#+end_src 
+
+>>>>>>> ada9eb05c6d0f92d0c6f610f2c1db552fe05340e
 * ELFEED
 An RSS newsfeed reader for Emacs.  Move through the articles with 'j/k'.  Move through the stories with 'CTRL j/k' when in other frame.
 
@@ -384,10 +407,12 @@ You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTR
     "d w" '(wdired-change-to-wdired-mode :wk "Writable dired"))
 
   (dt/leader-keys
-    "e" '(:ignore t :wk "Eshell/Eval/EWW")    
+    "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")    
     "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
     "e d" '(eval-defun :wk "Evaluate defun containing or after point")
     "e e" '(eval-expression :wk "Evaluate and elisp expression")
+    "e f" '(ediff-files :wk "Run ediff on a pair of files")
+    "e F" '(ediff-files3 :wk "Run ediff on three files")
     "e h" '(counsel-esh-history :which-key "Eshell history")
     "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
     "e r" '(eval-region :wk "Evaluate elisp in region")
@@ -751,6 +776,22 @@ Org-tempo is not a separate package but a module within org that can be enabled.
 (require 'org-tempo)
 #+end_src
 
+* PDFs
+Handle viewing and annotating pdf's.
+
+#+begin_src emacs-lisp
+(use-package pdf-tools
+  :defer t
+  :commands (pdf-loader-install)
+  :mode "\\.pdf\\'"
+  :bind (:map pdf-view-mode-map
+              ("j" . pdf-view-next-line-or-next-page)
+              ("k" . pdf-view-previous-line-or-previous-page))
+  :init (pdf-loader-install)
+  :config (add-to-list 'revert-without-query ".pdf"))
+
+#+end_src
+
 * PERSPECTIVE
 [[https://github.com/nex3/perspective-el][Perspective]] provides multiple named workspaces (or "perspectives") in Emacs, similar to multiple desktops in window managers.  Each perspective has its own buffer list and its own window layout, along with some other isolated niceties, like the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][xref]] ring.
 
@@ -827,7 +868,9 @@ The following settings are simple modes that are enabled (or disabled) so that E
 (scroll-bar-mode -1)         ;; Disable the scroll bar
 (tool-bar-mode -1)           ;; Disable the tool bar
 (setq org-edit-src-content-indentation 0) ;; Set src block automatic indent to 0 instead of 2.
-
+(setq use-file-dialog nil)   ;; No file dialog
+(setq use-dialog-box nil)    ;; No dialog box
+(setq pop-up-windows nil)    ;; No popup windows
 #+end_src
 
 * SHELLS AND TERMINALS
