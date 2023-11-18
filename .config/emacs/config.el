@@ -386,6 +386,7 @@
     "s" '(:ignore t :wk "Search")
     "s d" '(dictionary-search :wk "Search dictionary")
     "s m" '(man :wk "Man pages")
+    "s o" '(pdf-occur :wk "Pdf search lines matching STRING")
     "s t" '(tldr :wk "Lookup TLDR docs for a command")
     "s w" '(woman :wk "Similar to man but doesn't require man"))
 
@@ -538,7 +539,9 @@
   :mode "\\.pdf\\'"
   :bind (:map pdf-view-mode-map
               ("j" . pdf-view-next-line-or-next-page)
-              ("k" . pdf-view-previous-line-or-previous-page))
+              ("k" . pdf-view-previous-line-or-previous-page)
+              ("C-=" . pdf-view-enlarge)
+              ("C--" . pdf-view-shrink))
   :init (pdf-loader-install)
   :config (add-to-list 'revert-without-query ".pdf"))
 
