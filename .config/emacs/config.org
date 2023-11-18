@@ -14,11 +14,8 @@
 - [[#dashboard][DASHBOARD]]
 - [[#diminish][DIMINISH]]
 - [[#dired][DIRED]]
-<<<<<<< HEAD
 - [[#drag-stuff][DRAG-STUFF]]
-=======
 - [[#ediff][EDIFF]]
->>>>>>> ada9eb05c6d0f92d0c6f610f2c1db552fe05340e
 - [[#elfeed][ELFEED]]
 - [[#eradio][ERADIO]]
 - [[#evil][EVIL]]
@@ -171,7 +168,6 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 
 #+end_src
 
-<<<<<<< HEAD
 * DRAG-STUFF
 [[https://github.com/rejeep/drag-stuff.el][Drag Stuff]] is a minor mode for Emacs that makes it possible to drag stuff (words, region, lines) around in Emacs.  When 'drag-stuff-define-keys' is enabled, then the following keybindings are set: M-up, M-down, M-left, and M-right.
 
@@ -182,7 +178,7 @@ This package implements hiding or abbreviation of the modeline displays (lighter
   (drag-stuff-define-keys))
 
 #+end_src
-=======
+
 * EDIFF
 'ediff' is a diff program that is built into Emacs.  By default, 'ediff' splits files vertically and places the 'help' frame in its own window.  I have changed this so the two files are split horizontally and the 'help' frame appears as a lower split within the existing window.  Also, I create my own 'dt-ediff-hook' where I add 'j/k' for moving to next/prev diffs.  By default, this is set to 'n/p'.
 
@@ -198,7 +194,6 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 (add-hook 'ediff-mode-hook 'dt-ediff-hook)
 #+end_src 
 
->>>>>>> ada9eb05c6d0f92d0c6f610f2c1db552fe05340e
 * ELFEED
 An RSS newsfeed reader for Emacs.  Move through the articles with 'j/k'.  Move through the stories with 'CTRL j/k' when in other frame.
 
