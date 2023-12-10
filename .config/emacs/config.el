@@ -75,8 +75,8 @@
   (drag-stuff-global-mode 1)
   (drag-stuff-define-keys))
 
-(setq ediff-split-window-function 'split-window-horizontally
-      ediff-window-setup-function 'ediff-setup-windows-plain)
+;;(setq ediff-split-window-function 'split-window-horizontally
+;;      ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (defun dt-ediff-hook ()
   (ediff-setup-keymap)
@@ -516,15 +516,11 @@
                  (make-local-variable 'auto-hscroll-mode)
                  (setq auto-hscroll-mode nil)))))
 
-(use-package toc-org
-    :commands toc-org-enable
-    :init (add-hook 'org-mode-hook 'toc-org-enable))
+(eval-after-load 'org-indent '(diminish 'org-indent-mode))
 
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-(eval-after-load 'org-indent '(diminish 'org-indent-mode))
 
 (custom-set-faces
  '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
@@ -536,6 +532,10 @@
  '(org-level-7 ((t (:inherit outline-5 :height 1.1)))))
 
 (require 'org-tempo)
+
+(use-package toc-org
+    :commands toc-org-enable
+    :init (add-hook 'org-mode-hook 'toc-org-enable))
 
 (use-package pdf-tools
   :defer t
