@@ -75,8 +75,8 @@
   (drag-stuff-global-mode 1)
   (drag-stuff-define-keys))
 
-;;(setq ediff-split-window-function 'split-window-horizontally
-;;      ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally
+       ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (defun dt-ediff-hook ()
   (ediff-setup-keymap)

@@ -183,8 +183,8 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 'ediff' is a diff program that is built into Emacs.  By default, 'ediff' splits files vertically and places the 'help' frame in its own window.  I have changed this so the two files are split horizontally and the 'help' frame appears as a lower split within the existing window.  Also, I create my own 'dt-ediff-hook' where I add 'j/k' for moving to next/prev diffs.  By default, this is set to 'n/p'.
 
 #+begin_src emacs-lisp
-;;(setq ediff-split-window-function 'split-window-horizontally
-;;      ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally
+       ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (defun dt-ediff-hook ()
   (ediff-setup-keymap)
