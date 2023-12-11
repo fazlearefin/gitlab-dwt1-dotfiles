@@ -52,7 +52,14 @@ def minimize_all(qtile):
     for win in qtile.current_group.windows:
         if hasattr(win, "toggle_minimize"):
             win.toggle_minimize()
-
+            
+@lazy.function
+def maximize_by_switching_layout(qtile):
+    current_layout_name = qtile.current_group.layout.name
+    if current_layout_name == 'monadtall':
+        qtile.current_group.layout = 'max'
+    elif current_layout_name == 'max':
+        qtile.current_group.layout = 'monadtall'
 # A list of available commands that can be bound to keys can be found
 # at https://docs.qtile.org/en/latest/manual/config/lazy.html
 keys = [
@@ -131,7 +138,7 @@ keys = [
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "m", lazy.layout.maximize(), desc='Toggle between min and max sizes'),
     Key([mod], "t", lazy.window.toggle_floating(), desc='toggle floating'),
-    Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+    Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
     Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
 
     # Switch focus of monitors
