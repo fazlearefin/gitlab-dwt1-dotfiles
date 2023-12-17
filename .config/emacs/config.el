@@ -76,7 +76,7 @@
   (drag-stuff-define-keys))
 
 (setq ediff-split-window-function 'split-window-horizontally
-       ediff-window-setup-function 'ediff-setup-windows-plain)
+      ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (defun dt-ediff-hook ()
   (ediff-setup-keymap)
@@ -549,7 +549,6 @@
   :init (pdf-loader-install)
   :config (add-to-list 'revert-without-query ".pdf"))
 
-;;(add-hook 'pdf-view-mode-hook #'dt/turn-off-line-numbers)
 (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
 
 (use-package perspective

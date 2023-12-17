@@ -28,7 +28,7 @@ fi
 
 ### AUTOSTART PROGRAMS ###
 lxsession &
-picom &
+picom --daemon &
 /usr/bin/emacs --daemon &
 copyq &
 nm-applet &

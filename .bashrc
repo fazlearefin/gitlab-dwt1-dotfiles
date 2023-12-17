@@ -253,3 +253,4 @@ colorscript random
 
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init bash)"
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
