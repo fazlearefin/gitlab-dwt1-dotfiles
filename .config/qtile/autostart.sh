@@ -30,9 +30,7 @@ fi
 lxsession &
 picom --daemon &
 /usr/bin/emacs --daemon &
-copyq &
 nm-applet &
-pamac-tray-icon-plasma &
 "$HOME"/.screenlayout/layout.sh &
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
