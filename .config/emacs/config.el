@@ -549,7 +549,9 @@
   :init (pdf-loader-install)
   :config (add-to-list 'revert-without-query ".pdf"))
 
-(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
+(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)
+                                                         (blink-cursor-mode -1)
+                                                         (doom-modeline-mode -1)))
 
 (use-package perspective
   :custom
