@@ -7,10 +7,10 @@
 
 * {
     background-color:            #282c34;
-    border-color:                #282c34;
+    border-color:                #51afef;
     text-color:                  #bbc2cf;
-    font:                        "SauceCodePro Nerd Font Mono 9";
-    prompt-font:                 "Ubuntu Bold 9";
+    font:                        "Ubuntu Mono 11";
+    prompt-font:                 "Ubuntu Bold 10";
     prompt-background:           #51afef;
     prompt-foreground:           #282c34;
     prompt-padding:              4px;
@@ -34,7 +34,8 @@
 }
 #listview {
     fixed-height: 0;
-    border:       2px dash 0px 0px ;
+    border:       2px solid 0px 0px ;
+    border-color: #1c1f24;
     spacing:      2px ;
     scrollbar:    true;
     padding:      2px 0px 0px ;
