@@ -52,7 +52,8 @@ def minimize_all(qtile):
     for win in qtile.current_group.windows:
         if hasattr(win, "toggle_minimize"):
             win.toggle_minimize()
-            
+           
+# A function for toggling between MAX and MONADTALL layouts
 @lazy.function
 def maximize_by_switching_layout(qtile):
     current_layout_name = qtile.current_group.layout.name
@@ -60,8 +61,7 @@ def maximize_by_switching_layout(qtile):
         qtile.current_group.layout = 'max'
     elif current_layout_name == 'max':
         qtile.current_group.layout = 'monadtall'
-# A list of available commands that can be bound to keys can be found
-# at https://docs.qtile.org/en/latest/manual/config/lazy.html
+
 keys = [
     # The essentials
     Key([mod], "Return", lazy.spawn(myTerm), desc="Terminal"),
@@ -177,17 +177,16 @@ keys = [
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
         Key([], "t", lazy.spawn("dm-translate"), desc='Translate text')
     ])
-
 ]
+
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 
-#group_labels = ["DEV", "WWW", "SYS", "DOC", "VBOX", "CHAT", "MUS", "VID", "GFX",]
-group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
+group_labels = ["DEV", "WWW", "SYS", "DOC", "VBOX", "CHAT", "MUS", "VID", "GFX",]
+#group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 #group_labels = ["", "", "", "", "", "", "", "", "",]
 
-
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "monadtall", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -217,30 +216,8 @@ for i in groups:
         ]
     )
 
-
-### COLORSCHEME ###
-# Colors are defined in a separate 'colors.py' file.
-# There 10 colorschemes available to choose from:
-#
-# colors = colors.DoomOne
-# colors = colors.Dracula
-# colors = colors.GruvboxDark
-# colors = colors.MonokaiPro
-# colors = colors.Nord
-# colors = colors.OceanicNext
-# colors = colors.Palenight
-# colors = colors.SolarizedDark
-# colors = colors.SolarizedLight
-# colors = colors.TomorrowNight
-#
-# It is best not manually change the colorscheme; instead run 'dtos-colorscheme'
-# which is set to 'MOD + p c'
-
 colors = colors.DoomOne
 
-### LAYOUTS ###
-# Some settings that I use on almost every layout, which saves us
-# from having to type these out for each individual layout.
 layout_theme = {"border_width": 2,
                 "margin": 8,
                 "border_focus": colors[8],
@@ -291,8 +268,6 @@ layouts = [
     #layout.Zoomy(**layout_theme),
 ]
 
-# Some settings that I use on almost every widget, which saves us
-# from having to type these out for each individual widget.
 widget_defaults = dict(
     font="Ubuntu Bold",
     fontsize = 12,
@@ -301,7 +276,6 @@ widget_defaults = dict(
 )
 
 extension_defaults = widget_defaults.copy()
-
 
 def init_widgets_list():
     widgets_list = [
@@ -316,11 +290,11 @@ def init_widgets_list():
                  foreground = colors[1]
         ),
         widget.GroupBox(
-                 fontsize = 11,
-                 margin_y = 3,
-                 margin_x = 4,
-                 padding_y = 2,
-                 padding_x = 3,
+                 fontsize = 10,
+                 margin_y = 6,
+                 margin_x = 5,
+                 padding_y = 0,
+                 padding_x = 1,
                  borderwidth = 3,
                  active = colors[8],
                  inactive = colors[1],
@@ -342,8 +316,8 @@ def init_widgets_list():
         widget.CurrentLayoutIcon(
                  # custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
                  foreground = colors[1],
-                 padding = 0,
-                 scale = 0.7
+                 padding = 4,
+                 scale = 0.6
                  ),
         widget.CurrentLayout(
                  foreground = colors[1],
@@ -453,9 +427,6 @@ def init_widgets_list():
         ]
     return widgets_list
 
-# Monitor 1 will display ALL widgets in widgets_list. It is important that this
-# is the only monitor that displays all widgets because the systray widget will
-# crash if you try to run multiple instances of it.
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1 
@@ -480,7 +451,33 @@ if __name__ in ["config", "__main__"]:
     widgets_screen1 = init_widgets_screen1()
     widgets_screen2 = init_widgets_screen2()
 
-# Drag floating layouts.
+def window_to_prev_group(qtile):
+    if qtile.currentWindow is not None:
+        i = qtile.groups.index(qtile.currentGroup)
+        qtile.currentWindow.togroup(qtile.groups[i - 1].name)
+
+def window_to_next_group(qtile):
+    if qtile.currentWindow is not None:
+        i = qtile.groups.index(qtile.currentGroup)
+        qtile.currentWindow.togroup(qtile.groups[i + 1].name)
+
+def window_to_previous_screen(qtile):
+    i = qtile.screens.index(qtile.current_screen)
+    if i != 0:
+        group = qtile.screens[i - 1].group.name
+        qtile.current_window.togroup(group)
+
+def window_to_next_screen(qtile):
+    i = qtile.screens.index(qtile.current_screen)
+    if i + 1 != len(qtile.screens):
+        group = qtile.screens[i + 1].group.name
+        qtile.current_window.togroup(group)
+
+def switch_screens(qtile):
+    i = qtile.screens.index(qtile.current_screen)
+    group = qtile.screens[i - 1].group
+    qtile.current_screen.set_group(group)
+
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
