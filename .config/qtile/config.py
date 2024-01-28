@@ -236,7 +236,7 @@ layouts = [
          shift_windows=True,
          border_width = 0,
          margin = 0,
-         ratio = 0.34,
+         ratio = 0.335,
          ),
     layout.Max(
          border_width = 0,
