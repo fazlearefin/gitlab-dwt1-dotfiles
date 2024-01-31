@@ -132,11 +132,8 @@ A list of available commands that can be bound to keys can be found at: https://
 | MODKEY + k              | lazy layout up (switches focus between windows in the stack)   |
 | MODKEY + SHIFT + j      | lazy layout shuffle_down (rotates the windows in the stack)    |
 | MODKEY + SHIFT + k      | lazy layout shuffle_up (rotates the windows in the stack)      |
-| MODKEY + h              | shrink size of window (MondadTall layout)                      |
-| MODKEY + l              | expand size of window (MondadTall layout)                      |
-| MODKEY + w              | switch focus to monitor 1                                      |
-| MODKEY + e              | switch focus to monitor 2                                      |
-| MODKEY + r              | switch focus to monitor 3                                      |
+| MODKEY + equals         | expand size of window (MondadTall layout)                      |
+| MODKEY + minus          | shrink size of window (MondadTall layout)                      |
 | MODKEY + period         | switch focus to next monitor                                   |
 | MODKEY + comma          | switch focus to prev monitor                                   |
 
