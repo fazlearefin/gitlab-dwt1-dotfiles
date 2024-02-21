@@ -160,7 +160,7 @@ alias ll='eza -l --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 alias l.='eza -a | egrep "^\."'
 
-# pacman and yay
+# pacman and paru
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
 alias parsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
