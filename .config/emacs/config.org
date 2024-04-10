@@ -32,6 +32,7 @@
 - [[#language-support][LANGUAGE SUPPORT]]
 - [[#minibuffer-escape][MINIBUFFER ESCAPE]]
 - [[#modeline][MODELINE]]
+- [[#mu4e-email][MU4E EMAIL]]
 - [[#neotree][NEOTREE]]
 - [[#org-mode][ORG MODE]]
   - [[#diminish-org-indent-mode][Diminish Org Indent Mode]]
@@ -688,6 +689,21 @@ The modeline is the bottom status bar that appears in Emacs windows.  While you 
         doom-modeline-bar-width 5    ;; sets right bar width
         doom-modeline-persp-name t   ;; adds perspective name to modeline
         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
+
+#+end_src
+
+* MU4E EMAIL
+=mu4e= is the email client in Emacs.  It requires that 'mu' and 'isync' be installed on your Linux system.  Here is a great tutorial about setting up mu4e: https://f-santos.gitlab.io/2020-04-24-mu4e.html  
+
+NOTE For privacy reasons, I'm importing all of my mu4e settings from a separate file which is not public.
+
+#+begin_src emacs-lisp
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+(load-file "~/nc/emacs-stuff/email-mu4e.el")
+
+;; The command used to get your emails (adapt this line, see section 2.3):
+(setq mu4e-get-mail-command "mbsync --config ~/.config/emacs/.mbsyncrc distrotube")
 
 #+end_src
 

@@ -499,6 +499,13 @@
         doom-modeline-persp-name t   ;; adds perspective name to modeline
         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
 
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+(load-file "~/nc/emacs-stuff/email-mu4e.el")
+
+;; The command used to get your emails (adapt this line, see section 2.3):
+(setq mu4e-get-mail-command "mbsync --config ~/.config/emacs/.mbsyncrc distrotube")
+
 (use-package neotree
   :config
   (setq neo-smart-open t
