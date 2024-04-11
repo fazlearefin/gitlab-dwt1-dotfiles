@@ -702,9 +702,6 @@ NOTE For privacy reasons, I'm importing all of my mu4e settings from a separate 
 (require 'mu4e)
 (load-file "~/nc/emacs-stuff/email-mu4e.el")
 
-;; The command used to get your emails (adapt this line, see section 2.3):
-(setq mu4e-get-mail-command "mbsync --config ~/.config/emacs/.mbsyncrc distrotube")
-
 #+end_src
 
 * NEOTREE

@@ -28,7 +28,7 @@
 ;; The 'app-launcher' is a better run launcher since it reads the desktop applications on your system and you can search them by their names as defined in their desktop file.  This means that sometimes you have to search for a generic term rather than the actual binary command of the program.
 
 (use-package app-launcher
-  :elpaca '(app-launcher :host github :repo "SebastienWae/app-launcher"))
+  :ensure '(app-launcher :host github :repo "SebastienWae/app-launcher"))
 ;; create a global keyboard shortcut with the following code
 ;; emacsclient -cF "((visibility . nil))" -e "(emacs-run-launcher)"
 
