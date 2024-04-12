@@ -700,3 +700,12 @@
 	  which-key-max-description-length 25
 	  which-key-allow-imprecise-window-fit nil
 	  which-key-separator " → " ))
+
+(defun reader ()
+  (interactive)
+  (let ((choices '(("First"  . 'first-choice)
+                   ("Second" . 'second-choice)
+                   ("Third"  . 'third-choice))))
+    (alist-get
+     (completing-read "Choose: " choices)
+     choices nil nil 'equal)))
