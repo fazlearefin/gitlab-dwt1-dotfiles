@@ -503,9 +503,6 @@
 (require 'mu4e)
 (load-file "~/nc/emacs-stuff/email-mu4e.el")
 
-;; The command used to get your emails (adapt this line, see section 2.3):
-(setq mu4e-get-mail-command "mbsync --config ~/.config/emacs/.mbsyncrc distrotube")
-
 (use-package neotree
   :config
   (setq neo-smart-open t
@@ -703,3 +700,34 @@
 	  which-key-max-description-length 25
 	  which-key-allow-imprecise-window-fit nil
 	  which-key-separator " → " ))
+
+(defun reader ()
+  (interactive)
+  (let ((choices '(("First"  . "First")
+                   ("Second" . 'second-choice)
+                   ("Third"  . 'third-choice))))
+    (alist-get
+     (completing-read "Choose: " choices)
+     choices nil t 'equal)))
+
+(setq yy-keywords
+      '("touch"
+       "touch_start"
+       "touch_end"
+       "for"
+       "foreach"
+       "forall"
+       ))
+
+
+(defun github-code-search ()
+  "Search code on github for a given language."
+  (interactive)
+  (let ((language (completing-read
+                   "Language: "
+                   '("Emacs Lisp" "Python"  "Clojure" "R")))
+        (code (read-string "Code: ")))
+    (browse-url
+     (concat "https://github.com/search?l=" language
+             "&type=code&q=" code))))
+
