@@ -730,4 +730,7 @@
     (browse-url
      (concat "https://github.com/search?l=" language
              "&type=code&q=" code))))
+<<<<<<< HEAD
 
+=======
+>>>>>>> 987492dc041b7a12f6a57be035df64dd74fc6c09
