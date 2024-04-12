@@ -1032,10 +1032,32 @@ With Emacs version 29, true transparency has been added.  I have turned transpar
 #+begin_src emacs-lisp
 (defun reader ()
   (interactive)
-  (let ((choices '(("First"  . 'first-choice)
+  (let ((choices '(("First"  . "First")
                    ("Second" . 'second-choice)
                    ("Third"  . 'third-choice))))
     (alist-get
      (completing-read "Choose: " choices)
-     choices nil nil 'equal)))
+     choices nil t 'equal)))
+
+(setq yy-keywords
+      '("touch"
+       "touch_start"
+       "touch_end"
+       "for"
+       "foreach"
+       "forall"
+       ))
+
+
+(defun github-code-search ()
+  "Search code on github for a given language."
+  (interactive)
+  (let ((language (completing-read
+                   "Language: "
+                   '("Emacs Lisp" "Python"  "Clojure" "R")))
+        (code (read-string "Code: ")))
+    (browse-url
+     (concat "https://github.com/search?l=" language
+             "&type=code&q=" code))))
+  
 #+end_src
