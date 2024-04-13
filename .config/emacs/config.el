@@ -738,6 +738,8 @@
 (defun dt/key-value-completing (choice)                                     
   (interactive
    (list
-    (let ((completions '(("1" "One") ("2" "Two") ("3" "Three"))))              
+    (let ((completions '(("1" "One") 
+                         ("2" "Two")
+                         ("3" "Three"))))              
       (cadr (assoc (completing-read "Choose: " completions) completions)))))
   (message "You choose `%s'" choice))
