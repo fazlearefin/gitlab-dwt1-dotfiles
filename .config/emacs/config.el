@@ -703,22 +703,12 @@
 
 (defun reader ()
   (interactive)
-  (let ((choices '(("First"  . "First")
+  (let ((choices '(("First"  . "Hi!")
                    ("Second" . 'second-choice)
                    ("Third"  . 'third-choice))))
     (alist-get
      (completing-read "Choose: " choices)
-     choices nil t 'equal)))
-
-(setq yy-keywords
-      '("touch"
-       "touch_start"
-       "touch_end"
-       "for"
-       "foreach"
-       "forall"
-       ))
-
+     choices nil nil 'message)))
 
 (defun github-code-search ()
   "Search code on github for a given language."
@@ -730,3 +720,29 @@
     (browse-url
      (concat "https://github.com/search?l=" language
              "&type=code&q=" code))))
+<<<<<<< HEAD
+=======
+  
+(defun dm-search ()
+  "Search various search engines."
+  (interactive)
+  (let ((engine (completing-read
+                 "Search Engine: "
+                 '("Arch Wiki" 
+                   "Bing"
+                   "Google"
+                   "Wikipedia")))
+        (query (read-string "Query: ")))
+    (if (equal engine "Google")
+      (browse-url
+       (concat "https://www.google.com/search?q=" query)))))
+
+(defun dt/key-value-completing (choice)                                     
+  (interactive
+   (list
+    (let ((completions '(("1" "One") 
+                         ("2" "Two")
+                         ("3" "Three"))))              
+      (cadr (assoc (completing-read "Choose: " completions) completions)))))
+  (message "You choose `%s'" choice))
+>>>>>>> 67ddcb090fdcd5be954bb3af13ae6dbc236d988f
