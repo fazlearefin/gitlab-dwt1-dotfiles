@@ -2,7 +2,6 @@
 
 COLORSCHEME=DoomOne
 
-
 ### AUTOSTART PROGRAMS ###
 lxsession &
 picom --daemon &
