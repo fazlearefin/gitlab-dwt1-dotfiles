@@ -149,13 +149,6 @@ fi
 
 IFS=$SAVEIFS
 
-# Function for using Emacs as our manpage reader.
-# Use :q to quit out of Emacs and return to the shell.
-macsman() {
-    # emacsclient -nw -e "(man \"$1\")"
-    emacsclient -nw -e "(let ((Man-notify-method 'bully)) (man \"$1\"))"
-}
-
 # navigation
 up () {
   local d=""
@@ -189,7 +182,6 @@ alias vim="nvim"
 alias emacs="emacsclient -c -a 'emacs'" # GUI versions of Emacs
 alias em="/usr/bin/emacs -nw" # Terminal version of Emacs
 alias rem="killall emacs || echo 'Emacs server not running'; /usr/bin/emacs --daemon" # Kill Emacs and restart daemon..
-alias man="macsman" # Use emacs as your manpage reader.
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing

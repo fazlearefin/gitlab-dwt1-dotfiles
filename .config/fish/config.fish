@@ -136,13 +136,6 @@ function org-search -d "send a search string to org-mode"
     printf $output
 end
 
-# Function for using Emacs as our manpage reader.
-# Use :q to quit out of Emacs and return to the shell.
-function macsman
-    # emacsclient -nw -e "(man \"$argv\")"
-    emacsclient -nw -e "(let ((Man-notify-method 'bully)) (man \"$argv\"))"
-end
-
 ### END OF FUNCTIONS ###
 
 
@@ -159,7 +152,6 @@ alias vim='nvim'
 alias emacs="emacsclient -c -a 'emacs'"
 alias em='/usr/bin/emacs -nw'
 alias rem="killall emacs || echo 'Emacs server not running'; /usr/bin/emacs --daemon" # Kill Emacs and restart daemon..
-alias man="macsman" # Use emacs as your manpage reader.
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing

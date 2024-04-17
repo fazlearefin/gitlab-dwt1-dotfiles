@@ -720,12 +720,7 @@
     (browse-url
      (concat "https://github.com/search?l=" language
              "&type=code&q=" code))))
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 67ddcb090fdcd5be954bb3af13ae6dbc236d988f
-  
+
 (defun dm-search ()
   "Search various search engines."
   (interactive)
@@ -748,7 +743,3 @@
                          ("3" "Three"))))              
       (cadr (assoc (completing-read "Choose: " completions) completions)))))
   (message "You choose `%s'" choice))
-<<<<<<< HEAD
->>>>>>> 67ddcb090fdcd5be954bb3af13ae6dbc236d988f
-=======
->>>>>>> 67ddcb090fdcd5be954bb3af13ae6dbc236d988f
