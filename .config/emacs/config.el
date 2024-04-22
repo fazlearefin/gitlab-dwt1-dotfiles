@@ -537,6 +537,8 @@
 
 (require 'org-tempo)
 
+(setq org-src-preserve-indentation t)
+
 (use-package toc-org
     :commands toc-org-enable
     :init (add-hook 'org-mode-hook 'toc-org-enable))
@@ -720,7 +722,7 @@
     (browse-url
      (concat "https://github.com/search?l=" language
              "&type=code&q=" code))))
-
+  
 (defun dm-search ()
   "Search various search engines."
   (interactive)

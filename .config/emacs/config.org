@@ -39,6 +39,7 @@
   - [[#org-bullets][Org-Bullets]]
   - [[#org-level-headers][Org Level Headers]]
   - [[#org-tempo][Org-Tempo]]
+  - [[#preserve-indentation-on-org-babel-tangle][Preserve Indentation On Org-Babel-Tangle]]
   - [[#toc-org][Toc-Org]]
 - [[#pdfs][PDFs]]
 - [[#perspective][PERSPECTIVE]]
@@ -781,6 +782,12 @@ Org-tempo is not a separate package but a module within org that can be enabled.
 
 #+begin_src emacs-lisp 
 (require 'org-tempo)
+#+end_src
+
+** Preserve Indentation On Org-Babel-Tangle
+#+begin_src emacs-lisp
+(setq org-src-preserve-indentation t)
+
 #+end_src
 
 ** Toc-Org
