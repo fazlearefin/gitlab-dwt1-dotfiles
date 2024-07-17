@@ -32,7 +32,6 @@
 - [[#language-support][LANGUAGE SUPPORT]]
 - [[#minibuffer-escape][MINIBUFFER ESCAPE]]
 - [[#modeline][MODELINE]]
-- [[#mu4e-email][MU4E EMAIL]]
 - [[#neotree][NEOTREE]]
 - [[#org-mode][ORG MODE]]
   - [[#diminish-org-indent-mode][Diminish Org Indent Mode]]
@@ -666,6 +665,7 @@ Adding highlights to TODO and related words.
 Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM, AWK, C, C++, Fortran, Icon, IDL (CORBA), IDLWAVE, Java, Javascript, M4, Makefiles, Metafont, Modula2, Object Pascal, Objective-C, Octave, Pascal, Perl, Pike, PostScript, Prolog, Python, Ruby, Simula, SQL, Tcl, Verilog, and VHDL.  Other languages will require you to install additional modes.
 
 #+begin_src emacs-lisp
+(use-package dart-mode)
 (use-package haskell-mode)
 (use-package lua-mode)
 (use-package php-mode)
@@ -691,18 +691,6 @@ The modeline is the bottom status bar that appears in Emacs windows.  While you 
         doom-modeline-bar-width 5    ;; sets right bar width
         doom-modeline-persp-name t   ;; adds perspective name to modeline
         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
-
-#+end_src
-
-* MU4E EMAIL
-=mu4e= is the email client in Emacs.  It requires that 'mu' and 'isync' be installed on your Linux system.  Here is a great tutorial about setting up mu4e: https://f-santos.gitlab.io/2020-04-24-mu4e.html  
-
-NOTE For privacy reasons, I'm importing all of my mu4e settings from a separate file which is not public.
-
-#+begin_src emacs-lisp
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(load-file "~/nc/emacs-stuff/email-mu4e.el")
 
 #+end_src
 
@@ -1033,7 +1021,6 @@ With Emacs version 29, true transparency has been added.  I have turned transpar
 	  which-key-allow-imprecise-window-fit nil
 	  which-key-separator " → " ))
 #+end_src
-
 
 * TEST
 #+begin_src emacs-lisp
