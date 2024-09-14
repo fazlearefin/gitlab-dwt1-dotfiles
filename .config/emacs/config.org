@@ -34,8 +34,9 @@
 - [[#modeline][MODELINE]]
 - [[#neotree][NEOTREE]]
 - [[#org-mode][ORG MODE]]
+  - [[#agenda][Agenda]]
+  - [[#bullets][Bullets]]
   - [[#diminish-org-indent-mode][Diminish Org Indent Mode]]
-  - [[#org-bullets][Org-Bullets]]
   - [[#org-level-headers][Org Level Headers]]
   - [[#org-tempo][Org-Tempo]]
   - [[#preserve-indentation-on-org-babel-tangle][Preserve Indentation On Org-Babel-Tangle]]
@@ -723,21 +724,25 @@ Neotree is a file tree viewer.  When you open neotree, it jumps to the current f
 #+end_src
 
 * ORG MODE
-** Diminish Org Indent Mode
-Removes "Ind" from showing in the modeline.
-
+** Agenda
 #+begin_src emacs-lisp
-(eval-after-load 'org-indent '(diminish 'org-indent-mode))
-
+(setq org-agenda-files '("~/nc/Org/agenda.org"))
 #+end_src
 
-** Org-Bullets
-Org-bullets gives us attractive bullets rather than asterisks.
+** Bullets
+=Org-bullets= gives us attractive bullets rather than asterisks.
 
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
+** Diminish Org Indent Mode
+Removes "Ind" from showing in the modeline.
+
+#+begin_src emacs-lisp
+(eval-after-load 'org-indent '(diminish 'org-indent-mode))
 #+end_src
 
 ** Org Level Headers

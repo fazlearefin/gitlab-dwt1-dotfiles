@@ -517,11 +517,13 @@
                  (make-local-variable 'auto-hscroll-mode)
                  (setq auto-hscroll-mode nil)))))
 
-(eval-after-load 'org-indent '(diminish 'org-indent-mode))
+(setq org-agenda-files '("~/nc/Org/agenda.org"))
 
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(eval-after-load 'org-indent '(diminish 'org-indent-mode))
 
 (custom-set-faces
  '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
