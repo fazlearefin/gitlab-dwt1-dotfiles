@@ -28,28 +28,29 @@ bindkey -v
 [[ $- != *i* ]] && return
 
 ### PATH
+typeset -U path PATH
 if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
+  then path=($HOME/.bin $path)
 fi
 
 if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
+  then path=($HOME/.local/bin $path)
 fi
 
 if [ -d "$HOME/.emacs.d/bin" ] ;
-  then PATH="$HOME/.emacs.d/bin:$PATH"
+  then path=($HOME/.emacs.d/bin $path)
 fi
 
 if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
+  then path=($HOME/Applications $path)
 fi
 
 if [ -d "/var/lib/flatpak/exports/bin/" ] ;
-  then PATH="/var/lib/flatpak/exports/bin/:$PATH"
+  then path=(/var/lib/flatpak/exports/bin $path)
 fi
 
 if [ -d "$HOME/.config/emacs/bin/" ] ;
-  then PATH="$HOME/.config/emacs/bin/:$PATH"
+  then path=($HOME/.config/emacs/bin $path)
 fi
 
 ### SETTING OTHER ENVIRONMENT VARIABLES
