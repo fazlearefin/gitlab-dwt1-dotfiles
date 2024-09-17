@@ -89,7 +89,7 @@ Bookmarks are somewhat like registers in that they record positions you can jump
       (:prefix ("b". "buffer")
        :desc "List bookmarks"                          "L" #'list-bookmarks
        :desc "Set bookmark"                            "m" #'bookmark-set
-       :desc "Delete bookmark"                         "M" #'bookmark-set
+       :desc "Delete bookmark"                         "M" #'bookmark-delete
        :desc "Save current bookmarks to bookmark file" "w" #'bookmark-save))
 #+END_SRC
 

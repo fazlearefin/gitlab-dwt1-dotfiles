@@ -6,7 +6,7 @@
       (:prefix ("b". "buffer")
        :desc "List bookmarks"                          "L" #'list-bookmarks
        :desc "Set bookmark"                            "m" #'bookmark-set
-       :desc "Delete bookmark"                         "M" #'bookmark-set
+       :desc "Delete bookmark"                         "M" #'bookmark-delete
        :desc "Save current bookmarks to bookmark file" "w" #'bookmark-save))
 
 (global-auto-revert-mode 1)
